@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>qwo877</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background-image: url('awfuopaiw.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 95px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 30px;
+    }
+    .nav-left {
+      width: 430px;
+    }
+
+    .nav-right a {
+      margin-left: 40px;
+      color: #9dffff;
+      font-size: 22px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-right a:hover {
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+    width: 430px;
+    height: 100vh;
+    background-color: rgba(17, 50, 64, 0.8);
+    padding: 115px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    }
+
+    .avatar {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: #2b3c56;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 30px;
+      border: 5px solid #9dffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .intro-title {
+      font-size: 30px;
+      color: #9dffff;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .content {
+      flex: 1;
+      padding: 120px 20px 20px 20px;
+    }
+    .welcome{
+      font-size: 90px;
+      color: #9dffff;
+      margin-bottom: 40px;
+      font-weight: bold;
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .welcome2{
+      font-size: 50px;
+      color: #9dffff;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .subtitle {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 40px;
+    height: 80px;
+    color: #d1e6f2;
+    width: 90%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    }
+    #typewriter::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-content">
+      <div class="nav-left"></div>
+      <div class="nav-right">
+        <a href="home.html">首頁</a>
+        <a href="#about">關於我</a>
+        <a href="#experience">經歷</a>
+        <a href="#projects">專案</a>
+        <a href="#teaching">程式教學</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="avatar" style="background-image: url('image14841987481.png');"></div>
+      <h2 class="intro-title">匿名用戶9487</h2>
+    </div>
+    <div class="content">
+      <!-- 內容 -->
+      <h1 class="welcome">早安 我是匿名用戶9487</h1>
+      <h2 class="welcome2">歡迎來到我的網站</h2>
+      <h3 class="subtitle" id="typewriter"></h3>
+      <script>
+        const texts = [
+            "一天天的你們都在電我qwp",
+            "注意!!!!!!!!!!!!!     感謝你的注意。",
+            "你有什麼不開心的事? 講出來讓大家開心一下嘛",
+            "早安 你是來關注廢物的嗎",
+            "..................沒事",
+            "每次去回收場都差點一起被丟進回收場",
+            "?你好  歡迎來到這裡",
+            "每次看完這行字 就表示你的人生又被浪費10秒鐘",
+            "你知道嗎?.....我不知道"
+        ];
+
+        const typeSpeed = 80;
+        const backspaceSpeed = 50;
+        const pauseTime = 1000;
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const container = document.getElementById('typewriter');
+            const currentText = texts[textIndex];
+
+            container.textContent = currentText.substring(0, isDeleting ? charIndex-- : charIndex++);
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, pauseTime);
+            }
+
+            let delay = typeSpeed;
+            if (isDeleting) {
+                const currentChar = currentText.charAt(charIndex);
+                delay = currentChar === ' ' ? 0 : backspaceSpeed;
+            }
+
+            setTimeout(typeWriter, delay);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('typewriter').textContent = '';
+            typeWriter();
+        });
+        </script>
+
+    </div>
+  </div>
+
+</body>
+</html>
