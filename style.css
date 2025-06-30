@@ -1,69 +1,155 @@
-/* 全局樣式重設 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* 頁面佈局 */
-body {
-    background-image: url("images/GTJonT6aoAAwrDf.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+html, body {
+  height: 100%;
+  background-image: url('awfuopaiw.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
 }
 
-/* 標題區 */
-header {
-    background-color: #FFCCCC;
-    color: #333;
-    padding: 1em;
-    text-align: center;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
 }
 
-/* 導覽欄樣式 */
-nav {
-    display: flex;
-    justify-content: center;
-    background-color: #333;
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
 }
 
-nav a {
-    color: white;
-    padding: 1em;
-    text-decoration: none;
+.nav-left {
+  width: 430px;
 }
 
-nav a:hover {
-    background-color: #555;
+.nav-right a {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-/* 主內容區 */
+.nav-right a:hover,
+.nav-right a.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+
 .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
+  display: flex;
+  height: 100vh;
 }
 
-/* 項目卡片樣式 */
-.card {
-    background-color: rgba(244, 244, 244, 0.8);
-    padding: 1em;
-    margin-bottom: 1em;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #333;
+.sidebar {
+  width: 430px;
+  height: 100vh;
+  background-color: rgba(17, 50, 64, 0.8);
+  padding: 115px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
 }
 
-/* 頁尾樣式 */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    margin-top: 20px;
+.avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #2b3c56;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+  border: 5px solid #9dffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.intro-title {
+  font-size: 30px;
+  color: #9dffff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 120px 20px 20px 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #9dffff rgba(255,255,255,0.05);
+}
+
+.content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #9dffff;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+.welcome {
+  font-size: 90px;
+  color: #9dffff;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.welcome2 {
+  font-size: 50px;
+  color: #9dffff;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 40px;
+  height: 80px;
+  color: #d1e6f2;
+  width: 90%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#typewriter::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
