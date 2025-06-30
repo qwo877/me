@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-image: url('awfuopaiw.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.nav-left {
+  width: 430px;
+}
+
+.nav-right a {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-right a:hover,
+.nav-right a.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 330px;
+  height: 100vh;
+  background-color: rgba(17, 50, 64, 0.8);
+  padding: 115px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #2b3c56;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+  border: 5px solid #9dffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.intro-title {
+  font-size: 30px;
+  color: #9dffff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 120px 40px 40px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1500px;
+  max-height: 85vh;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: white;
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #9dffff rgba(255,255,255,0.05);
+}
+
+.about-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.about-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.about-container::-webkit-scrollbar-thumb {
+  background: #9dffff;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-container::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+.about-container h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #9dffff;
+}
+
+.about-container p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 20px;
+}
