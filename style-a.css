@@ -13,6 +13,7 @@ html, body {
   font-family: sans-serif;
   overflow: hidden;
 }
+
 .navbar {
   position: fixed;
   top: 0;
@@ -52,6 +53,7 @@ html, body {
   color: white;
   border-bottom: 2px solid #9dffff;
 }
+
 .container {
   display: flex;
   height: 100vh;
@@ -91,47 +93,44 @@ html, body {
   flex: 1;
   padding: 120px 40px 40px 40px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 100vh;
+  scroll-behavior: smooth;
+  align-items: center;
+}
+
+.content::-webkit-scrollbar {
+  width: 12px;
+}
+.content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.content::-webkit-scrollbar-thumb {
+  background: #9dffff;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
 }
 
 .about-container {
   width: 100%;
   max-width: 1500px;
-  max-height: 85vh;
   padding: 30px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   color: white;
-
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #9dffff rgba(255,255,255,0.05);
-}
-
-.about-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.about-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.about-container::-webkit-scrollbar-thumb {
-  background: #9dffff;
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.about-container::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+  margin-bottom: 40px;
 }
 
 .about-container h1 {
-  font-size: 36px;
+  border-bottom: 2px solid #9dffff;
+  font-size: 40px;
   margin-bottom: 20px;
   color: #9dffff;
 }
@@ -139,5 +138,55 @@ html, body {
 .about-container p {
   margin-bottom: 15px;
   line-height: 1.8;
-  font-size: 20px;
+  font-size: 35px;
+  color: #82f3f3;
+}
+
+.li-about {
+  margin-bottom: 10px;
+  color: #82f3f3;
+  line-height: 1.2;
+  font-size: 25px;
+}
+.skill {
+  margin-bottom: 20px;
+}
+
+.skill span {
+  font-size: 32px;
+  display: inline-block;
+  font-weight: bold;
+  color: #e0f8fb;
+  margin-bottom: 5px;
+}
+.skill h1 {
+  font-size: 40px;
+  display: inline-block;
+  font-weight: bold;
+  color: hsl(189, 47%, 91%);
+  margin-bottom: 5px;
+}
+.bar {
+  background-color: #111;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  background: linear-gradient(90deg, #00e6ff, #0099cc);
+  height: 100%;
+  width: 0;
+  animation: fill-in 2s forwards;
+  transition: filter 0.5s;
+}
+
+.fill:hover {
+  filter: brightness(1.4) saturate(1.3);
+}
+
+
+@keyframes fill-in {
+  from { width: 0; }
+  to { width: var(--target-width); }
 }
