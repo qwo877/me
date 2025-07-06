@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-image: url('awfuopaiw.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.nav-left {
+  width: 430px;
+}
+
+.nav-right a {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-right a:hover,
+.nav-right a.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+#cy {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+.cy-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  pointer-events: none;
+  display: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
