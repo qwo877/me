@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('images/awfuopaiw.png');
+  background-image: url('awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -53,6 +53,8 @@ html, body {
   border-bottom: 2px solid #9dffff;
 }
 #cy {
+  height: calc(100vh - 95px);
+  padding-top: 95px;
   width: 100vw;
   height: 100vh;
   display: block;

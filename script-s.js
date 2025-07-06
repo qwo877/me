@@ -3,7 +3,7 @@ const skills = [
   { id: 'ML', label: '機器學習', progress: 80, desc: '從數據中訓練模型進行預測或分類' },
   { id: 'DL', label: '深度學習', progress: 60, desc: '使用神經網路進行多層次數據處理' },
   { id: 'RL', label: '強化學習', progress: 50, desc: '代理學習透過獎勵與懲罰進行行為決策' },
-  { id: 'NLP', label: 'CNN神經捲積模型', progress: 30, desc: 'ai模型之一 常用於生成圖片' },
+  { id: 'CNN', label: 'CNN神經捲積模型', progress: 30, desc: 'ai模型之一 常用於生成圖片' },
   { id: 'FE', label: '前端開發', progress: 70, desc: '使用者所看到、所互動的部分' },
   { id: 'Web Dev', label: '網頁', progress: 70, desc: '在一個網站頁面中所看到的部分' },
   { id: 'SW', label: '軟體', progress: 30, desc: 'app....這能怎麼解釋?' },
@@ -20,7 +20,7 @@ const edges = [
   { source: 'AI', target: 'ML' },
   { source: 'ML', target: 'DL' },
   { source: 'DL', target: 'RL' },
-  { source: 'AI', target: 'NLP' },
+  { source: 'AI', target: 'CNN' },
   { source: 'FE', target: 'Web Dev' },
   { source: 'FE', target: 'SW' },
   { source: 'FE', target: 'PG' },
@@ -83,8 +83,8 @@ const cy = cytoscape({
   orientation: 'horizontal',
   nodeDimensionsIncludeLabels: true
 },
-  minZoom: 0.2,
-  maxZoom: 2.5,
+  minZoom: 1,
+  maxZoom: 1,
   wheelSensitivity: 0.2
 });
 
@@ -105,14 +105,8 @@ cy.on('mousemove', function(evt) {
   tooltip.style.left = evt.originalEvent.pageX + 10 + 'px';
   tooltip.style.top = evt.originalEvent.pageY + 10 + 'px';
 });
-cy.on('zoom', () => {
-  const zoom = cy.zoom();
-  if (zoom < 0.3) {
-    cy.zoom(0.3);
-  } else if (zoom > 1.5) {
-    cy.zoom(1.5);
-  }
-});
+
+
 const floatParams = {};
 const draggedSet = new Set();
 
