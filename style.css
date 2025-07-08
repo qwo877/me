@@ -32,10 +32,15 @@ html, body {
   align-items: center;
   width: 100%;
   padding: 0 30px;
+  position: relative;
 }
 
 .nav-left {
   width: 430px;
+}
+
+.nav-right {
+  display: flex;
 }
 
 .nav-right a {
@@ -53,16 +58,27 @@ html, body {
   border-bottom: 2px solid #9dffff;
 }
 
+.hamburger {
+  display: none;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #9dffff;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 95px);
+  padding-top: 95px;
+  overflow: hidden;
 }
 
 .sidebar {
   width: 430px;
   height: 100vh;
   background-color: rgba(17, 50, 64, 0.8);
-  padding: 115px 20px 20px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +89,7 @@ html, body {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background-color: #2b3c56;
+  background-image: url('image14841987481.png');
   background-size: cover;
   background-position: center;
   margin-bottom: 30px;
@@ -90,28 +106,27 @@ html, body {
 
 .content {
   flex: 1;
-  padding: 120px 20px 20px 20px;
+  padding: 40px 20px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #9dffff rgba(255,255,255,0.05);
 }
-
-.content::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 12px;
 }
 
-.content::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
 }
 
-.content::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #9dffff;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.content::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #ffffff;
 }
 
@@ -152,4 +167,81 @@ html, body {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* === 手機版 RWD === */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    z-index: 10001;
+  }
+
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 95px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 10000;
+  }
+
+  .nav-right.show {
+    display: flex;
+  }
+
+  .nav-right a {
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .content {
+    padding: 40px 10px;
+  }
+
+  .welcome {
+    font-size: 50px;
+  }
+
+  .welcome2 {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    height: auto;
+    text-align: center;
+    line-height: 1.5;
+    padding: 10px 0;
+  }
 }
