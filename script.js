@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('show');
   });
-
-  // 打字動畫邏輯
   const texts = [
     "一天天的你們都在電我qwp",
     "注意!!!!!!!!!!!!!     感謝你的注意。",
