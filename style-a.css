@@ -267,6 +267,7 @@ html, body {
   }
 
   .nav-right {
+    margin-top: 300px;
     display: none;
     flex-direction: column;
     width: 100%;
