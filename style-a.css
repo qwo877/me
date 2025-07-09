@@ -267,12 +267,15 @@ html, body {
   }
 
   .nav-right {
-    margin-top: 300px;
     display: none;
     flex-direction: column;
-    width: 100%;
     background-color: rgba(0, 0, 0, 0.9);
-    padding: 10px 0;
+    position: absolute;
+    top: 95px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 10000;
   }
 
   .nav-right.show {
@@ -280,11 +283,12 @@ html, body {
   }
 
   .nav-right a {
-    font-size: 18px;
-    padding: 10px 20px;
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
   html, body {
     background-size: auto 100%;
     background-repeat: repeat-y;
