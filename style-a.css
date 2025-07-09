@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('awfuopaiw.png');
+  background-image: url('images/awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,7 +14,6 @@ html, body {
   min-height: 100vh;
 }
 
-/* 導覽列 */
 .navbar {
   position: fixed;
   top: 0;
@@ -55,7 +54,6 @@ html, body {
   border-bottom: 2px solid #9dffff;
 }
 
-/* 漢堡選單按鈕預設隱藏（桌機） */
 .hamburger {
   display: none;
   font-size: 36px;
@@ -65,7 +63,6 @@ html, body {
   cursor: pointer;
 }
 
-/* 容器區域 */
 .container {
   display: flex;
   height: 100vh;
@@ -101,7 +98,6 @@ html, body {
   margin-bottom: 10px;
 }
 
-/* 內容區域 */
 .content {
   flex: 1;
   padding: 120px 40px 40px 40px;
@@ -113,7 +109,6 @@ html, body {
   align-items: center;
 }
 
-/* 自定義滾動條（桌機有效） */
 .content::-webkit-scrollbar {
   width: 12px;
 }
@@ -130,7 +125,6 @@ html, body {
   background: #ffffff;
 }
 
-/* 關於我 + 技能區塊 */
 .about-container {
   width: 100%;
   max-width: 1500px;
@@ -164,7 +158,6 @@ html, body {
   font-size: 25px;
 }
 
-/* 技能條 */
 .skill {
   margin-bottom: 20px;
 }
@@ -201,8 +194,6 @@ html, body {
   from { width: 0; }
   to { width: var(--target-width); }
 }
-
-/* ✅ 手機版樣式 */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -298,8 +289,6 @@ html, body {
     background-repeat: repeat-y;
   }
 }
-
-/* 框架外的 toast 提示 */
 .toast {
   position: fixed;
   bottom: -100px;
