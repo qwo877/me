@@ -6,11 +6,22 @@
   <title>qwo877</title>
   <link rel="stylesheet" href="style-a.css">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  });
+</script>
 <body>
   <div class="navbar">
     <div class="nav-content">
       <div class="nav-left"></div>
-      <div class="nav-right">
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <div class="nav-right" id="nav-menu">
         <a href="home.html">首頁</a>
         <a href="about.html">關於我</a>
         <a href="Skill.html">技能樹</a>
@@ -23,7 +34,7 @@
 
   <div class="container">
     <div class="sidebar">
-      <div class="avatar" style="background-image: url('images/image14841987481.png');"></div>
+      <div class="avatar" style="background-image: url('image14841987481.png');"></div>
       <h2 class="intro-title">匿名用戶9487</h2>
     </div>
 

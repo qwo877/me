@@ -6,14 +6,15 @@
 
 html, body {
   height: 100%;
-  background-image: url('images/awfuopaiw.png');
+  background-image: url('awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   font-family: sans-serif;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
+/* 導覽列 */
 .navbar {
   position: fixed;
   top: 0;
@@ -54,6 +55,17 @@ html, body {
   border-bottom: 2px solid #9dffff;
 }
 
+/* 漢堡選單按鈕預設隱藏（桌機） */
+.hamburger {
+  display: none;
+  font-size: 36px;
+  background: none;
+  border: none;
+  color: #9dffff;
+  cursor: pointer;
+}
+
+/* 容器區域 */
 .container {
   display: flex;
   height: 100vh;
@@ -89,6 +101,7 @@ html, body {
   margin-bottom: 10px;
 }
 
+/* 內容區域 */
 .content {
   flex: 1;
   padding: 120px 40px 40px 40px;
@@ -100,6 +113,7 @@ html, body {
   align-items: center;
 }
 
+/* 自定義滾動條（桌機有效） */
 .content::-webkit-scrollbar {
   width: 12px;
 }
@@ -116,6 +130,7 @@ html, body {
   background: #ffffff;
 }
 
+/* 關於我 + 技能區塊 */
 .about-container {
   width: 100%;
   max-width: 1500px;
@@ -148,21 +163,20 @@ html, body {
   line-height: 1.2;
   font-size: 25px;
 }
+
+/* 技能條 */
 .skill {
   margin-bottom: 20px;
 }
-
 .skill span {
   font-size: 32px;
-  display: inline-block;
   font-weight: bold;
   color: #e0f8fb;
   margin-bottom: 5px;
+  display: inline-block;
 }
 .skill h1 {
   font-size: 40px;
-  display: inline-block;
-  font-weight: bold;
   color: hsl(189, 47%, 91%);
   margin-bottom: 5px;
 }
@@ -172,7 +186,6 @@ html, body {
   border-radius: 4px;
   overflow: hidden;
 }
-
 .fill {
   background: linear-gradient(90deg, #00e6ff, #0099cc);
   height: 100%;
@@ -180,13 +193,128 @@ html, body {
   animation: fill-in 2s forwards;
   transition: filter 0.5s;
 }
-
 .fill:hover {
   filter: brightness(1.4) saturate(1.3);
 }
 
-
 @keyframes fill-in {
   from { width: 0; }
   to { width: var(--target-width); }
+}
+
+/* ✅ 手機版樣式 */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+  }
+
+  .intro-title {
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .content {
+    padding: 20px;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .about-container {
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .about-container h1 {
+    font-size: 28px;
+  }
+
+  .about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .li-about {
+    font-size: 16px;
+  }
+
+  .skill span,
+  .skill h1 {
+    font-size: 20px;
+  }
+
+  .bar {
+    height: 6px;
+  }
+
+  .fill {
+    animation-duration: 1.5s;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-left {
+    display: none;
+  }
+
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+  }
+
+  .nav-right.show {
+    display: flex;
+  }
+
+  .nav-right a {
+    font-size: 18px;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  html, body {
+    background-size: auto 100%;
+    background-repeat: repeat-y;
+  }
+}
+
+/* 框架外的 toast 提示 */
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+.toast.show {
+  bottom: 30px;
+  opacity: 1;
 }
