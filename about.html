@@ -136,5 +136,47 @@
       </div>
     </div>
   </div>
+<script>
+(function () {
+  const url = "https://qwo877.github.io/me/XD";
+  let r = false;
+
+  const d = {
+    open: false,
+    orientation: null,
+  };
+
+  const t = 160;
+
+  const e = (state) => {
+    if (state && !r) {
+      r = true;
+      window.location.href = url;
+    }
+  };
+
+  setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > t;
+    const heightThreshold = window.outerHeight - window.innerHeight > t;
+
+    const orientation = widthThreshold ? 'vertical' : 'horizontal';
+
+    if (
+      !(heightThreshold && widthThreshold) &&
+      ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) ||
+        widthThreshold || heightThreshold)
+    ) {
+      if (!d.open || d.orientation !== orientation) {
+        e(true);
+      }
+      d.open = true;
+      d.orientation = orientation;
+    } else {
+      d.open = false;
+      d.orientation = null;
+    }
+  }, 500);
+})();
+</script>
 </body>
 </html>
