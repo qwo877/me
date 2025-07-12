@@ -36,12 +36,16 @@
 
   <script src="script.js"></script>
  <script>
-setInterval(() => {
-  if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
-    // 偵測到疑似開了 DevTools
-    window.location.href = "https://qwo877.github.io/me/XD";
-  }
-}, 1000);
+(function() {
+  const url = "https://qwo877.github.io/me/XD";
+  const e = new Image();
+  Object.defineProperty(e, 'id', {get: ()=>{window.location.href = url;}});
+  Object.defineProperty(e, 'id', {
+    get: () => { window.location.href = url; }
+  });
+  console.log("%c嘿！為什麼要打開開發者工具？", "color:red; font-weight:bold;");
+  console.log(e);
+})();
 </script>
 
 </body>
