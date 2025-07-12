@@ -35,13 +35,17 @@
   </div>
 
   <script src="script.js"></script>
-  <script>
+<script>
 (function() {
   const url = "https://qwo877.github.io/me/XD";
   const e = new Image();
-  Object.defineProperty(e, 'id', {get: ()=>{window.location.href = url;}});
+  Object.defineProperty(e, 'id', {
+    get: () => { window.location.href = url; }
+  });
+  console.log("%c嘿！為什麼要打開開發者工具？", "color:red; font-weight:bold;");
   console.log(e);
 })();
 </script>
+
 </body>
 </html>
