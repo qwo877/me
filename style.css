@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('images/awfuopaiw.png');
+  background-image: url('awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -51,6 +51,30 @@ html, body {
   font-weight: bold;
   transition: color 0.3s;
 }
+.nav-right button {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+  appearance: none;
+}
+.nav-right button:hover,
+.nav-right button.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+
+.nav-right button:hover {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
 
 .nav-right a:hover,
 .nav-right a.active {
@@ -76,7 +100,7 @@ html, body {
 
 .sidebar {
   width: 430px;
-  height: 100vh;
+  height: auto;
   background-color: rgba(17, 50, 64, 0.8);
   padding: 20px;
   display: flex;
@@ -89,7 +113,7 @@ html, body {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background-image: url('images/image14841987481.png');
+  background-image: url('image14841987481.png');
   background-size: cover;
   background-position: center;
   margin-bottom: 30px;
@@ -163,11 +187,30 @@ html, body {
   content: '|';
   animation: blink 1s infinite;
 }
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+.toast.show {
+  bottom: 30px;
+  opacity: 1;
+}
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
 @media (max-width: 768px) {
   .navbar {
     height: auto;
@@ -210,6 +253,7 @@ html, body {
   .container {
     flex-direction: column-reverse;
     height: auto;
+    overflow: hidden; 
   }
 
   .sidebar {

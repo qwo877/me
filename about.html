@@ -15,6 +15,14 @@
       navMenu.classList.toggle('show');
     });
   });
+  function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
 </script>
 <body>
   <div class="navbar">
@@ -23,18 +31,18 @@
       <button class="hamburger" id="hamburger">&#9776;</button>
       <div class="nav-right" id="nav-menu">
         <a href="home.html">首頁</a>
-        <a href="about.html">關於我</a>
+        <a href="about.html"class="active">關於我</a>
         <a href="Skill.html">技能樹</a>
         <a href="experience.html">經歷</a>
-        <a href="#projects">專案</a>
-        <a href="#teaching">程式教學</a>
+        <button onclick="showToast()">專案</button>
+        <a href="friend.html">友站</a>
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="sidebar">
-      <div class="avatar" style="background-image: url('images/image14841987481.png');"></div>
+      <div class="avatar" style="background-image: url('image14841987481.png');"></div>
       <h2 class="intro-title">匿名用戶9487</h2>
     </div>
 
@@ -121,6 +129,12 @@
         </div>
       </div>
       <div class="skill">
+        <span>verilog</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 10%;"></div>
+        </div>
+      </div>
+      <div class="skill">
         <span>電銲</span>
         <div class="bar">
           <div class="fill" style="--target-width: 70%;"></div>
@@ -135,48 +149,7 @@
       
       </div>
     </div>
+    <div id="toast" class="toast">網頁維護中</div>
   </div>
-<script>
-(function () {
-  const url = "https://qwo877.github.io/me/XD";
-  let r = false;
-
-  const d = {
-    open: false,
-    orientation: null,
-  };
-
-  const t = 160;
-
-  const e = (state) => {
-    if (state && !r) {
-      r = true;
-      window.location.href = url;
-    }
-  };
-
-  setInterval(() => {
-    const widthThreshold = window.outerWidth - window.innerWidth > t;
-    const heightThreshold = window.outerHeight - window.innerHeight > t;
-
-    const orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-    if (
-      !(heightThreshold && widthThreshold) &&
-      ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) ||
-        widthThreshold || heightThreshold)
-    ) {
-      if (!d.open || d.orientation !== orientation) {
-        e(true);
-      }
-      d.open = true;
-      d.orientation = orientation;
-    } else {
-      d.open = false;
-      d.orientation = null;
-    }
-  }, 500);
-})();
-</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('images/awfuopaiw.png');
+  background-image: url('awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,6 +52,33 @@ html, body {
   color: white;
   border-bottom: 2px solid #9dffff;
 }
+.nav-right button {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+  appearance: none;
+  outline: none;
+}
+.nav-right button:hover,
+.nav-right button.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+.nav-right button:focus {
+  outline: none;
+}
+.nav-right button:focus-visible {
+  outline: none;
+}
+
 #cy {
   height: calc(100vh - 95px);
   padding-top: 95px;
@@ -59,7 +86,24 @@ html, body {
   height: 100vh;
   display: block;
 }
-
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+.toast.show {
+  bottom: 30px;
+  opacity: 1;
+}
 .cy-tooltip {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
@@ -71,4 +115,23 @@ html, body {
   display: none;
   z-index: 9999;
   white-space: nowrap;
+}
+
+.toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+.toast.show {
+  bottom: 30px;
+  opacity: 1;
 }
