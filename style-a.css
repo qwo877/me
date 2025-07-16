@@ -341,6 +341,19 @@ html, body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 10001;
+    font-size: 36px;
+    background: none;
+    border: none;
+    color: #9dffff;
+    cursor: pointer;
+  }
+
   html, body {
     background-size: auto 100%;
     background-repeat: repeat-y;
