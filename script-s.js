@@ -18,6 +18,10 @@ const skills = [
   { id: 'Perceptron', label: '感知機', progress: 90, desc: '一切ai的始祖,神經網路的雛形' },
   { id: 'DS', label: '資料結構', progress: 90, desc: '演算法的基礎，資料如何儲存與操作會直接影響效率與表現' },
   {id: 'PSM', label: '演算方法', progress: 70, desc: '各種解題策略與思維模式，如動態規劃、貪婪法、回溯法等，是寫出有效演算法的核心技巧'},
+  {id: 'I don\'t fucking know', label: '其他', progress: 100, desc: '各種無法分類'},
+  { id: 'FileIO', label: '檔案操作', progress: 85, desc: '讀寫文字、CSV、JSON 等檔案，是資料處理與自動化不可或缺的技能' },
+  { id: 'ImageRec', label: '影像識別', progress: 60, desc: '讓電腦看得懂圖片，基於 CNN 等技術，廣泛應用於 AI 與電腦視覺領域' },
+  { id: 'SysOps', label: '系統操作', progress: 50, desc: '透過程式控制系統資源，如檔案系統、執行程序、環境變數與權限設定' },
   { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' }
 ];
 
@@ -35,6 +39,10 @@ const edges = [
   { source: 'AI', target: 'Perceptron' },
   { source: 'Perceptron', target: 'MLP' },
   { source: 'MLP', target: 'CNN' },
+  { source: 'I don\'t fucking know', target: 'FileIO' },
+  { source: 'I don\'t fucking know', target: 'OOP' },
+  { source: 'I don\'t fucking know', target: 'SysOps' },
+  { source: 'I don\'t fucking know', target: 'ImageRec' },
 ];
 
 const cy = cytoscape({
@@ -169,4 +177,5 @@ function showToast() {
       }, 3000);
 
     }
+
 
