@@ -93,8 +93,8 @@ const cy = cytoscape({
     }
   ],
   layout: {
-  name: 'dagre',        // 改用 dagre 佈局
-  rankDir: 'LR',        // LR: 左→右 排；想要上下排就改 'TB'
+  name: 'dagre',
+  rankDir: 'TB',        // LR: 左→右 排；想要上下排就改 'TB'
   nodeSep: 50,          // 同層節點間距
   edgeSep: 20,          // 不同組(邊)間距
   rankSep: 80,          // 各層之間間距
@@ -178,4 +178,5 @@ function showToast() {
       }, 3000);
 
     }
+
 
