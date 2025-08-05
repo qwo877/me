@@ -12,20 +12,24 @@ const skills = [
   { id: 'MS', label: 'mysql', progress: 70, desc: '資料庫系統' },
   { id: 'PG', label: '遊戲開發', progress: 70, desc: '使用C#與pygame開發小糞game' },
   { id: 'a', label: '關於這個網頁', progress: 0, desc: '我知道它有一堆bug 但我修不好 我是廢物qwp 而且好醜XD' },
-  { id: '專業基礎學科', label: '專業基礎學科', progress: 20, desc: '專業的學科' },
+  { id: '專業基礎學科', label: '專業基礎學科', progress: 20, desc: '自動控制科的專業學科' },
   { id: 'Algo', label: '演算法', progress: 20, desc: '基礎的演算法' },
+  { id: 'MLP', label: '多層感知機', progress: 70, desc: '在感知機的基礎上做感知機堆疊(隱藏層)' },
+  { id: 'Perceptron', label: '感知機', progress: 90, desc: '一切ai的始祖,神經網路的雛形' },
 ];
 
 const edges = [
   { source: 'AI', target: 'ML' },
   { source: 'ML', target: 'DL' },
   { source: 'DL', target: 'RL' },
-  { source: 'AI', target: 'CNN' },
   { source: 'FE', target: 'Web Dev' },
   { source: 'FE', target: 'SW' },
   { source: 'FE', target: 'PG' },
   { source: 'BE', target: 'PF' },
   { source: 'BE', target: 'MS' },
+  { source: 'AI', target: 'Perceptron' },
+  { source: 'Perceptron', target: 'MLP' },
+  { source: 'MLP', target: 'CNN' },
 ];
 
 const cy = cytoscape({
@@ -158,4 +162,5 @@ function showToast() {
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
+
     }
