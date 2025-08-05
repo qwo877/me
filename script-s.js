@@ -16,12 +16,17 @@ const skills = [
   { id: 'Algo', label: '演算法', progress: 20, desc: '基礎的演算法' },
   { id: 'MLP', label: '多層感知機', progress: 70, desc: '在感知機的基礎上做感知機堆疊(隱藏層)' },
   { id: 'Perceptron', label: '感知機', progress: 90, desc: '一切ai的始祖,神經網路的雛形' },
+  { id: 'DS', label: '資料結構', progress: 90, desc: '演算法的基礎，資料如何儲存與操作會直接影響效率與表現' },
+  {id: 'PSM', label: '演算方法', progress: 70, desc: '各種解題策略與思維模式，如動態規劃、貪婪法、回溯法等，是寫出有效演算法的核心技巧'},
+  { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' }
 ];
 
 const edges = [
   { source: 'AI', target: 'ML' },
   { source: 'ML', target: 'DL' },
   { source: 'DL', target: 'RL' },
+  { source: 'DS', target: 'Algo' },
+  { source: 'Algo', target: 'PSM' },
   { source: 'FE', target: 'Web Dev' },
   { source: 'FE', target: 'SW' },
   { source: 'FE', target: 'PG' },
@@ -164,3 +169,4 @@ function showToast() {
       }, 3000);
 
     }
+
