@@ -1,3 +1,4 @@
+cytoscape.use( cytoscapeDagre );
 const skills = [
   { id: 'AI', label: 'AI', progress: 90, desc: '人工智慧，涉及多種子領域' },
   { id: 'ML', label: '機器學習', progress: 80, desc: '從數據中訓練模型進行預測或分類' },
@@ -92,14 +93,14 @@ const cy = cytoscape({
     }
   ],
   layout: {
-  name: 'breadthfirst',
-  fit: true,
-  directed: true,
-  padding: 50,
-  spacingFactor: 1.5,
-  orientation: 'horizontal',
-  nodeDimensionsIncludeLabels: true
+  name: 'dagre',        // 改用 dagre 佈局
+  rankDir: 'LR',        // LR: 左→右 排；想要上下排就改 'TB'
+  nodeSep: 50,          // 同層節點間距
+  edgeSep: 20,          // 不同組(邊)間距
+  rankSep: 80,          // 各層之間間距
+  ranker: 'network-simplex'
 },
+
   minZoom: 1,
   maxZoom: 1,
   wheelSensitivity: 0.2
@@ -177,5 +178,4 @@ function showToast() {
       }, 3000);
 
     }
-
 
