@@ -46,7 +46,7 @@ const edges = [
   { source: 'I don\'t fucking know', target: 'ImageRec' },
 ];
 
-const cy = cytoscape({
+window.cy = cytoscape({
   container: document.getElementById('cy'),
   elements: [
     ...skills.map(s => ({ data: { id: s.id, label: s.label, progress: s.progress, desc: s.desc } })),
@@ -82,7 +82,7 @@ const cy = cytoscape({
       selector: 'edge',
       style: {
         'width': 3,
-        'line-color': '#66ccff',
+        'line-color': '#00608fff',
         'target-arrow-color': '#66ccff',
         'target-arrow-shape': 'triangle',
         'arrow-scale': 1.2,
@@ -93,11 +93,11 @@ const cy = cytoscape({
     }
   ],
   layout: {
-    name: 'dagre',
-    rankDir: 'LR',        // LR: 左→右 排；想要上下排就改 'TB'
-    nodeSep: 50,          // 同層節點間距
-    edgeSep: 20,          // 不同組(邊)間距
-    rankSep: 80,          // 各層之間間距
+    name: 'dagre',        
+    rankDir: 'LR',        
+    nodeSep: 30,          
+    edgeSep: 10,          
+    rankSep: 100,          
     animate: true,
     ranker: 'network-simplex'
 },
@@ -174,12 +174,29 @@ function showToast() {
       const toast = document.getElementById('toast');
       toast.classList.add('show');
 
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      setTimeout(() => {toast.classList.remove('show');}, 3000);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu   = document.getElementById('nav-menu');
 
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+
+  navMenu.addEventListener('transitionend', (e) => {
+
+    if (e.propertyName === 'max-height' || e.propertyName === 'opacity') {
+      if (window.cy) {
+        window.cy.resize();
+        window.cy.fit();
+      }
     }
+  });
 
-
-
-
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      navMenu.classList.remove('show');
+    }
+  });
+});

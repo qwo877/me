@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('images/awfuopaiw.png');
+  background-image: url('awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -134,5 +134,71 @@ html, body {
 .toast.show {
   bottom: 30px;
   opacity: 1;
+}
+.hamburger {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 10001;
+  font-size: 36px;
+  background: none;
+  border: none;
+  color: #9dffff;
+  cursor: pointer;
+}
 
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 95px;
+    left: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border-radius: 0 0 12px 12px;
+    z-index: 10000;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-right.show {
+    display: flex;
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .nav-right a,
+  .nav-right button {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    margin: 0;
+    font-size: 20px;
+    color: #9dffff;
+    background: none;
+    border: none;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+  }
+
+  .nav-right a:last-child,
+  .nav-right button:last-child {
+    border-bottom: none;
+  }
+  .nav-right a:hover,
+  .nav-right button:hover {
+    background: rgba(255,255,255,0.1);
+  }
 }
