@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('awfuopaiw.png');
+  background-image: url('images/awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -201,4 +201,5 @@ html, body {
   .nav-right button:hover {
     background: rgba(255,255,255,0.1);
   }
+
 }
