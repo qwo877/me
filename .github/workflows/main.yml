@@ -22,4 +22,4 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: "generated snake animation"
-          add: "dist/snake.svg"
+          add: "images/snake.svg"
