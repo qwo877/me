@@ -1,4 +1,4 @@
-name: generate snake animation
+name: generate snake animation GIF
 
 on:
   workflow_dispatch:
@@ -14,14 +14,18 @@ jobs:
       - name: Create images folder
         run: mkdir -p images
 
-      - name: generate snake.svg
+      - name: generate snake.gif
         uses: Platane/snk@v3
         with:
-          github_user_name: qq123
-          outputs: images/snake.svg
+          github_user_name: qwo877
+          outputs: images/snake.gif
 
-      - name: push changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "generated snake animation"
-          add: "images/snake.svg"
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/snake.gif
+          git commit -m "generated snake GIF animation" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
