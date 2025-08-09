@@ -1,0 +1,25 @@
+name: generate snake animation
+
+on:
+  schedule: # 每天自動更新一次
+    - cron: "0 0 * * *"
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v3
+
+      - name: generate snake.svg
+        uses: Platane/snk@v3
+        with:
+          github_user_name: qwo877
+          outputs: dist/snake.svg
+
+      - name: push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "generated snake animation"
+          add: "dist/snake.svg"
