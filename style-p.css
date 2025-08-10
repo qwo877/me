@@ -12,7 +12,9 @@ html, body {
   background-repeat: no-repeat;
   font-family: sans-serif;
 }
-
+.nav-left {
+  width: 430px;
+}
 .navbar {
   position: fixed;
   top: 0;
