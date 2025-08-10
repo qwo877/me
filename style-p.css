@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  background-image: url('awfuopaiw.png');
+  background-image: url('images/awfuopaiw.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,7 +113,7 @@ html, body {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background-image: url('image14841987481.png');
+  background-image: url('images/image14841987481.png');
   background-size: cover;
   background-position: center;
   margin-bottom: 30px;
@@ -204,6 +204,31 @@ html, body {
 .toast.show {
   bottom: 30px;
   opacity: 1;
+}
+.about-container {
+  width: 100%;
+  max-width: 1500px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: white;
+  margin-bottom: 40px;
+}
+
+.about-container h1 {
+  border-bottom: 2px solid #9dffff;
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #9dffff;
+}
+
+.about-container p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 35px;
+  color: #82f3f3;
 }
 
 @keyframes blink {
