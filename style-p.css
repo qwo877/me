@@ -136,6 +136,9 @@ html, body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   color: white;
   margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .about-container h1 {
@@ -151,7 +154,10 @@ html, body {
   font-size: 35px;
   color: #82f3f3;
 }
-
+.Picture control{
+  width: 300px;
+  height: 300px;
+}
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
