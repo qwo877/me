@@ -1,31 +1,35 @@
-name: generate snake animation GIF
+name: generate snake animation
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout repo content
+        uses: actions/checkout@v3
 
-      - name: Create images folder
-        run: mkdir -p images
-
-      - name: generate snake.gif
+      - name: generate light snake.svg
         uses: Platane/snk@v3
         with:
           github_user_name: qwo877
-          outputs: images/snake.gif
+          outputs: images/snake-light.svg
+          color_snake: "#000000"
+          color_dots: "#cccccc,#cccccc,#cccccc"
 
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add images/snake.gif
-          git commit -m "generated snake GIF animation" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: generate dark snake.svg
+        uses: Platane/snk@v3
+        with:
+          github_user_name: qwo877
+          outputs: images/snake-dark.svg
+          color_snake: "#ffffff"
+          color_dots: "#666666,#666666,#666666"
+
+      - name: push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "generated snake animation"
+          add: "images/snake-light.svg images/snake-dark.svg"
