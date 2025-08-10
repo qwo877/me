@@ -16,17 +16,13 @@ jobs:
         uses: Platane/snk@v3
         with:
           github_user_name: qwo877
-          outputs: images/snake-light.svg
-          color_snake: "#000000"
-          color_dots: "#cccccc,#cccccc,#cccccc"
+          outputs: images/snake-light.svg?palette=github-light
 
       - name: generate dark snake.svg
         uses: Platane/snk@v3
         with:
           github_user_name: qwo877
-          outputs: images/snake-dark.svg
-          color_snake: "#ffffff"
-          color_dots: "#666666,#666666,#666666"
+          outputs: images/snake-dark.svg?palette=github-dark
 
       - name: push changes
         uses: EndBug/add-and-commit@v9
