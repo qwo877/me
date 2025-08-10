@@ -155,8 +155,8 @@ html, body {
   color: #82f3f3;
 }
 .Picture-control{
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
