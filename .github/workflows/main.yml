@@ -1,4 +1,4 @@
-name: generate snake animation
+name: get svg
 
 on:
   schedule:
