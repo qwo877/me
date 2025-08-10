@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>qwo877</title>
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('nav-menu');
-
-      hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-      });
-    });
-  </script>
+  <link rel="stylesheet" href="style-p.css" />
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  });
+</script>
 <body>
   <div class="navbar">
     <div class="nav-content">
-      <div class="nav-left"></div>
       <button class="hamburger" id="hamburger">&#9776;</button>
       <div class="nav-right" id="nav-menu">
         <a href="home.html" class="active">首頁</a>
@@ -33,14 +32,17 @@
   </div>
 
   <div class="container">
-    <div class="about-container">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="images/snake-dark.svg" />
-        <source media="(prefers-color-scheme: light)" srcset="images/snake-light.svg" />
-        <img src="images/snake-light.svg" alt="Snake animation" width="300" height="300"/>
-      </picture>
-      <img src="images/QR.png" style="display: block; margin: auto;" class="Picture-control">
+    <div class="content">
+      <div class="about-container">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="images/snake-dark.svg" />
+          <source media="(prefers-color-scheme: light)" srcset="images/snake-light.svg" />
+          <img src="images/snake-light.svg" alt="Snake animation" />
+        </picture>
+        <img src="images/QR.png" style="display: block; margin: auto;">
+      </div>
     </div>
   </div>
+
 </body>
 </html>
