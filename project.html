@@ -4,37 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>qwo877</title>
-  <link rel="stylesheet" href="style-p.css" />
-</head>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
 
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('show');
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+      });
     });
-  });
-  function showToast() {
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-</script>
+  </script>
+</head>
 <body>
   <div class="navbar">
     <div class="nav-content">
       <div class="nav-left"></div>
       <button class="hamburger" id="hamburger">&#9776;</button>
       <div class="nav-right" id="nav-menu">
-        <a href="home.html">首頁</a>
+        <a href="home.html" class="active">首頁</a>
         <a href="about.html">關於我</a>
         <a href="Skill.html">技能樹</a>
         <a href="experience.html">經歷</a>
-        <a href="project.html" class="active">經歷</a>
+        <a href="project.html">專案</a>
         <a href="friend.html">友站</a>
       </div>
     </div>
@@ -45,14 +37,10 @@
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="images/snake-dark.svg" />
         <source media="(prefers-color-scheme: light)" srcset="images/snake-light.svg" />
-        <img src="images/snake-light.svg" alt="Snake animation" />
+        <img src="images/snake-light.svg" alt="Snake animation" width="300" height="300"/>
       </picture>
-      <img src="images/QR.png" style="display: block; margin: auto;">
+      <img src="images/QR.png" style="display: block; margin: auto;" class="Picture-control">
     </div>
-    
-
-    <div id="toast" class="toast">網頁維護中</div>
   </div>
-
 </body>
 </html>
