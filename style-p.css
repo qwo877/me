@@ -51,7 +51,6 @@ html, body {
   font-weight: bold;
   transition: color 0.3s;
 }
-
 .nav-right button {
   margin-left: 40px;
   color: #9dffff;
@@ -66,9 +65,13 @@ html, body {
   transition: color 0.3s;
   appearance: none;
 }
-
 .nav-right button:hover,
 .nav-right button.active {
+  color: white;
+  border-bottom: 2px solid #9dffff;
+}
+
+.nav-right button:hover {
   color: white;
   border-bottom: 2px solid #9dffff;
 }
@@ -95,6 +98,13 @@ html, body {
   overflow: hidden;
 }
 
+.content {
+  flex: 1;
+  padding: 40px 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #9dffff rgba(255,255,255,0.05);
+}
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -139,11 +149,11 @@ html, body {
   font-size: 35px;
   color: #82f3f3;
 }
-.Picture-control{
-  width  :"300";
-  height :"300";
-}
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
 @media (max-width: 768px) {
   .navbar {
