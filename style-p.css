@@ -140,7 +140,14 @@ html, body {
   justify-content: space-between;
   align-items: center;
 }
-
+.about-container a{
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
 .about-container h1 {
   border-bottom: 2px solid #9dffff;
   font-size: 40px;
@@ -153,10 +160,17 @@ html, body {
   line-height: 1.8;
   font-size: 35px;
   color: #82f3f3;
+  
 }
 .Picture-control{
   width: 150px;
   height: 150px;
+}
+.introduce{
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 35px;
+  color: #82f3f3;
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
