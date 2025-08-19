@@ -200,3 +200,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+(function(){
+    const link = document.getElementById('dynamic-favicon');
+
+    function setFavicon(dataURL) {
+      link.setAttribute('href', dataURL + '#v=' + Date.now());
+    }
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        document.title = 'qwo877';
+        setFavicon("images/1276100847951941776.png");
+      } else {
+        document.title = '為什麼跑了';
+        setFavicon("images/4751354.webp");
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange, false);
+    handleVisibilityChange();
+  })();

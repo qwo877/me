@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>qwo877</title>
   <link rel="stylesheet" href="style-p.css" />
+  <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
 </head>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,24 @@
       navMenu.classList.toggle('show');
     });
   });
+  (function(){
+    const link = document.getElementById('dynamic-favicon');
+
+    function setFavicon(dataURL) {
+      link.setAttribute('href', dataURL + '#v=' + Date.now());
+    }
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        document.title = 'qwo877';
+        setFavicon("images/1276100847951941776.png");
+      } else {
+        document.title = '為什麼跑了';
+        setFavicon("images/4751354.webp");
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange, false);
+    handleVisibilityChange();
+  })();
 </script>
 <body>
   <div class="navbar">
@@ -78,9 +97,13 @@
         <a href="https://github.com/qwo877/Heart-rhythm-analysis-1D-CNN-">1D-CNN</a>
         <img src="images/895623.png" style="display: block; margin: auto;margin-left: 30px;" >
         <img src="images/1987456.png" style="display: block; margin: auto;margin-left: 30px;" >
+      </div>
+      <div class="about-container">
+        <h1>遊戲專案</h1>
+        <a href="https://github.com/qwo877/pygame---Breakout" style="margin-left: 30px;">Breakout</a>
         <div class="introduce">
-          <p></p>
-          <p></p>
+          <p>垃圾pygame小遊戲</p>
+          <p>初學時製作的接球遊戲</p>
         </div>
       </div>
       <div class="about-container">
