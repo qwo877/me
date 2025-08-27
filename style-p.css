@@ -162,6 +162,15 @@ html, body {
   color: #82f3f3;
   
 }
+.about-container img,
+.about-container picture,
+.Picture-control {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-left: 0;
+}
 .Picture-control{
   width: 200px;
   height: 200px;
@@ -247,4 +256,27 @@ html, body {
     height: auto;
     overflow: hidden;
   }
+  .content {
+    padding: 20px;
+  }
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .about-container a { font-size: 28px; margin-left: 0; }
+  .about-container h1 { font-size: 28px; }
+  .about-container p,
+  .introduce { font-size: 16px; }
+
+  .Picture-control,
+  .about-container img { width: 80%; max-width: 320px; height: auto; margin: 0 auto; }
+  html, body {
+    background-size: auto 100%;
+    background-repeat: repeat-y;
+  }
 }
+
