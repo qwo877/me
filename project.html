@@ -8,6 +8,14 @@
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
 </head>
 <script>
+  function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
   document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -44,9 +52,9 @@
         <a href="home.html">首頁</a>
         <a href="about.html">關於我</a>
         <a href="Skill.html">技能樹</a>
-        <a href="experience.html">經歷</a>
+        <button onclick="showToast()">經歷</button>
         <a href="project.html" class="active">專案</a>
-        <a href="friend.html">友站</a>
+        <button onclick="showToast()">友站</button>
       </div>
     </div>
   </div>
@@ -108,8 +116,9 @@
         </div>
       </div>
       <div class="about-container">
-        <h1>等待更新中  網站主人太懶了</h1>
+        <h1>等待更新中  網站作者太懶了</h1>
       </div>
+      <div id="toast" class="toast">網頁維護中</div>
     </div>
   </div>
 
