@@ -1,0 +1,52 @@
+/* Reset & base */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; font-family:system-ui, "Noto Sans TC", sans-serif; background-image: url('images/awfuopaiw.png'); background-size:cover; background-position:center; }
+:root {
+  --bg:#0f1724;
+  --card:#0b1220;
+  --bubble-bg: rgba(255,255,255,0.08);
+  --bubble-border: rgba(255,255,255,0.14);
+}
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; width: 100%; height: 95px; background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); display:flex; align-items:center; z-index:9999; }
+.nav-content { display:flex; justify-content:space-between; align-items:center; width:100%; padding:0 30px; position:relative; }
+.nav-left { width:430px; }
+.nav-right { display:flex; }
+.nav-right a, .nav-right button { margin-left:40px; color:#9dffff; font-size:22px; font-weight:bold; background:transparent; border:none; cursor:pointer; text-decoration:none; }
+.nav-right a:hover, .nav-right a.active, .nav-right button:hover { color:#fff; border-bottom:2px solid #9dffff; }
+.hamburger { display:none; font-size:30px; background:none; border:none; color:#9dffff; cursor:pointer; }
+
+/* Toast */
+.toast { position: fixed; bottom: -100px; left:50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color:#fff; padding:12px 24px; border-radius:8px; opacity:0; transition: all .5s; z-index:9999; }
+.toast.show { bottom:30px; opacity:1; }
+
+/* Card & layout */
+.wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px; }
+.card { width:65%; max-width:96%; background:rgba(255,255,255,0.03); border-radius:16px; padding:28px; position:relative; overflow:hidden; box-shadow:0 8px 30px rgba(2,6,23,0.6); margin-top:95px; }
+.center-area { height:800px; display:flex; align-items:flex-end; justify-content:center; position:relative; }
+
+/* Avatar */
+#avatarBtn { width:140px; height:140px; border-radius:25%; background-size:cover; background-position:center; border:none; box-shadow: 0 0 0 6px rgba(255,255,255,0.08); cursor:pointer; position:relative; z-index:40; display:flex; align-items:center; justify-content:center; overflow:hidden; transition:transform 220ms cubic-bezier(.2,.9,.3,1); }
+@keyframes jump { 0%{transform:translateY(0)} 30%{transform:translateY(-28px)} 60%{transform:translateY(-8px)} 100%{transform:translateY(0)} }
+.jump { animation: jump 520ms cubic-bezier(.2,.9,.3,1) both; }
+
+/* Bubble layer: 初始不攔截點擊 */
+#bubbleLayer { position:absolute; left:0; top:0; right:0; bottom:0; z-index:30; pointer-events:none; }
+.bubble { position:absolute; border-radius:50%; display:flex; align-items:center; justify-content:center; backdrop-filter: blur(2px); background:var(--bubble-bg); border:1px solid var(--bubble-border); box-shadow:0 8px 20px rgba(2,6,23,0.45); pointer-events:auto; transform-origin:center center; overflow:hidden; transition:transform 200ms ease, opacity 220ms ease; }
+.bubble.big { width:110px; height:110px; font-size:13px; padding:6px; }
+.bubble.small { width:36px; height:36px; }
+.bubble.big a { display:flex; align-items:center; justify-content:center; flex-direction:column; text-decoration:none; color:inherit; padding:8px; width:100%; height:100%; border-radius:12px; }
+.bubble.big:hover { transform:scale(1.06); box-shadow:0 12px 30px rgba(2,6,23,0.6); }
+
+@keyframes fadeOutSmall { to{opacity:0; transform:scale(0.85)} }
+.bubble.fade-out { animation:fadeOutSmall 220ms forwards; }
+.bubble .name { font-weight:600; }
+.bubble .url { font-size:11px; opacity:0.85; margin-top:6px; }
+
+@media (max-width:480px) { .card{padding:16px} #avatarBtn{width:110px;height:110px} .center-area{height:260px} }
+@media (max-width:768px) {
+  .hamburger { display:block; position:absolute; right:20px; top:30px; z-index:10001; }
+  .nav-right { display:none; flex-direction:column; background-color: rgba(0,0,0,0.9); position:absolute; top:95px; right:0; width:100%; padding:20px; z-index:10000; }
+  .nav-right.show { display:flex; }
+}
