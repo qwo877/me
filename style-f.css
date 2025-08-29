@@ -83,11 +83,11 @@ html, body {
     opacity:1;
 }
 .wrap {
-    min-height:100vh;
+    min-height:74vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:40px;
+    padding: 0px 40px 0px 40px;
 }
 .card {
     width:65%;
@@ -98,16 +98,14 @@ html, body {
     position:relative;
     overflow:hidden;
     box-shadow:0 8px 30px rgba(2,6,23,0.6);
-    margin-top:95px;
 }
 .center-area {
-    height:800px;
+    height: min(74vh, 800px);
     display:flex;
     align-items:flex-end;
     justify-content:center;
     position:relative;
 }
-
 #avatarBtn {
     width:140px;
     height:140px;
@@ -125,6 +123,99 @@ html, body {
     overflow:hidden;
     transition:transform 220ms cubic-bezier(.2,.9,.3,1);
 }
+.container {
+  display: flex;
+  height: calc(100vh - 95px);
+  overflow: hidden;
+  padding: 95px 0px 0px 0px;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  padding: 0 20px 40px 20px;
+  overflow-y: auto;
+}
+
+.content::-webkit-scrollbar {
+  width: 12px;
+}
+.content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.content::-webkit-scrollbar-thumb {
+  background: #9dffff;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+.content {
+  scrollbar-width: thin;
+  scrollbar-color: #9dffff rgba(255,255,255,0.05);
+}
+
+.about-container {
+  width: 100%;
+  max-width: 2000px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: white;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px; 
+}
+.about-container a{
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.about-container h1 {
+  border-bottom: 2px solid #9dffff;
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #9dffff;
+  margin-left: 30px;
+}
+
+.about-container p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 35px;
+  color: #82f3f3;
+  
+}
+.about-container img,
+.about-container picture,
+.Picture-control {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-left: 0;
+}
+.Picture-control{
+  width: 150px;
+  height: 150px;
+}
+.introduce{
+  margin-bottom: 15px;
+  line-height: 1.8;
+  font-size: 35px;
+  color: #82f3f3;
+}
+
 @keyframes jump {
     0%{transform:translateY(0)} 
     30%{transform:translateY(-28px)} 

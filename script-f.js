@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:'南宮柳信', url:'https://example.com/i',img:'images\\'},
     {name:'伊藤蒼太', url:' https://itousouta15.github.io/',img:'images\\itou.png'},
     {name:'伊藤喵貓', url:'https://github.com/twcat0503',img:'images\\aul.gif'},
+    {name:'鴨鴨', url:'https://ya-ya-12.github.io/',img:'images\\u8.png'},
   ];
   const TOTAL_BUBBLES = 40;
   const BIG_RATIO = 0.1;
@@ -130,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         a.innerHTML = `
             <img src="${site.img}" 
-                style="width:80%;height:80%;border-radius:50%;object-fit:cover;">
+                style="width:90%;height:90%;border-radius:50%;object-fit:cover;">
             <div class="name">${escapeHtml(site.name)}</div>`;
 
         bubble.appendChild(a);
