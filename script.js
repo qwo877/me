@@ -64,16 +64,15 @@ function showToast() {
 (function () {
   const url = "https://qwo877.github.io/me/XD";
   let r = false;
-
-  const d = {
-    open: false,
-    orientation: null,
-  };
-
+  const d = { open: false, orientation: null };
   const t = 160;
 
+  function isMobile() {
+    return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  }
+
   const e = (state) => {
-    if (state && !r) {
+    if (state && !r && !isMobile()) {
       r = true;
       window.location.href = url;
     }
