@@ -42,15 +42,20 @@ html, body {
 .nav-right {
     display:flex;
 }
-.nav-right a, .nav-right button {
-    margin-left:40px;
-    color:#9dffff;
-    font-size:22px;
-    font-weight:bold;
-    background:transparent;
-    border:none;
-    cursor:pointer;
-    text-decoration:none;
+.nav-right a,
+.nav-right button {
+  margin-left: 40px;
+  color: #9dffff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0; 
+  cursor: pointer;
+  font-family: inherit;
+  appearance: none;
+  transition: color 0.3s;
 }
 .nav-right a:hover, .nav-right a.active, .nav-right button:hover {
     color:#fff;
@@ -288,14 +293,170 @@ html, body {
     opacity:0.85;
     margin-top:6px;
 }
-
-@media (max-width:480px) {
-    .card{padding:16px} 
-    #avatarBtn{width:110px;height:110px}
-    .center-area{height:260px}
+@media (max-width:1200px){
+  .card{width:84%}
+  .about-container h1{font-size:26px}
+  .Picture-control{width:130px;height:130px}
 }
-@media (max-width:768px) {
-  .hamburger { display:block; position:absolute; right:20px; top:30px; z-index:10001; }
-  .nav-right { display:none; flex-direction:column; background-color: rgba(0,0,0,0.9); position:absolute; top:95px; right:0; width:100%; padding:20px; z-index:10000; }
-  .nav-right.show { display:flex; }
+
+@media (max-width:992px){
+  .nav-left{
+    width:200px
+  }
+  .nav-right a,.nav-right button{
+    font-size:16px;
+    margin-left:12px
+  }
+  .wrap{
+    padding:8px
+  }
+  .card{
+    padding:18px
+  }
+  .about-container{
+    gap:14px
+  }
+  .about-container p{
+    font-size:15px
+  }
+  .Picture-control{
+    width:120px;height:120px
+  }
+  #avatarBtn{
+    width:120px;
+    height:120px
+  }
+}
+
+@media (max-width:768px){
+.hamburger {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    z-index: 10001;
+  }
+
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 95px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 10000;
+  }
+  .nav-right.show {
+    display: flex;
+  }
+
+  .nav-right a,
+  .nav-right button {
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .container {
+    flex-direction: column-reverse;
+    height: auto;
+    overflow: hidden;
+  }
+  .content{
+    padding:0 14px 40px 14px
+  }
+  .wrap{
+    min-height:45vh
+  }
+  .card{
+    width:92%;
+    padding:16px;
+    margin:12px auto
+  }
+  .about-container{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:12px;
+    padding:18px
+  }
+  .about-container h1{
+    font-size:24px;
+    margin-left:0
+  }
+  .about-container p{
+    font-size:14px
+  }
+  .Picture-control{
+    width:110px;
+    height:110px;
+    border-radius:50%
+  }
+  #avatarBtn{
+    width:100px;
+    height:100px
+  }
+  .bubble.big{
+    width:86px;
+    height:86px
+  }
+  .bubble.small{
+    width:28px;
+    height:28px
+  }
+}
+
+@media (max-width:480px){
+  :root{
+    --container-padding:12px
+  }
+  .nav-content{
+    padding:0 var(--container-padding)
+  }
+  .nav-left{
+    display:none
+  }
+  .card{
+    width:96%;
+    padding:12px;
+    border-radius:12px
+  }
+  .about-container{
+    padding:14px;
+    gap:10px;
+    border-radius:12px
+  }
+  .about-container h1{
+    font-size:20px
+  }
+  .about-container p{
+    font-size:13px;
+    line-height:1.4
+  }
+  .Picture-control{
+    width:86px;
+    height:86px
+  }
+  #avatarBtn{
+    width:84px;
+    height:84px
+  }
+  .bubble.big{
+    width:70px;
+    height:70px
+  }
+  .bubble.small{
+    width:22px;
+    height:22px
+  }
+  .wrap{
+    min-height:36vh
+  }
+  .content{
+    padding-bottom:80px
+  }
 }
