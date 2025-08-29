@@ -27,15 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   const friendSites = [
-    {name:'A', url:'https://example.com'},
-    {name:'B', url:'https://example.org'},
-    {name:'C', url:'https://example.net'},
-    {name:'D', url:'https://example.com/d'},
-    {name:'E', url:'https://example.com/e'},
-    {name:'F', url:'https://example.com/f'},
-    {name:'G', url:'https://example.com/g'},
-    {name:'H', url:'https://example.com/h'},
-    {name:'I', url:'https://example.com/i'},
+    {name:'小一', url:'https://www.instagram.com/littleonechung/',img:'images/vul3.png'},
+    {name:'su2u4', url:'https://github.com/su2u4-1/',img:'images\\su.jpg'},
+    {name:'橘子喵', url:'https://xn--gew.tw/',img:'images\\rm6.png'},
+    {name:'Icrack', url:'https://lbc0841.github.io/icrack41-blog/',img:'images\\D.png'},
+    {name:'伊藤有栖', url:'https://siewilly.github.io/',img:'images\\iw6.png'},
+    {name:'PepperSauce', url:'https://peppersauce0712.github.io/',img:'images\\PepperSauce_icon.jpg'},
+    {name:'Small Z', url:'https://yuzen9622.github.io/',img:'images\\zr.webp'},
+    {name:'Justin', url:'https://justin0711.com/',img:'images\\ju.png'},
+    {name:'南宮柳信', url:'https://example.com/i',img:'images\\'},
+    {name:'伊藤蒼太', url:' https://itousouta15.github.io/',img:'images\\itou.png'},
+    {name:'伊藤喵貓', url:'https://github.com/twcat0503',img:'images\\aul.gif'},
   ];
   const TOTAL_BUBBLES = 40;
   const BIG_RATIO = 0.1;
@@ -122,16 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if(isBig && availableSites.length>0){
         const site = availableSites.shift();
         const a = document.createElement('a');
-        a.href = site.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.innerHTML = `<div class="name">${escapeHtml(site.name)}</div><div class="url">${escapeHtml(shortenUrl(site.url))}</div>`;
+        a.href = site.url; 
+        a.target = '_blank'; 
+        a.rel = 'noopener noreferrer';
+
+        a.innerHTML = `
+            <img src="${site.img}" 
+                style="width:80%;height:80%;border-radius:50%;object-fit:cover;">
+            <div class="name">${escapeHtml(site.name)}</div>`;
+
         bubble.appendChild(a);
 
         bubble.addEventListener('click', (e)=>{
-          if(e.target.tagName.toLowerCase() !== 'a') window.open(site.url, '_blank', 'noopener');
+            if(e.target.tagName.toLowerCase() !== 'a') window.open(site.url, '_blank', 'noopener');
         });
 
         bigBubblePositions.push({x:startX+scatterX, y:startY});
-      }
+        }
+
+
 
       animateUpAndRemoveWithWave(bubble, startX, startY, scatterX, duration);
       bubbleLayer.appendChild(bubble);
