@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:'伊藤蒼太', url:'https://itousouta15.github.io/', img:'images/itou.png'},
     {name:'伊藤喵貓', url:'https://github.com/twcat0503', img:'images/aul.gif'},
     {name:'鴨鴨', url:'https://ya-ya-12.github.io/', img:'images/u8.png'},
+    {name:'SSD', url:'https://linktr.ee/ssd0', img:'images/ssdcom.webp'},
   ];
 
   function computeBubbleConfig() {
