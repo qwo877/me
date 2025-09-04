@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:'PepperSauce', url:'https://peppersauce0712.github.io/', img:'images/PepperSauce_icon.jpg'},
     {name:'Small Z', url:'https://yuzen9622.github.io/', img:'images/zr.webp'},
     {name:'Justin', url:'https://justin0711.com/', img:'images/ju.png'},
-    {name:'南宮柳信', url:'https://nangong5421.github.io/', img:'images/s06.png'},
+    {name:'南宮柳信', url:'https://nangong5421.github.io/', img:'images/s06.jpg'},
     {name:'伊藤蒼太', url:'https://itousouta15.github.io/', img:'images/itou.png'},
     {name:'伊藤喵貓', url:'https://github.com/twcat0503', img:'images/aul.gif'},
     {name:'鴨鴨', url:'https://ya-ya-12.github.io/', img:'images/u8.png'},
@@ -184,4 +184,5 @@ document.addEventListener('DOMContentLoaded', () => {
   function escapeHtml(s){ return String(s).replace(/[&<>\"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]); }
   function shortenUrl(u){ try{ const url = new URL(u.trim()); return url.hostname.replace(/^www\./,''); }catch(e){ return u; } }
 });
+
 
