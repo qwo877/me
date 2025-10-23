@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "一天天的你們都在電我qwp",
     "注意!!!!!!!!!!!!!     感謝你的注意。",
     "你有什麼不開心的事? 講出來讓大家開心一下嘛",
-    "早安 你是來關注廢物的嗎",
+    "早安.... 午安.... 晚安",
     "..................沒事",
     "每次去回收場都差點一起被丟進回收場",
     "?你好  歡迎來到這裡",
@@ -117,4 +117,5 @@ function showToast() {
     }
     document.addEventListener('visibilitychange', handleVisibilityChange, false);
     handleVisibilityChange();
+
   })();
