@@ -23,7 +23,8 @@ const skills = [
   { id: 'FileIO', label: '檔案操作', progress: 85, desc: '讀寫文字、CSV、JSON 等檔案，是資料處理與自動化不可或缺的技能' },
   { id: 'ImageRec', label: '影像識別', progress: 60, desc: '讓電腦看得懂圖片，基於 CNN 等技術，廣泛應用於 AI 與電腦視覺領域' },
   { id: 'SysOps', label: '系統操作', progress: 50, desc: '透過程式控制系統資源，如檔案系統、執行程序、環境變數與權限設定' },
-  { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' }
+  { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' },
+  { id: 'Tsfm', label: 'transformer模型', progress: 35, desc: '基於注意力機制（Attention）的模型架構，是現代自然語言處理與生成模型（如GPT、BERT）的核心技術' }
 ];
 
 const edges = [
@@ -40,6 +41,7 @@ const edges = [
   { source: 'AI', target: 'Perceptron' },
   { source: 'Perceptron', target: 'MLP' },
   { source: 'MLP', target: 'CNN' },
+  { source: 'CNN', target: 'Tsfm' },
   { source: 'I don\'t fucking know', target: 'FileIO' },
   { source: 'I don\'t fucking know', target: 'OOP' },
   { source: 'I don\'t fucking know', target: 'SysOps' },
@@ -217,4 +219,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.addEventListener('visibilitychange', handleVisibilityChange, false);
     handleVisibilityChange();
+
   })();
