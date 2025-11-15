@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>注音鍵盤解碼器（QWERTY → 注音 / 中文）</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 8px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .btn {
+      margin-top: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .output-block {
+      margin-top: 16px;
+      padding: 8px;
+      border-radius: 4px;
+      background: #f5f5f5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    label {
+      font-weight: 600;
+      margin-top: 12px;
+      display: block;
+    }
+    small {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>解碼器（QWERTY → 注音 / 中文）</h1>
+  <p>https://www.toolskk.com/zhuyin-decode</p>
+  <label for="input">輸入：</label>
+  <textarea id="input" placeholder="例如：su3cl3"></textarea>
+  <button class="btn" onclick="decode()">解碼</button>
+
+  <label>注音結果：</label>
+  <div id="bpm-output" class="output-block"></div>
+
+  <label>中文結果：</label>
+  <div id="hanzi-output" class="output-block"></div>
+
+  <script>
+    // === 1. QWERTY → 注音（大千式）鍵位對照 ===
+    // 參考多個「注音字母與鍵位」資料整理而成，可依需求自行微調。
+    const keyToBpm = {
+      '1': 'ㄅ',
+      'q': 'ㄆ',
+      'a': 'ㄇ',
+      'z': 'ㄈ',
+      '2': 'ㄉ',
+      'w': 'ㄊ',
+      's': 'ㄋ',
+      'x': 'ㄌ',
+      '3': 'ˇ',   // 上聲
+      'e': 'ㄍ',
+      'd': 'ㄎ',
+      'c': 'ㄏ',
+      'r': 'ㄐ',
+      'f': 'ㄑ',
+      'v': 'ㄒ',
+      '4': 'ˋ',   // 去聲
+      '5': 'ㄓ',
+      't': 'ㄔ',
+      'g': 'ㄕ',
+      'b': 'ㄖ',
+      '6': 'ˊ',   // 陽平
+      'y': 'ㄗ',
+      'h': 'ㄘ',
+      'n': 'ㄙ',
+      '7': '˙',   // 輕聲
+      'u': 'ㄧ',
+      'j': 'ㄨ',
+      'm': 'ㄩ',
+      '8': 'ㄚ',
+      'i': 'ㄛ',
+      'k': 'ㄜ',
+      ',': 'ㄝ',
+      '9': 'ㄞ',
+      'o': 'ㄟ',
+      'l': 'ㄠ',
+      '.': 'ㄡ',
+      '0': 'ㄢ',
+      'p': 'ㄣ',
+      ';': 'ㄤ',
+      '/': 'ㄥ',
+      '-': 'ㄦ',
+      ' ': '',  // 空白鍵對應平聲（無聲調）
+    };
+
+    // === 2. 注音音節 → 漢字（示範用，自己可以慢慢擴充） ===
+    // key 寫法：完整注音＋聲調，例如「ㄋㄧˇ」「ㄏㄠˇ」
+    const bpmToHanzi = {
+      'ㄋㄧˇ': '你',
+      'ㄏㄠˇ': '好',
+      // 你可以在這裡自己加：
+      // 'ㄗㄨㄥ˄': '總'  ← 這樣一路擴充
+    };
+
+    function decode() {
+      const raw = document.getElementById('input').value;
+      const lower = raw.toLowerCase();
+
+      const syllables = [];       // 存每一個音節的注音
+      let current = '';           // 正在組的那一個音節
+
+      // 走訪每一個字元
+      for (let ch of lower) {
+        if (keyToBpm[ch] !== undefined) { // 修改條件，允許空白鍵處理
+          const bpm = keyToBpm[ch];
+          current += bpm;
+
+          // 遇到聲調符號或空白鍵就結束一個音節：ˇ ˋ ˊ ˙
+          if (bpm === 'ˇ' || bpm === 'ˋ' || bpm === 'ˊ' || bpm === '˙' || bpm === '') {
+            syllables.push(current);
+            current = '';
+          }
+        } else {
+          // 不在 mapping 裡（空白、換行、符號…）
+          // 先把前一個音節收起來
+          if (current) {
+            syllables.push(current);
+            current = '';
+          }
+          // 原樣保留這個字元，方便之後還原句子
+          syllables.push(ch);
+        }
+      }
+
+      // 最後如果還有殘留的音節
+      if (current) {
+        syllables.push(current);
+      }
+
+      // === 3. 顯示注音結果 ===
+      // 用空白隔開音節，遇到原樣字元就直接貼上
+      const bpmResult = syllables.map(syl => {
+        // 如果是單個非注音字元，直接顯示
+        if (syl.length === 1 && !syl.match(/[ㄅ-ㄦˇˋˊ˙]/)) {
+          return syl;
+        } else {
+          return syl;
+        }
+      }).join(' ');
+
+      document.getElementById('bpm-output').textContent = bpmResult;
+
+      // === 4. 注音 → 中文（使用簡易字典） ===
+      const hanziResult = syllables.map(syl => {
+        // 如果是單個非注音字元，直接當一般符號處理
+        if (!syl.match(/[ㄅ-ㄦˇˋˊ˙]/)) {
+          return syl;
+        }
+        // 有在字典裡就換成漢字，沒的話就直接顯示注音
+        return bpmToHanzi[syl] || syl;
+      }).join('');
+
+      document.getElementById('hanzi-output').textContent = hanziResult;
+    }
+  </script>
+</body>
+</html>
