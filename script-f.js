@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:'伊藤喵貓', url:'https://github.com/twcat0503', img:'images/aul.gif'},
     {name:'鴨鴨', url:'https://ya-ya-12.github.io/', img:'images/u8.png'},
     {name:'SSD', url:'https://linktr.ee/ssd0', img:'images/ssdcom.webp'},
+    {name:'Frank', url:'https://frankk.uk/', img:'images/frk.tw.png'},
+    {name:'LDN', url:'https://ldn970110.github.io/', img:'images/LDN.jpeg'},
+    {name:'Raymond Weng', url:'https://rwc.dpdns.org/', img:'images/ray.png'},
+    {name:'郭10', url:'https://yilinguo121.github.io/', img:'images/avatar.webp'},
   ];
 
   function computeBubbleConfig() {
@@ -184,5 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
   function escapeHtml(s){ return String(s).replace(/[&<>\"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]); }
   function shortenUrl(u){ try{ const url = new URL(u.trim()); return url.hostname.replace(/^www\./,''); }catch(e){ return u; } }
 });
-
 
