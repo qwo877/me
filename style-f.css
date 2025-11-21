@@ -221,6 +221,64 @@ html, body {
   color: #82f3f3;
 }
 
+.wave-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.svg-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    min-height: 40px;
+    max-height: 90px;
+}
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+    opacity: 0.7;
+}
+
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+    opacity: 0.5;
+}
+
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+    opacity: 0.3;
+}
+
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+    opacity: 0.2;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% { 
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
 @keyframes jump {
     0%{transform:translateY(0)} 
     30%{transform:translateY(-28px)} 
