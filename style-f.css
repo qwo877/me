@@ -9,6 +9,7 @@ html, body {
     background-image: url('images/awfuopaiw.png');
     background-size:cover;
     background-position:center; 
+    cursor: url('images/喵.png') 16 16, auto;
 }
 :root {
   --bg:#0f1724;

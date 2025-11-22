@@ -11,6 +11,7 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   font-family: sans-serif;
+  cursor: url('images/喵.png') 16 16, auto;
 }
 .nav-left {
   width: 430px;
