@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>qwo877</title>
+  <link rel="stylesheet" href="style-a.css">
+  <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
+
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  });
+  function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  (function(){
+    const link = document.getElementById('dynamic-favicon');
+
+    function setFavicon(dataURL) {
+      link.setAttribute('href', dataURL + '#v=' + Date.now());
+    }
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        document.title = 'qwo877';
+        setFavicon("images/1276100847951941776.png");
+      } else {
+        document.title = '為什麼跑了';
+        setFavicon("images/4751354.webp");
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange, false);
+    handleVisibilityChange();
+  })();
+</script>
+<body>
+  <div class="navbar">
+    <div class="nav-content">
+      <div class="nav-left"></div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <div class="nav-right" id="nav-menu">
+        <a href="home.html">首頁</a>
+        <a href="about.html"class="active">關於我</a>
+        <a href="Skill.html">技能樹</a>
+        <button onclick="showToast()">經歷</button>
+        <a href="project.html">專案</a>
+        <a href="friend.html">友站</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="avatar" style="background-image: url('images/image14841987481.png');"></div>
+      <h2 class="intro-title">匿名用戶9487</h2>
+    </div>
+
+    <div class="content">
+      <div class="about-container">
+        <h1>關於我</h1>
+        <p>我是匿名用戶9487</p>
+        <p>年齡:17 | 性別:男</p>
+        <p>學校:臺北市立大安高級工業職業學校-綜合高中</p>
+        <ul class="li-about">
+
+          <li>學科上一直被電</li>
+          <li>正在準備特殊選才115特選生</l0i>
+          <li>喜愛資訊學群</l0i>
+          <li>積極自學的學生</l0i>
+        </ul>
+      </div>
+      <div class="about-container">
+        <h1>技能</h1>
+        <div class="skill">
+        <h1>活著</h1>
+        <div class="bar">
+          <div class="fill" style="--target-width: 100%;"></div>
+        </div>
+      </div>
+        <div class="skill">
+        <span>C++</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 90%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>C</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 30%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>C#</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 20%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 100%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>Java</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 30%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>SQL</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 60%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>PLC</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 30%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>HTML</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 60%;"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <span>CSS</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 60%;"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 60%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>verilog</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 10%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>電銲</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 70%;"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span>電腦裝修</span>
+        <div class="bar">
+          <div class="fill" style="--target-width: 50%;"></div>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    <div id="toast" class="toast">網頁維護中</div>
+  </div>
+</body>
+</html>
+
