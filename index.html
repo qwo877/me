@@ -13,29 +13,32 @@
       <div class="nav-left"></div>
       <button class="hamburger" id="hamburger">&#9776;</button>
       <div class="nav-right" id="nav-menu">
-        <a href="home.html" class="active">首頁</a>
-        <a href="about.html">關於我</a>
-        <a href="Skill.html">技能樹</a>
+        <button onclick="showToast()" class="active">首頁</button>
+        <button onclick="showToast()">關於我</button>
+        <button onclick="showToast()">技能樹</button>
         <button onclick="showToast()">經歷</button>
-        <a href="project.html">專案</a>
-        <a href="friend.html">友站</a>
+        <button onclick="showToast()">專案</button>
+        <button onclick="showToast()">友站</button>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="sidebar">
-      <div class="avatar"></div>
-      <h2 class="intro-title">匿名用戶9487</h2>
-    </div>
     <div class="content">
-      <h1 class="welcome">早安 我是匿名用戶9487</h1>
-      <h2 class="welcome2">歡迎來到我的網站</h2>
-      <h3 class="subtitle" id="typewriter"></h3>
+      <img src="images/ecat.png" 
+           alt="更新中圖片" 
+           style="width: 400px; 
+                  max-width: 90%; 
+                  margin: 0 auto 40px; 
+                  display: block; 
+                  border-radius: 20px; 
+                  box-shadow: 0 8px 32px rgba(157, 255, 255, 0.3);">
+      <div class="welcome2">個網大更新中 請稍後</div>
     </div>
-
-    <div id="toast" class="toast">網頁維護中</div>
   </div>
+
+  <div id="toast" class="toast">網頁維護中</div>
+  
   <div class="wave-box">
     <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg" 
          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -52,8 +55,6 @@
     </svg>
   </div>
   <script src="script.js"></script>
-
-
 
 </body>
 </html>
