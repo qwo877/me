@@ -168,7 +168,16 @@ document.addEventListener('DOMContentLoaded', () => {
       img:'https://yimang.tw/images/avatar.webp',
       desc:'一個高中生)',
       socials: [
-        {type:'git', url:'https://github.com/imyimang'},
+        {type:'web', url:'https://yimang.tw'},
+      ]
+    },
+    {
+      name:'Robin', 
+      url:'https://robin-tw.me', 
+      img:'https://robin-tw.me/avatar.jpg',
+      desc:'花束を',
+      socials: [
+        {type:'git', url:'https://github.com/cxk228922'},
       ]
     },
     {

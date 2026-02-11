@@ -190,7 +190,13 @@ html, body {
   font-weight: bold;
   text-align: center;
 }
-
+.welcome2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: #9dffff;
+    font-weight: bold;
+    text-align: center;
+}
 
 .subtitle {
   font-size: 2rem;

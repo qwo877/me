@@ -309,23 +309,22 @@ html, body {
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: auto;
+    overflow: hidden;
   }
 
   .sidebar {
     width: 100%;
     height: auto;
-    flex-direction: row;
-    justify-content: center;
-    padding: 20px;
-    flex-wrap: wrap;
+    padding: 40px 20px 20px 20px;
+    margin-top: 0;
   }
 
   .avatar {
     width: 150px;
     height: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .intro-title {
@@ -334,33 +333,48 @@ html, body {
     width: 100%;
   }
 
+  .sidebar p,
+  .sidebar button,
+  .sidebar a {
+    font-size: 18px;
+    text-align: center;
+  }
+
   .content {
-    padding: 20px;
+    padding: 120px 15px 20px 15px;
     max-height: none;
     overflow-y: visible;
   }
 
   .about-container {
-    padding: 20px;
-    margin: 20px 0;
+    padding: 15px;
+    margin: 15px 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .about-container h1 {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 15px;
   }
 
   .about-container p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
   }
 
   .li-about {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .skill {
+    margin-bottom: 15px;
   }
 
   .skill span,
   .skill h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .bar {
@@ -371,12 +385,31 @@ html, body {
     animation-duration: 1.5s;
   }
 
+  /* GitHub貪吃蛇動畫優化 */
+  .about-container picture {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+  }
+
+  .about-container picture img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
   .hamburger {
     display: block;
   }
 
   .nav-left {
     display: none;
+  }
+
+  .navbar {
+    height: auto;
+    padding: 10px;
   }
 
   .nav-right {
