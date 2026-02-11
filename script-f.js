@@ -27,23 +27,136 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   const friendSites = [
-    {name:'小一', url:'https://www.instagram.com/littleonechung/', img:'images/vul3.png'},
-    {name:'su2u4', url:'https://github.com/su2u4-1/', img:'images/su.jpg'},
-    {name:'橘子喵', url:'https://xn--gew.tw/', img:'images/rm6.png'},
-    {name:'Icrack', url:'https://lbc0841.github.io/icrack41-blog/', img:'images/D.png'},
-    {name:'伊藤有栖', url:'https://siewilly.github.io/', img:'images/iw6.png'},
-    {name:'PepperSauce', url:'https://peppersauce0712.github.io/', img:'images/PepperSauce_icon.jpg'},
-    {name:'Small Z', url:'https://yuzen9622.github.io/', img:'images/zr.webp'},
-    {name:'Justin', url:'https://justin0711.com/', img:'images/ju.png'},
-    {name:'南宮柳信', url:'https://nangong5421.github.io/', img:'images/s06.jpg'},
-    {name:'伊藤蒼太', url:'https://itousouta15.github.io/', img:'images/itou.png'},
-    {name:'伊藤喵貓', url:'https://github.com/twcat0503', img:'images/aul.gif'},
-    {name:'鴨鴨', url:'https://ya-ya-12.github.io/', img:'images/u8.png'},
-    {name:'SSD', url:'https://linktr.ee/ssd0', img:'images/ssdcom.webp'},
-    {name:'Frank', url:'https://frankk.uk/', img:'images/frk.tw.png'},
-    {name:'LDN', url:'https://ldn970110.github.io/', img:'images/LDN.jpeg'},
-    {name:'Raymond Weng', url:'https://rwc.dpdns.org/', img:'images/ray.png'},
-    {name:'郭10', url:'https://yilinguo121.github.io/', img:'images/avatar.webp'},
+    {
+      name:'小一', 
+      url:'https://www.instagram.com/littleonechung/', 
+      img:'images/vul3.png',
+      desc:'一個喜歡開發遊戲的人類',
+      socials: [{type:'ig', url:'https://www.instagram.com/littleonechung/'}]
+    },
+    {
+      name:'su2u4', 
+      url:'https://github.com/su2u4-1/', 
+      img:'images/su.jpg',
+      desc:'電神好電 都不說話',
+      socials: [{type:'git', url:'https://github.com/su2u4-1/'}]
+    },
+    {
+      name:'橘子喵', 
+      url:'https://xn--gew.tw/', 
+      img:'images/rm6.png',
+      desc:'喵',
+      socials: [{type:'web', url:'https://xn--gew.tw/'}]
+    },
+    {
+      name:'Icrack', 
+      url:'https://lbc0841.github.io/icrack41-blog/', 
+      img:'images/D.png',
+      desc:'別再TLE了，我裂開',
+      socials: [{type:'web', url:'https://lbc0841.github.io/icrack41-blog/'}]
+    },
+    {
+      name:'伊藤有栖', 
+      url:'https://siewilly.github.io/', 
+      img:'images/iw6.png',
+      desc:'競程邊角料',
+      socials: [{type:'web', url:'https://siewilly.github.io/'}]
+    },
+    {
+      name:'PepperSauce', 
+      url:'https://peppersauce0712.github.io/', 
+      img:'images/PepperSauce_icon.jpg',
+      desc:'好想成為資安佬...',
+      socials: [{type:'web', url:'https://peppersauce0712.github.io/'}]
+    },
+    {
+      name:'Small Z', 
+      url:'https://yuzen9622.github.io/', 
+      img:'images/zr.webp',
+      desc:'Developer',
+      socials: [{type:'web', url:'https://yuzen9622.github.io/'}]
+    },
+    {
+      name:'Justin', 
+      url:'https://justin0711.com/', 
+      img:'images/ju.png',
+      desc:'電神好電 都不說話',
+      socials: [{type:'web', url:'https://justin0711.com/'}]
+    },
+    {
+      name:'南宮柳信', 
+      url:'https://www.nangong5421.com/', 
+      img:'images/s06.jpg',
+      desc:'電神好電 都不說話',
+      socials: [{type:'web', url:'https://www.nangong5421.com/'}]
+    },
+    {
+      name:'伊藤蒼太', 
+      url:'https://itousouta15.github.io/', 
+      img:'images/itou.png',
+      desc:'電神好電 都不說話',
+      socials: [{type:'web', url:'https://itousouta15.github.io/'}]
+    },
+    {
+      name:'鴨鴨', 
+      url:'https://ya-ya-12.github.io/', 
+      img:'images/u8.png',
+      desc:'我是一個小廢廢',
+      socials: [{type:'web', url:'https://ya-ya-12.github.io/'}]
+    },
+    {
+      name:'伊藤喵貓', 
+      url:'https://github.com/twcat0503', 
+      img:'images/aul.gif',
+      desc:'電神好電 都不說話',
+      socials: [{type:'web', url:'https://github.com/twcat0503'}]
+    },
+    {
+      name:'SSD', 
+      url:'https://linktr.ee/ssd0', 
+      img:'images/ssdcom.webp',
+      desc:'叫置頂的去練電子學',
+      socials: [
+        {type:'web', url:'https://linktr.ee/ssd0'},
+        {type:'web', url:'https://konect.gg/ssdlag'},
+        {type:'ig', url:'https://www.instagram.com/weird._.ssd/#'}
+      ]
+    },
+    {
+      name:'Frank', 
+      url:'https://frankk.uk/', 
+      img:'images/frk.tw.png',
+      desc:'電神好電 都不說話',
+      socials: [{type:'web', url:'https://frankk.uk/'}]
+    },
+    {
+      name:'LDN', 
+      url:'https://ldn970110.github.io/', 
+      img:'images/LDN.jpeg',
+      desc:'才不是蘿莉控',
+      socials: [{type:'web', url:'https://ldn970110.github.io/'}]
+    },
+    {
+      name:'Raymond Weng', 
+      url:'https://rwc.dpdns.org/', 
+      img:'images/ray.png',
+      desc:'什麼都沾一點的怪人',
+      socials: [{type:'web', url:'https://rwc.dpdns.org/'}]
+    },
+    {
+      name:'郭10', 
+      url:'https://yilinguo121.github.io/', 
+      img:'images/avatar.webp',
+      desc:'觀念考不到5級的115特選生',
+      socials: [{type:'web', url:'https://yilinguo121.github.io/'}]
+    },
+    {
+      name:'匿名的貓貓', 
+      url:'https://qwo877.github.io/me/XD', 
+      img:'images/image14841987481.png',
+      desc:'上面的都是電神 電爆我qwo',
+      socials: [{type:'web', url:'https://qwo877.github.io/me/XD'}]
+    }
   ];
 
   function computeBubbleConfig() {
@@ -58,6 +171,41 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => { cfg = computeBubbleConfig(); });
 
   const COLORS = ['#48DEDB','#E3AA47','rgba(75, 192, 192, 0.6)'];
+
+  function renderFriendCards() {
+    const grid = document.querySelector('.friends-grid');
+    if (!grid) return;
+    
+    const iconMap = {
+      'ig': 'images/ig.png',
+      'git': 'images/git.png',
+      'web': 'images/web.png'
+    };
+    
+    grid.innerHTML = ''; 
+    
+    friendSites.forEach(friend => {
+      const card = document.createElement('div');
+      card.className = 'friend-card';
+      
+      const socialLinks = friend.socials.map(social => 
+        `<a href="${social.url}"><img src="${iconMap[social.type] || iconMap.web}"></a>`
+      ).join('');
+      
+      card.innerHTML = `
+        <img src="${friend.img}" class="Picture-control">
+        <h1>${escapeHtml(friend.name)}</h1>
+        <p>${escapeHtml(friend.desc)}</p>
+        <div class="social-links">
+          ${socialLinks}
+        </div>
+      `;
+      
+      grid.appendChild(card);
+    });
+  }
+  
+  renderFriendCards();
 
   function shuffle(array){
     const a = array.slice();
