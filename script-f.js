@@ -146,7 +146,31 @@ document.addEventListener('DOMContentLoaded', () => {
       desc:'什麼都沾一點的怪人',
       socials: [{type:'web', url:'https://rwc.dpdns.org/'}]
     },
-    
+    {
+      name:'郭10', 
+      url:'https://yilinguo121.github.io/', 
+      img:'images/avatar.webp',
+      desc:'觀念考不到5級的115特選生',
+      socials: [{type:'web', url:'https://yilinguo121.github.io/'}]
+    },
+    {
+      name:'YD', 
+      url:'https://www.kuang-ti.com', 
+      img:'https://www.kuang-ti.com/logo.png',
+      desc:'一名創新者、網頁工程師，想構建讓社會更好的系統',
+      socials: [
+        {type:'github', url:'https://github.com/yd-tw'},
+      ]
+    },
+    {
+      name:'yimang', 
+      url:'https://yimang.tw', 
+      img:'https://yimang.tw/images/avatar.webp',
+      desc:'一個高中生)',
+      socials: [
+        {type:'git', url:'https://github.com/imyimang'},
+      ]
+    },
     {
       name:'匿名的貓貓', 
       url:'https://qwo877.github.io/me/XD', 
