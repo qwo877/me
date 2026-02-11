@@ -109,7 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
       url:'https://github.com/twcat0503', 
       img:'images/aul.gif',
       desc:'電神好電 都不說話',
-      socials: [{type:'web', url:'https://github.com/twcat0503'}]
+      socials: [
+        {type:'web', url:'https://twcat0503.org/'},
+        {type:'git', url:'https://github.com/twcat0503'}
+      ]
     },
     {
       name:'SSD', 
@@ -143,13 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc:'什麼都沾一點的怪人',
       socials: [{type:'web', url:'https://rwc.dpdns.org/'}]
     },
-    {
-      name:'郭10', 
-      url:'https://yilinguo121.github.io/', 
-      img:'images/avatar.webp',
-      desc:'觀念考不到5級的115特選生',
-      socials: [{type:'web', url:'https://yilinguo121.github.io/'}]
-    },
+    
     {
       name:'匿名的貓貓', 
       url:'https://qwo877.github.io/me/XD', 

@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+:is(.nav-right a, .nav-right button, .sidebar a, .sidebar button) {
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: url('images/木槌.png') 16 16, pointer;
+  transition: color 0.2s, border-bottom 0.2s, transform 0.2s;
+  appearance: none;
+  font-family: inherit;
+}
+
+:is(.nav-right a:hover, .nav-right button:hover, .sidebar a:hover, .sidebar button:hover),
+:is(.nav-right a.active, .nav-right button.active, .sidebar a.active, .sidebar button.active) {
+  color: #ffffff;
+  border-bottom: 2px solid var(--accent);
+}
+
 html, body {
   height: 100%;
   background-image: url('images/awfuopaiw.png');

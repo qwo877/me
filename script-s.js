@@ -12,8 +12,7 @@ const skills = [
   { id: 'PF', label: 'flask', progress: 70, desc: '輕量化的後端框架' },
   { id: 'MS', label: 'mysql', progress: 70, desc: '資料庫系統' },
   { id: 'PG', label: '遊戲開發', progress: 70, desc: '使用C#與pygame開發小糞game' },
-  { id: 'a', label: '關於這個網頁', progress: 0, desc: '我知道它有一堆bug 但我修不好 我是廢物qwp 而且好醜XD' },
-  { id: '專業基礎學科', label: '專業基礎學科', progress: 20, desc: '自動控制科的專業學科' },
+  { id: '專業基礎學科', label: '專業基礎學科', progress: 20, desc: '基本電學、電子學、電工機械' },
   { id: 'Algo', label: '演算法', progress: 20, desc: '基礎的演算法' },
   { id: 'MLP', label: '多層感知機', progress: 70, desc: '在感知機的基礎上做感知機堆疊(隱藏層)' },
   { id: 'Perceptron', label: '感知機', progress: 90, desc: '一切ai的始祖,神經網路的雛形' },
@@ -24,7 +23,7 @@ const skills = [
   { id: 'ImageRec', label: '影像識別', progress: 60, desc: '讓電腦看得懂圖片，基於 CNN 等技術，廣泛應用於 AI 與電腦視覺領域' },
   { id: 'SysOps', label: '系統操作', progress: 50, desc: '透過程式控制系統資源，如檔案系統、執行程序、環境變數與權限設定' },
   { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' },
-  { id: 'Tsfm', label: 'transformer模型', progress: 35, desc: '基於注意力機制（Attention）的模型架構，是現代自然語言處理與生成模型（如GPT、BERT）的核心技術' }
+  { id: 'Tsfm', label: 'transformer模型', progress: 35, desc: '基於注意力機制的模型架構，是現代LLM模型的核心技術' }
 ];
 
 const edges = [
@@ -69,12 +68,13 @@ window.cy = cytoscape({
           return `rgb(${r},${g},${b})`;
         },
         'label': 'data(label)',
-        'color': 'white',
-        'font-size': 14,
+        'color': 'hsl(0, 0%, 100%)',
+        'font-size': 15,
+        'font-family': 'Noto Sans TC, sans-serif',
         'text-valign': 'center',
         'text-halign': 'center',
         'text-wrap': 'wrap',
-        'border-color': '#ffffff',
+        'border-color': '#F1C27D',
         'border-width': 2,
         'transition-property': 'background-color, border-color',
         'transition-duration': '0.4s',
@@ -84,8 +84,8 @@ window.cy = cytoscape({
       selector: 'edge',
       style: {
         'width': 3,
-        'line-color': '#00608fff',
-        'target-arrow-color': '#66ccff',
+        'line-color': '#F1C27D',
+        'target-arrow-color': '#FFB347',
         'target-arrow-shape': 'triangle',
         'arrow-scale': 1.2,
         'curve-style': 'bezier',

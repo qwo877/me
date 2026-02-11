@@ -298,7 +298,6 @@ html, body {
   align-items: center;
   flex-wrap: wrap;
 }
-
 .social-links a{
   z-index: 50;
 }
@@ -667,5 +666,4 @@ html, body {
   .content{
     padding-bottom:80px
   }
-
 }
