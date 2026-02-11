@@ -3,6 +3,35 @@
     padding:0;
     box-sizing:border-box;
 }
+
+:is(.nav-right a, .nav-right button, .sidebar a, .sidebar button ) {
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: url('images/木槌.png') 16 16, pointer;
+  transition: color 0.2s, border-bottom 0.2s, transform 0.2s;
+  appearance: none;
+  font-family: inherit;
+}
+
+#avatarBtn {
+  cursor: url('images/木槌1.png') 16 16, pointer;
+}
+
+:is(social-links a) {
+  cursor: url('images/木槌.png') 16 16, pointer;
+}
+
+:is(.nav-right a:hover, .nav-right button:hover, .sidebar a:hover, .sidebar button:hover),
+:is(.nav-right a.active, .nav-right button.active, .sidebar a.active, .sidebar button.active) {
+  color: #ffffff;
+  border-bottom: 2px solid var(--accent);
+}
+
 html, body {
     height:100%;
     font-family:system-ui, "Noto Sans TC", sans-serif;
@@ -37,6 +66,7 @@ html, body {
     padding:0 30px;
     position:relative;
 }
+
 .nav-left {
     width:430px;
 }
@@ -53,7 +83,7 @@ html, body {
   background: transparent;
   border: none;
   padding: 0; 
-  cursor: pointer;
+  /*cursor: pointer;*/
   font-family: inherit;
   appearance: none;
   transition: color 0.3s;
@@ -120,7 +150,7 @@ html, body {
     background-position:center;
     border:none;
     box-shadow: 0 0 0 6px rgba(255,255,255,0.08);
-    cursor:pointer;
+    /*cursor:pointer;*/
     position:relative;
     z-index:40;
     display:flex;
@@ -164,56 +194,129 @@ html, body {
   scrollbar-color: #9dffff rgba(255,255,255,0.05);
 }
 
-.about-container {
+.friends-header {
   width: 100%;
   max-width: 2000px;
   padding: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.friends-header h1 {
+  font-size: 48px;
+  color: #9dffff;
+  text-shadow: 0 0 20px rgba(157, 255, 255, 0.5);
+  border-bottom: 3px solid #9dffff;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 2000px;
+  margin-bottom: 40px;
+}
+
+.friend-card {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(157, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  padding: 25px;
   color: white;
-  margin-bottom: 40px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-  gap: 20px; 
-}
-.about-container a{
-  margin-left: 40px;
-  color: #9dffff;
-  font-size: 40px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-.about-container h1 {
-  border-bottom: 2px solid #9dffff;
-  font-size: 40px;
-  margin-bottom: 20px;
-  color: #9dffff;
-  margin-left: 30px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.about-container p {
+.friend-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(157, 255, 255, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.friend-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(157, 255, 255, 0.6);
+  box-shadow: 0 12px 40px rgba(157, 255, 255, 0.3), 
+              0 0 30px rgba(157, 255, 255, 0.2);
+}
+
+.friend-card:hover::before {
+  opacity: 1;
+}
+
+.friend-card img.Picture-control {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(157, 255, 255, 0.3);
   margin-bottom: 15px;
-  line-height: 1.8;
-  font-size: 35px;
+  transition: all 0.3s;
+}
+
+.friend-card:hover img.Picture-control {
+  border-color: #9dffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(157, 255, 255, 0.5);
+}
+
+.friend-card h1 {
+  font-size: 24px;
+  color: #9dffff;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.friend-card p {
+  font-size: 16px;
   color: #82f3f3;
-  
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  flex-grow: 1;
 }
-.about-container img,
-.about-container picture,
-.Picture-control {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
+
+.friend-card .social-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.friend-card a {
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.friend-card a img {
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s;
   display: block;
-  margin-left: 0;
 }
-.Picture-control{
-  width: 150px;
-  height: 150px;
+
+.friend-card a:hover img {
+  transform: scale(1.15) rotate(5deg);
+  filter: brightness(1.2);
 }
 .introduce{
   margin-bottom: 15px;
@@ -354,8 +457,17 @@ html, body {
 }
 @media (max-width:1200px){
   .card{width:84%}
-  .about-container h1{font-size:26px}
-  .Picture-control{width:130px;height:130px}
+  .friends-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  .friends-header h1 {
+    font-size: 38px;
+  }
+  .friend-card img.Picture-control {
+    width: 110px;
+    height: 110px;
+  }
 }
 
 @media (max-width:992px){
@@ -372,14 +484,29 @@ html, body {
   .card{
     padding:18px
   }
-  .about-container{
-    gap:14px
+  .friends-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
-  .about-container p{
-    font-size:15px
+  .friends-header h1 {
+    font-size: 32px;
   }
-  .Picture-control{
-    width:120px;height:120px
+  .friend-card {
+    padding: 20px;
+  }
+  .friend-card h1 {
+    font-size: 20px;
+  }
+  .friend-card p {
+    font-size: 14px;
+  }
+  .friend-card img.Picture-control {
+    width: 100px;
+    height: 100px;
+  }
+  .friend-card a img {
+    width: 32px;
+    height: 32px;
   }
   #avatarBtn{
     width:120px;
@@ -436,24 +563,29 @@ html, body {
     padding:16px;
     margin:12px auto
   }
-  .about-container{
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:12px;
-    padding:18px
+  .friends-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .about-container h1{
-    font-size:24px;
-    margin-left:0
+  .friends-header {
+    padding: 20px;
+    margin-bottom: 20px;
   }
-  .about-container p{
-    font-size:14px
+  .friends-header h1 {
+    font-size: 28px;
   }
-  .Picture-control{
-    width:110px;
-    height:110px;
-    border-radius:50%
+  .friend-card {
+    padding: 20px;
+  }
+  .friend-card h1 {
+    font-size: 22px;
+  }
+  .friend-card p {
+    font-size: 15px;
+  }
+  .friend-card img.Picture-control {
+    width: 110px;
+    height: 110px;
   }
   #avatarBtn{
     width:100px;
@@ -484,21 +616,34 @@ html, body {
     padding:12px;
     border-radius:12px
   }
-  .about-container{
-    padding:14px;
-    gap:10px;
-    border-radius:12px
+  .friends-grid {
+    gap: 15px;
   }
-  .about-container h1{
-    font-size:20px
+  .friends-header {
+    padding: 15px;
+    margin-bottom: 15px;
   }
-  .about-container p{
-    font-size:13px;
-    line-height:1.4
+  .friends-header h1 {
+    font-size: 24px;
   }
-  .Picture-control{
-    width:86px;
-    height:86px
+  .friend-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+  .friend-card h1 {
+    font-size: 20px;
+  }
+  .friend-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .friend-card img.Picture-control {
+    width: 90px;
+    height: 90px;
+  }
+  .friend-card a img {
+    width: 30px;
+    height: 30px;
   }
   #avatarBtn{
     width:84px;

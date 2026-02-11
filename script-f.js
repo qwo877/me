@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bubbleLayer = document.getElementById('bubbleLayer');
 
   if(!avatarBtn || !bubbleLayer) {
-    console.warn('avatarBtn 或 bubbleLayer 找不到，請檢查 HTML 元素 id。');
+    console.warn('avatarBtn 或 bubbleLayer 找不到');
     return;
   }
 
@@ -188,4 +188,3 @@ document.addEventListener('DOMContentLoaded', () => {
   function escapeHtml(s){ return String(s).replace(/[&<>\"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]); }
   function shortenUrl(u){ try{ const url = new URL(u.trim()); return url.hostname.replace(/^www\./,''); }catch(e){ return u; } }
 });
-
