@@ -181,6 +181,43 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     {
+      name:'蜜蜂機器人', 
+      url:'https://www.facebook.com/share/1DmaG6SzYw/?mibextid=wwXIfr', 
+      img:'images/bee_robot.jpg',
+      desc:'電神好電 都不說話',
+      socials: [
+        {type:'ig', url:'https://www.facebook.com/share/1DmaG6SzYw/?mibextid=wwXIfr'},
+      ]
+    },
+    {
+      name:'s0323010', 
+      url:'https://devs0323010.github.io/', 
+      img:'https://avatars.githubusercontent.com/u/147250604?s=400',
+      desc:'懂音樂的軟體工程師 | 個網爛爛的不想修',
+      socials: [
+        {type:'git', url:'https://github.com/DevS0323010'},
+      ]
+    },
+    {
+      name: 'Aaron',
+      url:'https://ronkao.tw/',
+      img:'https://ronkao.tw/favicon.jpg',
+      desc:'依舊沒有學校的我 嗚嗚嗚',
+      socials: [
+        {type:'git', url:'https://github.com/ronkaotw'},
+      ]
+    },
+    {
+      name: 'Brian Duan',
+      url:'https://www.justaslime.dev/',
+      img:'https://avatars.githubusercontent.com/u/56882049?v=4&size=400',
+      desc:'一般路過史萊姆',
+      socials: [
+        {type:'git', url:'https://github.com/iceice666'},
+        {type:'git', url:'https://code.justaslime.dev/explore/repos'},
+      ]
+    },
+    {
       name:'匿名的貓貓', 
       url:'https://qwo877.github.io/me/XD', 
       img:'images/image14841987481.png',
