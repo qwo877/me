@@ -22,7 +22,7 @@
   cursor: url('images/木槌1.png') 16 16, pointer;
 }
 
-:is(social-links a) {
+:is(.social-links a) {
   cursor: url('images/木槌.png') 16 16, pointer;
 }
 
@@ -297,6 +297,10 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.social-links a{
+  z-index: 50;
 }
 
 .friend-card a {
@@ -663,4 +667,5 @@ html, body {
   .content{
     padding-bottom:80px
   }
+
 }
