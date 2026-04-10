@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
       desc:'好想成為資安佬...',
       socials: [{type:'web', url:'https://peppersauce0712.github.io/'}]
     },
-    {
-      name:'Small Z', 
-      url:'https://yuzen9622.github.io/', 
-      img:'images/zr.webp',
-      desc:'Developer',
-      socials: [{type:'web', url:'https://yuzen9622.github.io/'}]
+        {
+      name:'small Z', 
+      url:'https://github.com/yuzen9622', 
+      img:'images/vul3.png',
+      desc:'這裡全是電神',
+      socials: [{type:'web', url:'https://www.yuzen.dev'},{type:'ig',url:'https://www.instagram.com/zn._.622'}]
     },
     {
       name:'Justin', 
@@ -141,14 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       name:'Raymond Weng', 
-      url:'https://rwc.dpdns.org/', 
+      url:'https://raymondweng.dev/', 
       img:'images/ray.png',
       desc:'什麼都沾一點的怪人',
-      socials: [{type:'web', url:'https://rwc.dpdns.org/'}]
+      socials: [{type:'web', url:'https://raymondweng.dev/'}]
     },
     {
       name:'郭10', 
-      url:'https://yilinguo121.github.io/', 
+      url:'https://www.yilin0121.com/', 
       img:'images/avatar.webp',
       desc:'觀念考不到5級的115特選生',
       socials: [{type:'web', url:'https://yilinguo121.github.io/'}]
@@ -215,6 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
       socials: [
         {type:'git', url:'https://github.com/iceice666'},
         {type:'git', url:'https://code.justaslime.dev/explore/repos'},
+      ]
+    },
+    {
+      name: '康康',
+      url:'https://www.justaslime.dev/',
+      img:'images/dd.webp',
+      desc:'一隻不會飛的章魚研究生',
+      socials: [
+        {type:'web', url:'https://www.hhk.one/'},
       ]
     },
     {
