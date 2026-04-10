@@ -1,11 +1,48 @@
+:root {
+  --accent: #9dffff;
+
+  /* Navbar */
+  --navbar-h:     clamp(60px,  4.95vw, 95px);   /* 原: 95px */
+
+  /* Nav 連結 */
+  --nav-font:     clamp(14px,  1.15vw, 22px);   /* 原: 22px */
+  --nav-gap:      clamp(16px,  2.1vw,  40px);   /* 原: 40px */
+
+  /* Sidebar */
+  --sidebar-w:    clamp(180px, 17.2vw, 330px);  /* 原: 330px */
+  --sidebar-pt:   clamp(30px,  1.6vw,  30px);   /* navbar 以下的額外 padding-top */
+
+  /* Avatar */
+  --avatar-size:  clamp(100px, 14vw,   280px);  /* 原: 300px */
+
+  /* Sidebar 文字 */
+  --sidebar-font: clamp(14px,  1.3vw,  25px);   /* 原: 25px */
+  --intro-font:   clamp(16px,  1.56vw, 30px);   /* 原: 30px */
+
+  /* Content */
+  --content-mt:   clamp(80px,  10vw,   190px);  /* 原: 190px */
+
+  /* 主要標題 */
+  --welcome-font: clamp(2rem,  4.7vw,  5.6rem); /* 原: 90px */
+  --welcome2-font:clamp(1.4rem,2.6vw,  3.1rem); /* 原: 50px */
+  --subtitle-font:clamp(1rem,  1.4vw,  2rem);   /* 原: 2rem  */
+
+  /* 通用間距 */
+  --sp-xs: clamp(6px,   0.5vw, 10px);
+  --sp-sm: clamp(10px,  1vw,   20px);
+  --sp-md: clamp(16px,  2vw,   40px);
+  --sp-lg: clamp(20px,  3vw,   60px);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 :is(.nav-right a, .nav-right button, .sidebar a, .sidebar button) {
   color: var(--accent);
-  font-size: 22px;
+  font-size: var(--nav-font);
   font-weight: bold;
   text-decoration: none;
   background: transparent;
@@ -17,8 +54,10 @@
   font-family: inherit;
 }
 
-:is(.nav-right a:hover, .nav-right button:hover, .sidebar a:hover, .sidebar button:hover),
-:is(.nav-right a.active, .nav-right button.active, .sidebar a.active, .sidebar button.active) {
+:is(.nav-right a:hover, .nav-right button:hover,
+    .sidebar a:hover, .sidebar button:hover),
+:is(.nav-right a.active, .nav-right button.active,
+    .sidebar a.active, .sidebar button.active) {
   color: #ffffff;
   border-bottom: 2px solid var(--accent);
 }
@@ -29,6 +68,7 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: sans-serif;
   cursor: url('images/喵.png') 16 16, auto;
 }
@@ -38,7 +78,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 95px;
+  height: var(--navbar-h);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   display: flex;
@@ -48,54 +88,41 @@ html, body {
 
 .nav-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
-  padding: 0 30px;
+  padding: 0 clamp(16px, 2vw, 40px);
   position: relative;
 }
 
 .nav-left {
-  width: 430px;
+  flex: 1;
 }
 
 .nav-right {
   display: flex;
+  align-items: center;
+  gap: var(--nav-gap);
 }
 
-.nav-right a {
-  margin-left: 40px;
-  color: #9dffff;
-  font-size: 22px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
+.nav-right a,
 .nav-right button {
-  margin-left: 40px;
+  margin-left: 0;
   color: #9dffff;
-  font-size: 22px;
+  font-size: var(--nav-font);
+  text-decoration: none;
   font-weight: bold;
   background: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
+  cursor: url('images/木槌.png') 16 16, pointer;
   font-family: inherit;
-  text-decoration: none;
   transition: color 0.3s;
   appearance: none;
 }
+
 .nav-right button:hover,
-.nav-right button.active {
-  color: white;
-  border-bottom: 2px solid #9dffff;
-}
-
-.nav-right button:hover {
-  color: white;
-  border-bottom: 2px solid #9dffff;
-}
-
+.nav-right button.active,
 .nav-right a:hover,
 .nav-right a.active {
   color: white;
@@ -104,7 +131,7 @@ html, body {
 
 .hamburger {
   display: none;
-  font-size: 30px;
+  font-size: clamp(22px, 2vw, 30px);
   background: none;
   border: none;
   color: #9dffff;
@@ -117,92 +144,84 @@ html, body {
 }
 
 .sidebar {
-  width: 330px;
-  height: calc(100vh - 95px);
+  width: var(--sidebar-w);
+  flex-shrink: 0;                          
+  height: calc(100vh - var(--navbar-h));
   background-color: rgba(17, 50, 64, 0.8);
-  padding: 115px 20px 20px 20px;
+  padding: var(--sidebar-pt) clamp(12px, 1.2vw, 20px) clamp(12px, 1.2vw, 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 2;
-  margin-top: 95px;
+  margin-top: var(--navbar-h);
+  overflow-y: auto;                
 }
 
 .sidebar p,
 .sidebar button,
 .sidebar a {
-  margin-bottom: 15px;
+  margin-bottom: var(--sp-sm);
   line-height: 1.8;
-  font-size: 25px;
+  font-size: var(--sidebar-font);
   color: #82f3f3;
 }
 
 .avatar {
-  width: 300px;
-  height: 300px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  flex-shrink: 0;
   border-radius: 50%;
   background-image: url('images/image14841987481.png');
   background-size: cover;
   background-position: center;
-  margin-bottom: 30px;
-  border: 5px solid #9dffff;
+  margin-bottom: var(--sp-md);
+  border: clamp(3px, 0.26vw, 5px) solid #9dffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .intro-title {
-  font-size: 30px;
+  font-size: var(--intro-font);
   color: #9dffff;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: var(--sp-xs);
+  text-align: center;
 }
 
 .content {
-  margin-top: 190px;
+  margin-top: var(--content-mt);
   flex: 1;
-  padding: 40px 20px;
+  padding: var(--sp-md) clamp(12px, 1.5vw, 20px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #9dffff rgba(255,255,255,0.05);
 }
-::-webkit-scrollbar {
-  width: 12px;
-}
 
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #9dffff;
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
-}
+::-webkit-scrollbar { width: clamp(6px, 0.6vw, 12px); }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #9dffff; border-radius: 10px; border: 2px solid rgba(255,255,255,0.2); }
+::-webkit-scrollbar-thumb:hover { background: #ffffff; }
 
 .welcome {
-  font-size: 90px;
+  font-size: var(--welcome-font);
   color: #9dffff;
-  margin-bottom: 40px;
+  margin-bottom: var(--sp-md);
   font-weight: bold;
   text-align: center;
 }
+
 .welcome2 {
-    font-size: 50px;
-    margin-bottom: 30px;
-    color: #9dffff;
-    font-weight: bold;
-    text-align: center;
+  font-size: var(--welcome2-font);
+  margin-bottom: var(--sp-sm);
+  color: #9dffff;
+  font-weight: bold;
+  text-align: center;
 }
 
 .subtitle {
-  font-size: 2rem;
+  font-size: var(--subtitle-font);
   font-weight: 400;
-  line-height: 40px;
-  height: 80px;
+  line-height: 1.6;
+  height: clamp(48px, 5vw, 80px);
   color: #d1e6f2;
   width: 90%;
   overflow: hidden;
@@ -215,6 +234,7 @@ html, body {
   content: '|';
   animation: blink 1s infinite;
 }
+
 .toast {
   position: fixed;
   bottom: -100px;
@@ -235,71 +255,49 @@ html, body {
 }
 
 .wave-box {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .svg-waves {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15vh;
-    min-height: 60px;
-    max-height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 15vh;
+  min-height: 60px;
+  max-height: 100px;
 }
 
 .parallax > use {
-    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
-
-.parallax > use:nth-child(1) {
-    animation-delay: -2s;
-    animation-duration: 7s;
-    opacity: 0.7;
-}
-
-.parallax > use:nth-child(2) {
-    animation-delay: -3s;
-    animation-duration: 10s;
-    opacity: 0.5;
-}
-
-.parallax > use:nth-child(3) {
-    animation-delay: -4s;
-    animation-duration: 13s;
-    opacity: 0.3;
-}
-
-.parallax > use:nth-child(4) {
-    animation-delay: -5s;
-    animation-duration: 20s;
-    opacity: 0.2;
-}
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s;  opacity: 0.7; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; opacity: 0.5; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; opacity: 0.3; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; opacity: 0.2; }
 
 @keyframes move-forever {
-    0% {
-        transform: translate3d(-90px, 0, 0);
-    }
-    100% { 
-        transform: translate3d(85px, 0, 0);
-    }
+  0%   { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px,  0, 0); }
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50%       { opacity: 0; }
 }
 
 @media (max-width: 768px) {
+
   .navbar {
     height: auto;
+    min-height: var(--navbar-h);
     padding: 10px;
     flex-direction: column;
   }
@@ -308,72 +306,57 @@ html, body {
     display: block;
     position: absolute;
     right: 20px;
-    top: 30px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10001;
   }
 
   .nav-right {
     display: none;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.9);
+    gap: 0;
+    background-color: rgba(0, 0, 0, 0.92);
     position: absolute;
-    top: 95px;
+    top: var(--navbar-h);
     right: 0;
     width: 100%;
-    padding: 20px;
+    padding: 16px 20px;
     z-index: 10000;
   }
 
-  .nav-right.show {
-    display: flex;
-  }
+  .nav-right.show { display: flex; }
 
-  .nav-right a {
-    font-size: 20px;
-    padding: 10px 0;
-    margin: 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
+  .nav-right a,
   .nav-right button {
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 22px);
     padding: 10px 0;
     margin: 0;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
   }
 
   .container {
     flex-direction: column-reverse;
     height: auto;
-    overflow: hidden; 
+    overflow: hidden;
   }
 
   .sidebar {
     width: 100%;
     height: auto;
-    padding: 40px 20px 20px 20px;
+    margin-top: 0;
+    padding: 30px 20px 20px;
+    overflow-y: visible;
   }
 
-  .avatar {
-    width: 150px;
-    height: 150px;
-  }
 
   .content {
-    padding: 40px 10px;
-  }
-
-  .welcome {
-    font-size: 50px;
-  }
-
-  .welcome2 {
-    font-size: 30px;
+    margin-top: var(--navbar-h); 
+    padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px);
+    min-height: 50vh;
   }
 
   .subtitle {
-    font-size: 1.2rem;
     height: auto;
     text-align: center;
     line-height: 1.5;
