@@ -330,9 +330,24 @@
     .error-msg { color: #f87171; font-size: var(--text-base); padding: var(--space-lg) 0; }
 
     @media (max-width: 600px) {
-      .filter-bar { flex-direction: column; }
-      .filter-bar input, .filter-bar select { width: 100%; }
+    .filter-bar { 
+      flex-direction: column; 
+      gap: 12px;
     }
+
+    .filter-bar input { 
+      flex: none;      
+      width: 100%; 
+      height: 45px;    
+      padding: 0 15px; 
+      box-sizing: border-box; 
+    }
+
+    .filter-bar select { 
+      width: 100%; 
+      height: 45px;
+    }
+  }
   </style>
 </head>
 <body>
