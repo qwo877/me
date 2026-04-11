@@ -1,3 +1,11 @@
+:root {
+  --accent: #9dffff;
+
+  --navbar-h: clamp(60px, 4.95vw, 95px);
+  --nav-font:  clamp(14px, 1.15vw, 22px);
+  --nav-gap:   clamp(16px, 2.1vw,  40px);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +14,7 @@
 
 :is(.nav-right a, .nav-right button, .sidebar a, .sidebar button) {
   color: var(--accent);
-  font-size: 22px;
+  font-size: var(--nav-font);
   font-weight: bold;
   text-decoration: none;
   background: transparent;
@@ -18,8 +26,10 @@
   font-family: inherit;
 }
 
-:is(.nav-right a:hover, .nav-right button:hover, .sidebar a:hover, .sidebar button:hover),
-:is(.nav-right a.active, .nav-right button.active, .sidebar a.active, .sidebar button.active) {
+:is(.nav-right a:hover, .nav-right button:hover,
+    .sidebar a:hover, .sidebar button:hover),
+:is(.nav-right a.active, .nav-right button.active,
+    .sidebar a.active, .sidebar button.active) {
   color: #ffffff;
   border-bottom: 2px solid var(--accent);
 }
@@ -30,6 +40,7 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: sans-serif;
   cursor: url('images/喵.png') 16 16, auto;
 }
@@ -39,7 +50,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 95px;
+  height: var(--navbar-h);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   display: flex;
@@ -52,86 +63,73 @@ html, body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 30px;
+  padding: 0 clamp(16px, 2vw, 30px);
+  position: relative;
 }
 
 .nav-left {
-  width: 430px;
+  flex: 1;
 }
 
-.nav-right a {
-  margin-left: 40px;
-  color: #9dffff;
-  font-size: 22px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-gap);
 }
 
-.nav-right a:hover,
-.nav-right a.active {
-  color: white;
-  border-bottom: 2px solid #9dffff;
-}
+.nav-right a,
 .nav-right button {
-  margin-left: 40px;
   color: #9dffff;
-  font-size: 22px;
+  font-size: var(--nav-font);
   font-weight: bold;
+  text-decoration: none;
   background: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
+  margin: 0;
+  cursor: url('images/木槌.png') 16 16, pointer;
   font-family: inherit;
-  text-decoration: none;
   transition: color 0.3s;
   appearance: none;
   outline: none;
 }
+
+.nav-right a:hover,
+.nav-right a.active,
 .nav-right button:hover,
 .nav-right button.active {
   color: white;
   border-bottom: 2px solid #9dffff;
 }
-.nav-right button:focus {
-  outline: none;
-}
+
+.nav-right button:focus,
 .nav-right button:focus-visible {
   outline: none;
 }
 
+.hamburger {
+  display: none;
+  font-size: clamp(22px, 2vw, 30px);
+  background: none;
+  border: none;
+  color: #9dffff;
+  cursor: pointer;
+}
+
 #cy {
-  height: calc(100vh - 95px);
-  padding-top: 95px;
   width: 100vw;
   height: 100vh;
+  padding-top: var(--navbar-h);
   display: block;
 }
-.toast {
-  position: fixed;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: all 0.5s ease;
-  z-index: 9999;
-}
-.toast.show {
-  bottom: 30px;
-  opacity: 1;
-}
+
 .cy-tooltip {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 6px 10px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: clamp(12px, 0.9vw, 14px);
   pointer-events: none;
   display: none;
   z-index: 9999;
@@ -152,75 +150,61 @@ html, body {
   transition: all 0.5s ease;
   z-index: 9999;
 }
+
 .toast.show {
   bottom: 30px;
   opacity: 1;
 }
-.hamburger {
-  display: none;
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  z-index: 10001;
-  font-size: 36px;
-  background: none;
-  border: none;
-  color: #9dffff;
-  cursor: pointer;
-}
 
 @media (max-width: 768px) {
 
+  /* Navbar */
+  .navbar {
+    height: auto;
+    min-height: var(--navbar-h);
+    padding: 10px;
+    flex-direction: column;
+  }
+
   .hamburger {
     display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 10001;
   }
 
   .nav-right {
     display: none;
     flex-direction: column;
-    position: fixed;
-    top: 95px;
-    left: 0;
-    width: 100vw;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    border-radius: 0 0 12px 12px;
+    gap: 0;
+    background-color: rgba(0, 0, 0, 0.92);
+    position: absolute;
+    top: var(--navbar-h);
+    right: 0;
+    width: 100%;
+    padding: 16px 20px;
     z-index: 10000;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
   }
 
-  .nav-right.show {
-    display: flex;
-    max-height: 500px;
-    opacity: 1;
-  }
+  .nav-right.show { display: flex; }
 
   .nav-right a,
   .nav-right button {
-    width: 100%;
-    text-align: center;
-    padding: 12px 0;
+    font-size: clamp(16px, 4vw, 22px);
+    padding: 10px 0;
     margin: 0;
-    font-size: 20px;
-    color: #9dffff;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     background: none;
-    border: none;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #9dffff;
     cursor: pointer;
   }
 
-  .nav-right a:last-child,
-  .nav-right button:last-child {
-    border-bottom: none;
-  }
   .nav-right a:hover,
   .nav-right button:hover {
-    background: rgba(255,255,255,0.1);
+    color: white;
+    background: none;
   }
-
 }

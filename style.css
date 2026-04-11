@@ -1,33 +1,24 @@
 :root {
   --accent: #9dffff;
+  --navbar-h:     clamp(60px,  4.95vw, 95px); 
 
-  /* Navbar */
-  --navbar-h:     clamp(60px,  4.95vw, 95px);   /* 原: 95px */
+  --nav-font:     clamp(14px,  1.15vw, 22px);
+  --nav-gap:      clamp(16px,  2.1vw,  40px);
 
-  /* Nav 連結 */
-  --nav-font:     clamp(14px,  1.15vw, 22px);   /* 原: 22px */
-  --nav-gap:      clamp(16px,  2.1vw,  40px);   /* 原: 40px */
+  --sidebar-w:    clamp(180px, 17.2vw, 330px);
+  --sidebar-pt:   clamp(30px,  1.6vw,  30px); 
 
-  /* Sidebar */
-  --sidebar-w:    clamp(180px, 17.2vw, 330px);  /* 原: 330px */
-  --sidebar-pt:   clamp(30px,  1.6vw,  30px);   /* navbar 以下的額外 padding-top */
+  --avatar-size:  clamp(100px, 14vw,   280px);
 
-  /* Avatar */
-  --avatar-size:  clamp(100px, 14vw,   280px);  /* 原: 300px */
+  --sidebar-font: clamp(14px,  1.3vw,  25px); 
+  --intro-font:   clamp(16px,  1.56vw, 30px); 
 
-  /* Sidebar 文字 */
-  --sidebar-font: clamp(14px,  1.3vw,  25px);   /* 原: 25px */
-  --intro-font:   clamp(16px,  1.56vw, 30px);   /* 原: 30px */
+  --content-mt:   clamp(80px,  10vw,   190px);
 
-  /* Content */
-  --content-mt:   clamp(80px,  10vw,   190px);  /* 原: 190px */
+  --welcome-font: clamp(2rem,  4.7vw,  5.6rem);
+  --welcome2-font:clamp(1.4rem,2.6vw,  3.1rem);
+  --subtitle-font:clamp(1rem,  1.4vw,  2rem); 
 
-  /* 主要標題 */
-  --welcome-font: clamp(2rem,  4.7vw,  5.6rem); /* 原: 90px */
-  --welcome2-font:clamp(1.4rem,2.6vw,  3.1rem); /* 原: 50px */
-  --subtitle-font:clamp(1rem,  1.4vw,  2rem);   /* 原: 2rem  */
-
-  /* 通用間距 */
   --sp-xs: clamp(6px,   0.5vw, 10px);
   --sp-sm: clamp(10px,  1vw,   20px);
   --sp-md: clamp(16px,  2vw,   40px);

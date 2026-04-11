@@ -6,7 +6,7 @@
 
 :is(.nav-right a, .nav-right button, .sidebar a, .sidebar button ) {
   color: var(--accent);
-  font-size: 22px;
+  font-size: var(--nav-font);
   font-weight: bold;
   text-decoration: none;
   background: transparent;
@@ -45,13 +45,18 @@ html, body {
   --card:#0b1220;
   --bubble-bg: rgba(255,255,255,0.08);
   --bubble-border: rgba(255,255,255,0.14);
+
+  --accent: #9dffff;
+  --navbar-h: clamp(60px, 4.95vw, 95px);
+  --nav-font:  clamp(14px, 1.15vw, 22px);
+  --nav-gap:   clamp(16px, 2.1vw,  40px);
 }
 .navbar {
     position:fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 95px;
+    height: var(--navbar-h);
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(8px);
     display:flex;
@@ -63,27 +68,28 @@ html, body {
     justify-content:space-between;
     align-items:center;
     width:100%;
-    padding:0 30px;
+    padding:0 clamp(16px, 2vw, 30px);
     position:relative;
 }
 
 .nav-left {
-    width:430px;
+    flex: 1;
 }
 .nav-right {
     display:flex;
+    align-items: center;
+    gap: var(--nav-gap);
 }
 .nav-right a,
 .nav-right button {
-  margin-left: 40px;
   color: #9dffff;
-  font-size: 22px;
+  font-size: var(--nav-font);
   font-weight: bold;
   text-decoration: none;
   background: transparent;
   border: none;
-  padding: 0; 
-  /*cursor: pointer;*/
+  padding: 0;
+  margin: 0;
   font-family: inherit;
   appearance: none;
   transition: color 0.3s;
@@ -150,7 +156,6 @@ html, body {
     background-position:center;
     border:none;
     box-shadow: 0 0 0 6px rgba(255,255,255,0.08);
-    /*cursor:pointer;*/
     position:relative;
     z-index:40;
     display:flex;
@@ -161,9 +166,9 @@ html, body {
 }
 .container {
   display: flex;
-  height: calc(100vh - 95px);
+  height: calc(100vh - var(--navbar-h));
   overflow: hidden;
-  padding: 95px 0px 0px 0px;
+  padding: var(--navbar-h) 0px 0px 0px;
 }
 
 .content {
@@ -203,7 +208,7 @@ html, body {
 }
 
 .friends-header h1 {
-  font-size: 48px;
+  font-size: clamp(24px, 2.5vw, 48px);
   color: #9dffff;
   text-shadow: 0 0 20px rgba(157, 255, 255, 0.5);
   border-bottom: 3px solid #9dffff;
@@ -277,14 +282,14 @@ html, body {
 }
 
 .friend-card h1 {
-  font-size: 24px;
+  font-size: clamp(18px, 1.25vw, 24px);
   color: #9dffff;
   margin: 0 0 10px 0;
   font-weight: 600;
 }
 
 .friend-card p {
-  font-size: 16px;
+  font-size: clamp(13px, 0.83vw, 16px);
   color: #82f3f3;
   line-height: 1.6;
   margin: 0 0 20px 0;
@@ -459,95 +464,63 @@ html, body {
     margin-top:6px;
 }
 @media (max-width:1200px){
-  .card{width:84%}
   .friends-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
-  .friends-header h1 {
-    font-size: 38px;
-  }
-  .friend-card img.Picture-control {
-    width: 110px;
-    height: 110px;
-  }
 }
 
 @media (max-width:992px){
-  .nav-left{
-    width:200px
-  }
-  .nav-right a,.nav-right button{
-    font-size:16px;
-    margin-left:12px
-  }
-  .wrap{
-    padding:8px
-  }
-  .card{
-    padding:18px
-  }
+  .wrap{ padding:8px }
+  .card{ padding:18px }
   .friends-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  .friends-header h1 {
-    font-size: 32px;
-  }
-  .friend-card {
-    padding: 20px;
-  }
-  .friend-card h1 {
-    font-size: 20px;
-  }
-  .friend-card p {
-    font-size: 14px;
-  }
-  .friend-card img.Picture-control {
-    width: 100px;
-    height: 100px;
-  }
-  .friend-card a img {
-    width: 32px;
-    height: 32px;
-  }
-  #avatarBtn{
-    width:120px;
-    height:120px
-  }
+  #avatarBtn{ width:120px; height:120px }
 }
 
 @media (max-width:768px){
-.hamburger {
+
+  /* Navbar */
+  .navbar {
+    height: auto;
+    min-height: var(--navbar-h);
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .hamburger {
     display: block;
     position: absolute;
+    top: 50%;
     right: 20px;
-    top: 30px;
+    transform: translateY(-50%);
     z-index: 10001;
   }
 
   .nav-right {
     display: none;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.9);
+    gap: 0;
+    background-color: rgba(0, 0, 0, 0.92);
     position: absolute;
-    top: 95px;
+    top: var(--navbar-h); 
     right: 0;
     width: 100%;
-    padding: 20px;
+    padding: 16px 20px;
     z-index: 10000;
   }
-  .nav-right.show {
-    display: flex;
-  }
+
+  .nav-right.show { display: flex; }
 
   .nav-right a,
   .nav-right button {
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 22px);
     padding: 10px 0;
     margin: 0;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
   }
 
   .container {
@@ -555,115 +528,27 @@ html, body {
     height: auto;
     overflow: hidden;
   }
-  .content{
-    padding:0 14px 40px 14px
-  }
-  .wrap{
-    min-height:45vh
-  }
-  .card{
-    width:92%;
-    padding:16px;
-    margin:12px auto
-  }
-  .friends-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .friends-header {
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .friends-header h1 {
-    font-size: 28px;
-  }
-  .friend-card {
-    padding: 20px;
-  }
-  .friend-card h1 {
-    font-size: 22px;
-  }
-  .friend-card p {
-    font-size: 15px;
-  }
-  .friend-card img.Picture-control {
-    width: 110px;
-    height: 110px;
-  }
-  #avatarBtn{
-    width:100px;
-    height:100px
-  }
-  .bubble.big{
-    width:86px;
-    height:86px
-  }
-  .bubble.small{
-    width:28px;
-    height:28px
-  }
+  .content{ padding:0 14px 40px 14px }
+  .wrap{ min-height:45vh }
+  .card{ width:92%; padding:16px; margin:12px auto }
+
+  /* 友站卡片 */
+  .friends-grid { grid-template-columns: 1fr; gap: 20px; }
+  .friends-header { padding: 20px; margin-bottom: 20px; }
+
+  #avatarBtn{ width:100px; height:100px }
+  .bubble.big{ width:86px; height:86px }
+  .bubble.small{ width:28px; height:28px }
 }
 
 @media (max-width:480px){
-  :root{
-    --container-padding:12px
-  }
-  .nav-content{
-    padding:0 var(--container-padding)
-  }
-  .nav-left{
-    display:none
-  }
-  .card{
-    width:96%;
-    padding:12px;
-    border-radius:12px
-  }
-  .friends-grid {
-    gap: 15px;
-  }
-  .friends-header {
-    padding: 15px;
-    margin-bottom: 15px;
-  }
-  .friends-header h1 {
-    font-size: 24px;
-  }
-  .friend-card {
-    padding: 18px;
-    border-radius: 16px;
-  }
-  .friend-card h1 {
-    font-size: 20px;
-  }
-  .friend-card p {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .friend-card img.Picture-control {
-    width: 90px;
-    height: 90px;
-  }
-  .friend-card a img {
-    width: 30px;
-    height: 30px;
-  }
-  #avatarBtn{
-    width:84px;
-    height:84px
-  }
-  .bubble.big{
-    width:70px;
-    height:70px
-  }
-  .bubble.small{
-    width:22px;
-    height:22px
-  }
-  .wrap{
-    min-height:36vh
-  }
-  .content{
-    padding-bottom:80px
-  }
+  .nav-content{ padding: 0 12px }
+  .card{ width:96%; padding:12px; border-radius:12px }
+  .friends-grid { gap: 15px; }
+  .friends-header { padding: 15px; margin-bottom: 15px; }
+  #avatarBtn{ width:84px; height:84px }
+  .bubble.big{ width:70px; height:70px }
+  .bubble.small{ width:22px; height:22px }
+  .wrap{ min-height:36vh }
+  .content{ padding-bottom:80px }
 }
