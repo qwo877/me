@@ -64,7 +64,6 @@ html, body {
   align-items: center;
   width: 100%;
   padding: 0 clamp(16px, 2vw, 30px);
-  position: relative;
 }
 
 .nav-left {

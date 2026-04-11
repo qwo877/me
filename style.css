@@ -83,7 +83,6 @@ html, body {
   align-items: center;
   width: 100%;
   padding: 0 clamp(16px, 2vw, 40px);
-  position: relative;
 }
 
 .nav-left {
@@ -292,6 +291,7 @@ html, body {
     padding: 10px;
     flex-direction: column;
   }
+
   .hamburger {
     display: block;
     position: absolute;
