@@ -100,7 +100,7 @@ html, body {
 }
 .hamburger {
     display:none;
-    font-size:30px;
+    font-size:clamp(24px, 2vw, 36px);
     background:none;
     border:none;
     color:#9dffff;
