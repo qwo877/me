@@ -227,6 +227,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     {
+      name: 'Lyscnf23',
+      url:'https://yeyue1004.github.io/',
+      img:'https://raw.githubusercontent.com/YeYue1004/images/main/avatar.jpg',
+      desc:' 努力學習中…',
+      socials: [
+        {type:'web', url:'https://yeyue1004.github.io/'},
+      ]
+    },
+    {
       name:'匿名的貓貓', 
       url:'https://qwo877.github.io/me/XD', 
       img:'images/image14841987481.png',
