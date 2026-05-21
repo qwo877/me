@@ -11,7 +11,7 @@
     {
       "id": "1",
       "title": "廣告位招租",
-      "description": "廣告位招租只要你有錢就行",
+      "description": "沒有這篇文章 純佔位",
       "date": "2026-04-10",
       "tags": ["阿巴阿巴", "笑死"],
       "file": "articles/1.md"
@@ -19,15 +19,15 @@
     {
       "id": "2",
       "title": "廣告位招租",
-      "description": "廣告位招租只要你有錢就行",
+      "description": "沒有這篇文章 純佔位",
       "date": "2026-04-10",
       "tags": ["阿巴阿巴", "笑死"],
       "file": "articles/2.md"
     },
     {
       "id": "3",
-      "title": "廣告位招租",
-      "description": "廣告位招租只要你有錢就行",
+      "title": "沒有這篇文章",
+      "description": "沒有這篇文章 純佔位",
       "date": "2026-04-10",
       "tags": ["阿巴阿巴", "笑死"],
       "file": "articles/3.md"

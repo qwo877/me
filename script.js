@@ -1,121 +1,110 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
+  const container = document.getElementById('typewriter');
+  if (!container) return;
 
   const texts = [
     "一天天的你們都在電我qwp",
-    "注意!!!!!!!!!!!!!     感謝你的注意。",
+    "注意!!!!!!!!!!!!!        感謝你的注意。",
     "你有什麼不開心的事? 講出來讓大家開心一下嘛",
     "早安.... 午安.... 晚安",
     "..................沒事",
     "每次去回收場都差點一起被丟進回收場",
     "?你好  歡迎來到這裡",
     "每次看完這行字 就表示你的人生又被浪費10秒鐘",
-    "你知道嗎?.....我不知道"
+    "你知道嗎?.....我不知道",
+    "你以為這裡會有什麼有趣的東西嗎?.....沒有",
+    "                                                                                            看阿有人在這盯了五秒鐘"
   ];
 
-  const typeSpeed = 80;
-  const backspaceSpeed = 50;
-  const pauseTime = 1000;
+  const TYPE_SPEED = 80;
+  const BACKSPACE_SPEED = 50;
+  const PAUSE_TIME = 1000;
 
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
+  let scheduled = false;
 
-  const container = document.getElementById('typewriter');
   container.textContent = '';
 
-  function typeWriter() {
+  function tick() {
+    scheduled = false;
+    if (document.hidden) {
+      schedule(1000);
+      return;
+    }
+
     const currentText = texts[textIndex];
-    container.textContent = currentText.substring(0, isDeleting ? charIndex-- : charIndex++);
+    charIndex += isDeleting ? -1 : 1;
+    container.textContent = currentText.substring(0, charIndex);
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      schedule(PAUSE_TIME);
+      return;
+    }
 
     if (isDeleting && charIndex === 0) {
       isDeleting = false;
       textIndex = (textIndex + 1) % texts.length;
+      schedule(TYPE_SPEED);
+      return;
     }
 
-    if (!isDeleting && charIndex === currentText.length) {
-      setTimeout(() => isDeleting = true, pauseTime);
-    }
-
-    let delay = typeSpeed;
+    let delay = TYPE_SPEED;
     if (isDeleting) {
-      const currentChar = currentText.charAt(charIndex);
-      delay = currentChar === ' ' ? 0 : backspaceSpeed;
+      const ch = currentText.charAt(charIndex);
+      delay = ch === ' ' ? 0 : BACKSPACE_SPEED;
     }
-
-    setTimeout(typeWriter, delay);
+    schedule(delay);
   }
 
-  typeWriter();
-});
-function showToast() {
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
+  function schedule(delay) {
+    if (scheduled) return;
+    scheduled = true;
+    setTimeout(tick, delay);
+  }
 
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
+  schedule(0);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) schedule(0);
+  });
+});
+
 (function () {
   const url = "https://qwo877.github.io/me/XD";
-  let r = false;
-  const d = { open: false, orientation: null };
-  const t = 160;
+  let redirected = false;
+  const state = { open: false, orientation: null };
+  const threshold = 160;
 
   function isMobile() {
     return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   }
 
-  const e = (state) => {
-    if (state && !r && !isMobile()) {
-      r = true;
+  const trigger = (s) => {
+    if (s && !redirected && !isMobile()) {
+      redirected = true;
       window.location.href = url;
     }
   };
 
   setInterval(() => {
-    const widthThreshold = window.outerWidth - window.innerWidth > t;
-    const heightThreshold = window.outerHeight - window.innerHeight > t;
-
-    const orientation = widthThreshold ? 'vertical' : 'horizontal';
+    const widthOver  = window.outerWidth  - window.innerWidth  > threshold;
+    const heightOver = window.outerHeight - window.innerHeight > threshold;
+    const orientation = widthOver ? 'vertical' : 'horizontal';
 
     if (
-      !(heightThreshold && widthThreshold) &&
+      !(heightOver && widthOver) &&
       ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) ||
-        widthThreshold || heightThreshold)
+        widthOver || heightOver)
     ) {
-      if (!d.open || d.orientation !== orientation) {
-        e(true);
-      }
-      d.open = true;
-      d.orientation = orientation;
+      if (!state.open || state.orientation !== orientation) trigger(true);
+      state.open = true;
+      state.orientation = orientation;
     } else {
-      d.open = false;
-      d.orientation = null;
+      state.open = false;
+      state.orientation = null;
     }
   }, 500);
 })();
-(function(){
-    const link = document.getElementById('dynamic-favicon');
-
-    function setFavicon(dataURL) {
-      link.setAttribute('href', dataURL + '#v=' + Date.now());
-    }
-    function handleVisibilityChange() {
-      if (document.visibilityState === 'visible') {
-        document.title = 'qwo877';
-        setFavicon("images/1276100847951941776.png");
-      } else {
-        document.title = '為什麼跑了';
-        setFavicon("images/4751354.webp");
-      }
-    }
-    document.addEventListener('visibilitychange', handleVisibilityChange, false);
-    handleVisibilityChange();
-
-  })();

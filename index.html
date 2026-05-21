@@ -3,46 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>qwo877</title>
+  <title>首頁 — 匿名用戶9487</title>
+  <meta name="description" content="匿名用戶9487 的個人網站首頁，技術筆記、技能樹、友站收錄與經歷。" />
+  <meta name="author" content="qwo877" />
+  <meta name="theme-color" content="#0d2d52" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="首頁 — 匿名用戶9487" />
+  <meta property="og:description" content="匿名用戶9487 的個人網站。" />
+  <meta property="og:image" content="images/image14841987481.png" />
+
   <link rel="stylesheet" href="style.css" />
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
+  <link rel="preload" as="image" href="images/awfuopaiw.webp" />
+
+  <script src="common.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="navbar">
-    <div class="nav-content">
-      <div class="nav-left"></div>
-      <button class="hamburger" id="hamburger">&#9776;</button>
-      <div class="nav-right" id="nav-menu">
-        <a href="home.html" class="active">首頁</a>
-        <a href="about.html">關於我</a>
-        <a href="Skill.html">技能樹</a>
-        <button onclick="showToast()">經歷</button>
-        <a href="article.html">論壇</a>
-        <a href="friend.html">友站</a>
-      </div>
-    </div>
-  </div>
+  <div id="navbar-mount"></div>
 
   <div class="container">
     <div class="sidebar">
-      <div class="avatar" style="background-image: url('images/image14841987481.png');"></div>
+      <div class="avatar" role="img" aria-label="頭像" style="background-image: url('images/image14841987481.png');"></div>
       <h2 class="intro-title">匿名用戶9487</h2>
-      <a href="https://discordapp.com/users/873949638992994304">Discord</a>
-      <a href="https://github.com/qwo877">GitHub</a>
-      <p>| 狀態: 活著</p>
+      <a href="https://discordapp.com/users/873949638992994304" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="https://github.com/qwo877" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <p>| 狀態: 快死掉了</p>
       <p>| 觀山易，行山難</p>
     </div>
 
     <div class="content">
       <h1 class="welcome">早安 我是匿名用戶9487</h1>
       <h2 class="welcome2">歡迎來到我的網站</h2>
-      <h3 class="subtitle" id="typewriter"></h3>
+      <h3 class="subtitle" id="typewriter" aria-live="polite"></h3>
     </div>
 
-    <div id="toast" class="toast">網頁維護中</div>
+    <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
   </div>
-  <div class="wave-box">
-    <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg" 
+  <div class="wave-box" aria-hidden="true">
+    <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
       <defs>
@@ -56,10 +56,5 @@
       </g>
     </svg>
   </div>
-  <script src="script.js"></script>
-
-
-
 </body>
 </html>
-

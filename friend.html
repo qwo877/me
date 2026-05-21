@@ -3,47 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>qwo877</title>
+  <title>友站 — 匿名用戶9487</title>
+  <meta name="description" content="匿名用戶9487 收錄的朋友個人網站列表，點頭像吹泡泡。" />
+  <meta name="author" content="qwo877" />
+  <meta name="theme-color" content="#0d2d52" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="友站 — 匿名用戶9487" />
+  <meta property="og:description" content="朋友個人網站列表。" />
+  <meta property="og:image" content="images/image14841987481.png" />
+
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
   <link rel="stylesheet" href="style-f.css">
+  <link rel="preload" as="image" href="images/awfuopaiw.webp" />
+
+  <script src="common.js" defer></script>
   <script src="script-f.js" defer></script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-content">
-        <div class="nav-left"></div>
-        <button class="hamburger" id="hamburger" aria-label="選單">&#9776;</button>
-        <div class="nav-right" id="nav-menu">
-            <a href="home.html">首頁</a>
-            <a href="about.html">關於我</a>
-            <a href="Skill.html">技能樹</a>
-            <button onclick="showToast()">經歷</button>
-            <a href="article.html">論壇</a>
-            <a href="friend.html" class="active">友站</a>
+  <div id="navbar-mount"></div>
+
+  <div class="container">
+    <div class="content">
+      <div class="wrap">
+        <div class="card" id="friendCard">
+          <div class="center-area">
+            <div id="avatarBtn" role="button" tabindex="0" style="background-image: url('images/1276100847951941776.png');" aria-label="點擊吹出友站泡泡"></div>
+          </div>
+          <div id="bubbleLayer" aria-hidden="true"></div>
         </div>
-        </div>
+      </div>
+      <div class="friends-header">
+        <h1>友站列表</h1>
+      </div>
+      <div class="friends-grid" role="list"></div>
     </div>
-    <div class="container">
-        <div class="content">
-        <div class="wrap">
-            <div class="card" id="friendCard">
-            <div class="center-area">
-                <div id="avatarBtn" style="background-image: url('images/1276100847951941776.png');" aria-label="avatar"></div>
-            </div>
-            <div id="bubbleLayer"></div>
-            </div>
-        </div>
-        <div class="friends-header">
-            <h1>友站列表</h1>
-        </div>
-        <div class="friends-grid">
-        </div>
-    </div>
-    <div id="toast" class="toast">網頁維護中</div>
-    <div class="wave-box">
-      <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg" 
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
+    <div class="wave-box" aria-hidden="true">
+      <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
         <defs>
           <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
         </defs>
@@ -55,5 +54,6 @@
         </g>
       </svg>
     </div>
+  </div>
 </body>
 </html>

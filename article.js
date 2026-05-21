@@ -9,6 +9,12 @@ function formatDate(str) {
   return d.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
 async function loadManifest() {
   const res = await fetch(MANIFEST_URL);
   if (!res.ok) throw new Error('無法載入 manifest.json');
@@ -45,15 +51,15 @@ async function renderList() {
     list.forEach(a => {
       const card = document.createElement('a');
       card.className = 'article-card';
-      card.href = `article.html?id=${a.id}`;
+      card.href = `article.html?id=${encodeURIComponent(a.id)}`;
       card.setAttribute('role', 'listitem');
       card.innerHTML = `
         <div class="card-header">
-          <div class="card-tags">${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-          <time class="card-date">${formatDate(a.date)}</time>
+          <div class="card-tags">${a.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+          <time class="card-date" datetime="${escapeHtml(a.date)}">${formatDate(a.date)}</time>
         </div>
-        <h2 class="card-title">${a.title}</h2>
-        <p class="card-desc">${a.description}</p>
+        <h2 class="card-title">${escapeHtml(a.title)}</h2>
+        <p class="card-desc">${escapeHtml(a.description)}</p>
         <span class="card-arrow">閱讀全文 →</span>
       `;
       listEl.appendChild(card);
@@ -101,9 +107,9 @@ async function renderArticle(id) {
 
   titleEl.textContent = meta.title;
   metaEl.innerHTML = `
-    <time>${formatDate(meta.date)}</time>
+    <time datetime="${escapeHtml(meta.date)}">${formatDate(meta.date)}</time>
     <span class="sep">·</span>
-    ${meta.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+    ${meta.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
   `;
 
   let md;

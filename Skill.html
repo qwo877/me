@@ -3,32 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>qwo877</title>
+  <title>技能樹 — 匿名用戶9487</title>
+  <meta name="description" content="以節點圖呈現的技能樹：AI、前端、後端、資料結構、演算法等。" />
+  <meta name="author" content="qwo877" />
+  <meta name="theme-color" content="#0d2d52" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="技能樹 — 匿名用戶9487" />
+  <meta property="og:description" content="技能樹節點圖：AI、前端、後端、資料結構、演算法等。" />
+  <meta property="og:image" content="images/image14841987481.png" />
+
   <link rel="stylesheet" href="style-s.css">
-  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
-  <script src="https://unpkg.com/cytoscape-dagre@2.3.2/cytoscape-dagre.js"></script>
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
+  <link rel="preload" as="image" href="images/awfuopaiw.webp" />
+
+  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js" defer></script>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js" defer></script>
+  <script src="https://unpkg.com/cytoscape-dagre@2.3.2/cytoscape-dagre.js" defer></script>
+  <script src="common.js" defer></script>
+  <script src="script-s.js" defer></script>
 </head>
 <body>
-  <div class="navbar">
-    <div class="nav-content">
-      <div class="nav-left"></div>
-      <button class="hamburger" id="hamburger">&#9776;</button>
-      <div class="nav-right" id="nav-menu">
-        <a href="home.html">首頁</a>
-        <a href="about.html">關於我</a>
-        <a href="Skill.html"class="active">技能樹</a>
-        <button onclick="showToast()">經歷</button>
-        <a href="article.html">論壇</a>
-        <a href="friend.html">友站</a>
-      </div>
-    </div>
-  </div>
-  <div id="cy"></div>
-  <div class="cy-tooltip" id="tooltip"></div>
-  <div id="toast" class="toast">網頁維護中</div>
-  <script src="script-s.js"></script>
-
+  <div id="navbar-mount"></div>
+  <div id="cy" role="img" aria-label="技能樹節點圖"></div>
+  <div class="cy-tooltip" id="tooltip" role="tooltip"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
 </body>
 </html>
