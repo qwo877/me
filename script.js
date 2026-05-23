@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "每次看完這行字 就表示你的人生又被浪費10秒鐘",
     "你知道嗎?.....我不知道",
     "你以為這裡會有什麼有趣的東西嗎?.....沒有",
-    "                                                                                            看阿有人在這盯了五秒鐘"
+    "                                                                                            你在期待甚麼"
   ];
 
   const TYPE_SPEED = 80;
