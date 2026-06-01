@@ -80,6 +80,82 @@ async function renderList() {
   render(articles);
 }
 
+// 把 ```mermaid 區塊轉成 <div class="mermaid"> 並渲染成圖
+async function renderMermaid(container) {
+  const codes = container.querySelectorAll('pre code.language-mermaid');
+  if (!codes.length) return;
+
+  // type="module" 是非同步載入，等 window.mermaid 就緒（最多 5 秒）
+  if (!window.mermaid) {
+    await new Promise(resolve => {
+      let waited = 0;
+      const timer = setInterval(() => {
+        if (window.mermaid || waited >= 5000) { clearInterval(timer); resolve(); }
+        waited += 50;
+      }, 50);
+    });
+  }
+  if (!window.mermaid) return;
+
+  codes.forEach(code => {
+    const div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = code.textContent;   // textContent 會把 &gt; 等實體還原回 >
+    code.closest('pre').replaceWith(div);
+  });
+
+  try {
+    await window.mermaid.run({ nodes: container.querySelectorAll('.mermaid') });
+  } catch (e) {
+    console.error('Mermaid 渲染失敗：', e);
+  }
+}
+
+// 讓 marked 在解析階段把 $...$ / $$...$$ 當成獨立 token，
+// 不被 breaks(<br>) 或斜體(_)等 markdown 規則破壞，也自動避開程式碼區塊。
+function setupMarkedMath() {
+  if (!window.marked || marked.__mathReady) return;
+  marked.use({
+    extensions: [
+      {
+        name: 'blockMath',
+        level: 'block',
+        start(src) { const i = src.indexOf('$$'); return i < 0 ? undefined : i; },
+        tokenizer(src) {
+          const m = /^\$\$([\s\S]+?)\$\$/.exec(src);
+          if (m) return { type: 'blockMath', raw: m[0], text: m[1].trim() };
+        },
+        renderer(t) { return `<div class="math-block">${escapeHtml(t.text)}</div>`; }
+      },
+      {
+        name: 'inlineMath',
+        level: 'inline',
+        start(src) { const i = src.indexOf('$'); return i < 0 ? undefined : i; },
+        // 開頭/結尾不貼空白，避開 "$5 和 $10" 這類貨幣誤判
+        tokenizer(src) {
+          const m = /^\$(?!\s)([^\n$]+?)(?<!\s)\$/.exec(src);
+          if (m) return { type: 'inlineMath', raw: m[0], text: m[1] };
+        },
+        renderer(t) { return `<span class="math-inline">${escapeHtml(t.text)}</span>`; }
+      }
+    ]
+  });
+  marked.__mathReady = true;
+}
+
+// 把上面標好的節點交給 KaTeX 渲染（textContent 會還原 < & 等實體）
+function renderMath(container) {
+  if (!window.katex) return;
+  container.querySelectorAll('.math-inline').forEach(el => {
+    try { katex.render(el.textContent, el, { displayMode: false, throwOnError: false }); }
+    catch (e) { console.error('KaTeX(inline) 失敗：', e); }
+  });
+  container.querySelectorAll('.math-block').forEach(el => {
+    try { katex.render(el.textContent, el, { displayMode: true, throwOnError: false }); }
+    catch (e) { console.error('KaTeX(block) 失敗：', e); }
+  });
+}
+
 async function renderArticle(id) {
   const titleEl   = document.getElementById('article-title');
   const metaEl    = document.getElementById('article-meta');
@@ -123,11 +199,19 @@ async function renderArticle(id) {
   }
 
   marked.setOptions({ breaks: true, gfm: true });
+  setupMarkedMath();
   contentEl.innerHTML = marked.parse(md);
 
+  // 先把 mermaid 區塊轉成圖（會移除對應的 <pre><code>）
+  await renderMermaid(contentEl);
+
+  // 程式碼高亮（mermaid 區塊此時已不是 pre code，不會被誤上色）
   if (window.hljs) {
     contentEl.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
   }
+
+  // 數學式
+  renderMath(contentEl);
 
   const headings = contentEl.querySelectorAll('h2, h3');
   if (headings.length) {
