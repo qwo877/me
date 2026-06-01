@@ -1,14 +1,6 @@
 {
   "articles": [
     {
-      "id": "測試",
-      "title": "測試",
-      "description": "測試",
-      "date": "測試",
-      "tags": ["測試"],
-      "file": "articles/demo.md"
-    },
-    {
       "id": "wk4vm03",
       "title": "115特殊選才心得",
       "description": "115特選小丑的特選歷程心得",
