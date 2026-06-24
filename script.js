@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       schedule(TYPE_SPEED);
       return;
     }
-
+    const API_Key = "5L2g5YCR6YCZ576k5YK76YC85o6D5o+P5qmf5Zmo5Lq6";
     let delay = TYPE_SPEED;
     if (isDeleting) {
       const ch = currentText.charAt(charIndex);
