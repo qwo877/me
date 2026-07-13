@@ -3,9 +3,11 @@ cytoscape.use(cytoscapeDagre);
 const skills = [
   { id: 'AI', label: 'AI', progress: 90, desc: '人工智慧，涉及多種子領域' },
   { id: 'ML', label: '機器學習', progress: 80, desc: '從數據中訓練模型進行預測或分類' },
-  { id: 'DL', label: '深度學習', progress: 60, desc: '使用神經網路進行多層次數據處理' },
+  { id: 'DL', label: '深度學習', progress: 70, desc: '使用神經網路進行多層次數據處理' },
   { id: 'RL', label: '強化學習', progress: 50, desc: '代理學習透過獎勵與懲罰進行行為決策' },
-  { id: 'CNN', label: 'CNN神經捲積模型', progress: 30, desc: 'ai模型之一 常用於生成圖片' },
+  { id: 'CNN', label: 'CNN神經捲積模型', progress: 90, desc: 'ai模型之一 常用於生成圖片' },
+  { id: 'MobileNet', label: 'MobileNet', progress: 30, desc: '輕量化的CNN與Transformer結合模型，常用於移動設備' },
+  { id: 'CLIP', label: 'CLIP', progress: 20, desc: '多模態預訓練模型，能將圖像與文字進行對應' },
   { id: 'FE', label: '前端開發', progress: 70, desc: '使用者所看到、所互動的部分' },
   { id: 'Web Dev', label: '網頁', progress: 70, desc: '在一個網站頁面中所看到的部分' },
   { id: 'SW', label: '軟體', progress: 30, desc: 'app....這能怎麼解釋?' },
@@ -24,7 +26,8 @@ const skills = [
   { id: 'ImageRec', label: '影像識別', progress: 60, desc: '讓電腦看得懂圖片，基於 CNN 等技術，廣泛應用於 AI 與電腦視覺領域' },
   { id: 'SysOps', label: '系統操作', progress: 50, desc: '透過程式控制系統資源，如檔案系統、執行程序、環境變數與權限設定' },
   { id: 'OOP', label: '物件導向', progress: 75, desc: '以類別與物件為核心的程式設計方式，強調封裝、繼承與多型' },
-  { id: 'Tsfm', label: 'transformer模型', progress: 35, desc: '基於注意力機制的模型架構，是現代LLM模型的核心技術' }
+  { id: 'HPC', label: '高性能計算', progress: 50, desc: '利用多核心處理器或分散式系統進行高效能運算' },
+  { id: 'Tsfm', label: 'transformer模型', progress: 60, desc: '基於注意力機制的模型架構，是現代LLM模型的核心技術' }
 ];
 
 const edges = [
@@ -42,10 +45,13 @@ const edges = [
   { source: 'Perceptron', target: 'MLP' },
   { source: 'MLP', target: 'CNN' },
   { source: 'CNN', target: 'Tsfm' },
+  { source: 'Tsfm', target: 'MobileNet' },
+  { source: 'Tsfm', target: 'CLIP' },
   { source: "I don't fucking know", target: 'FileIO' },
   { source: "I don't fucking know", target: 'OOP' },
   { source: "I don't fucking know", target: 'SysOps' },
-  { source: "I don't fucking know", target: 'ImageRec' }
+  { source: "I don't fucking know", target: 'ImageRec' },
+  { source: "I don't fucking know", target: 'HPC' }
 ];
 
 window.cy = cytoscape({

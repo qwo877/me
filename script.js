@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "每次看完這行字 就表示你的人生又被浪費10秒鐘",
     "你知道嗎?.....我不知道",
     "你以為這裡會有什麼有趣的東西嗎?.....沒有",
-    "                                                                                            你在期待甚麼"
+    "                                                                                            看阿有人在這盯了五秒鐘"
   ];
 
   const TYPE_SPEED = 80;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       schedule(TYPE_SPEED);
       return;
     }
-    const API_Always_Pray_It_Works = "5L2g5YCR6YCZ576k5YK76YC85o6D5o+P5qmf5Zmo5Lq6";
+
     let delay = TYPE_SPEED;
     if (isDeleting) {
       const ch = currentText.charAt(charIndex);

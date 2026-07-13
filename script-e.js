@@ -25,7 +25,10 @@
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const reduceMotion = RESPECT_REDUCED_MOTION &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let busy = false;
+  let busy = false;       // 動畫進行中
+  let arrived = false;    // 已抵達目的層（避免再次點擊重播最後一段）
+  const anims = [];       // 本次播放建立的 WAAPI 動畫，返回時統一取消
+  const track = a => { anims.push(a); return a; };
 
   /* 縮放中心 */
   function updateOrigin() {
@@ -57,7 +60,7 @@
   }
 
   async function play() {
-    if (busy) return;
+    if (busy || arrived) return;   // 進行中或已抵達 → 不重播
     busy = true;
     scene.classList.add('go');
     document.body.classList.add('zooming');
@@ -65,37 +68,55 @@
     // 優化啟用時改柔和淡入
     if (reduceMotion) {
       arrive();
-      bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, fill: 'forwards' });
-      await next.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, fill: 'forwards' }).finished;
+      track(bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, fill: 'forwards' }));
+      await track(next.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, fill: 'forwards' })).finished;
       next.style.opacity = '1';
-      busy = false;
+      arrived = true; busy = false;
       return;
     }
 
     updateOrigin();
 
-    // 爆閃
-    document.querySelectorAll('.star').forEach((s, i) => {
-      s.animate([{ opacity: 1 }],
-        { duration: 450, delay: i * 45, fill: 'forwards' });
+    // 爆閃（只作用在進場 overlay 的星，不影響目的層）
+    bg.querySelectorAll('.star').forEach((s, i) => {
+      track(s.animate([{ opacity: 1 }],
+        { duration: 450, delay: i * 45, fill: 'forwards' }));
     });
-    if (lines) lines.animate([{ opacity: .35 }, { opacity: .95 }], { duration: 500, fill: 'forwards' });
+    if (lines) track(lines.animate([{ opacity: .35 }, { opacity: .95 }], { duration: 500, fill: 'forwards' }));
     await wait(380);
 
     //  加速曲線
-    bg.animate([{ transform: 'scale(1)' }, { transform: `scale(${ZOOM_SCALE})` }],
-      { duration: 1500, easing: 'cubic-bezier(.5,0,.85,.35)', fill: 'forwards' });
-    bg.animate([{ filter: 'brightness(1)' }, { filter: 'brightness(1.9)' }],
-      { duration: 1500, easing: 'ease-in', fill: 'forwards' });
+    track(bg.animate([{ transform: 'scale(1)' }, { transform: `scale(${ZOOM_SCALE})` }],
+      { duration: 1500, easing: 'cubic-bezier(.5,0,.85,.35)', fill: 'forwards' }));
+    track(bg.animate([{ filter: 'brightness(1)' }, { filter: 'brightness(1.9)' }],
+      { duration: 1500, easing: 'ease-in', fill: 'forwards' }));
     await wait(1050);
 
     // 最亮處淡出 to 淡入目的層
-    bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: 'forwards' });
+    track(bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: 'forwards' }));
     arrive();
-    await next.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 550, fill: 'forwards' }).finished;
+    await track(next.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 550, fill: 'forwards' })).finished;
     next.style.opacity = '1';
 
+    arrived = true;   // 鎖定：已抵達目的層，點擊不再重播
     busy = false;
+  }
+
+  /* 返回：取消本次動畫、還原到進場狀態（並讓導覽列回來） */
+  function reset() {
+    anims.forEach(a => { try { a.cancel(); } catch (e) {} });
+    anims.length = 0;
+    bg.style.transform = '';
+    bg.style.opacity = '';
+    bg.style.filter = '';
+    next.style.opacity = '';
+    next.style.visibility = '';
+    next.setAttribute('aria-hidden', 'true');
+    scene.classList.remove('go');
+    document.body.classList.remove('zooming');
+    arrived = false;
+    busy = false;
+    drawLines();   // 重新描繪星座連線
   }
 
   // 啟動
@@ -111,4 +132,8 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
     });
   }
+
+  // 返回鈕：回到進場畫面（stopPropagation 避免冒泡觸發 scene 的 play）
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) backBtn.addEventListener('click', e => { e.stopPropagation(); reset(); });
 })();

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>經歷 — 匿名用戶9487</title>
-  <meta name="description" content="匿名用戶9487 的經歷頁面。" />
+  <title>經歷 — 匿名用戶877</title>
+  <meta name="description" content="匿名用戶877 的經歷頁面。" />
   <meta name="author" content="qwo877" />
   <meta name="theme-color" content="#0d2d52" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="經歷 — 匿名用戶9487" />
-  <meta property="og:description" content="匿名用戶9487 的經歷頁面。" />
+  <meta property="og:title" content="經歷 — 匿名用戶877" />
+  <meta property="og:description" content="匿名用戶877 的經歷頁面。" />
   <meta property="og:image" content="images/image14841987481.png" />
 
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
@@ -76,10 +76,26 @@
 
     <div class="enter-hint" id="enterHint">點擊任意處 · 進入經歷</div>
 
-    <!--跳轉目的層 代辦-->
+    <!-- 抵達層：七星.webp 星空 + 沿用進場的七星發光 + 返回鈕（無導覽列） -->
     <section class="next" id="next" aria-hidden="true">
-      <h2>經 歷</h2>
-      <p>EXPERIENCE</p>
+      <img class="next-img" src="images/七星.webp" alt="七星夜空" decoding="async" />
+
+      <!-- 沿用進場同一套座標(viewBox 3072×2048)與 #starShape / 漸變定義 -->
+      <svg class="overlay next-overlay" viewBox="0 0 3072 2048"
+           preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+        <path class="lines" pathLength="100"
+              d="M 1123 345 L 1262 397 L 1389 448 L 1489 501 L 1623 469 L 1618 565 L 1523 585 L 1489 501" />
+
+        <use class="star" href="#starShape" transform="translate(1123 345) scale(1.00)" style="--d:0s;    filter:saturate(1.6) hue-rotate(8deg) brightness(1.10)" />
+        <use class="star" href="#starShape" transform="translate(1262 397) scale(0.62)" style="--d:-2.4s; filter:saturate(1.2) brightness(0.95)" />
+        <use class="star" href="#starShape" transform="translate(1389 448) scale(0.90)" style="--d:-1.2s; filter:sepia(.45) saturate(1.8) brightness(1.05)" />
+        <use class="star" href="#starShape" transform="translate(1489 501) scale(0.60)" style="--d:-3.6s; filter:saturate(1.5) hue-rotate(14deg) brightness(0.85)" />
+        <use class="star" href="#starShape" transform="translate(1623 469) scale(0.70)" style="--d:-0.8s; filter:sepia(.6) saturate(2) brightness(1.08)" />
+        <use class="star" href="#starShape" transform="translate(1618 565) scale(1.00)" style="--d:-3.0s; filter:saturate(1.4) hue-rotate(6deg)" />
+        <use class="star" href="#starShape" transform="translate(1523 585) scale(0.95)" style="--d:-1.8s; filter:sepia(.3) saturate(1.5) brightness(0.98)" />
+      </svg>
+
+      <button class="back-btn" id="backBtn" type="button">← 返回</button>
     </section>
   </main>
 
