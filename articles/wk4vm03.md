@@ -9,6 +9,19 @@
 ## 特選結果
 <img src="./images/wk4vm03.png" style="max-width:100%; height:auto;">
 
+在資訊工程這方面我根本就是小白 結至特選時我僅自學了一年半的時間
+難怪沒有資工系要我qwo
+
+---
+
+## 特選心得
+特殊選才是個競爭很大的入學管道,也絕對不簡單(~~不要相信那些低能補習班~~)所以說:
+<img src="./images/xl3fm.png" style="max-width:100%; height:auto;">
+
+在特選的過程中其實說沒有壓力是不可能的:
+<img src="./images/jjj.png" style="max-width:100%; height:auto;">
+
+
 
 
 阿 我還沒寫完

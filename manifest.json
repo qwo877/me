@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "id": "AI0",
+      "title": "AI 教學 #0：從 if/else 到多層感知機",
+      "description": "不用背公式，一路問問題問到 MLP：感知器、擬合、多分類、激活函數，含 numpy 手刻與 PyTorch 對照",
+      "date": "2026-07-29",
+      "tags": ["AI", "教學", "MLP"],
+      "file": "articles/AI0.md"
+    },
+    {
       "id": "wk4vm03",
       "title": "115特殊選才心得",
       "description": "115特選小丑的特選歷程心得",
