@@ -3,7 +3,7 @@
     {
       "id": "AI0",
       "title": "AI 教學 #0：從 if/else 到多層感知機",
-      "description": "不用背公式，一路問問題問到 MLP：感知器、擬合、多分類、激活函數，含 numpy 手刻與 PyTorch 對照",
+      "description": "一步步從最原始的AI學到MLP：感知器、擬合、多分類、激活函數，含 numpy 手刻與 PyTorch 對照",
       "date": "2026-07-29",
       "tags": ["AI", "教學", "MLP"],
       "file": "articles/AI0.md"
@@ -31,14 +31,6 @@
       "date": "2026-04-10",
       "tags": ["阿巴阿巴", "笑死"],
       "file": "articles/2.md"
-    },
-    {
-      "id": "3",
-      "title": "沒有這篇文章",
-      "description": "沒有這篇文章 純佔位",
-      "date": "2026-04-10",
-      "tags": ["阿巴阿巴", "笑死"],
-      "file": "articles/3.md"
     }
     
   ]
