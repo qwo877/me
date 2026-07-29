@@ -72,39 +72,57 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* 彩蛋：開了開發者工具就跳去 XD 頁。
+   舊版拿 outerWidth/innerWidth 的差值猜，會被瀏覽器縮放、系統顯示縮放、
+   側邊欄、書籤列、視窗變小全部誤判，所以改用兩個跟視窗尺寸無關的訊號：
+     1. DevTools 的快捷鍵（所有瀏覽器通用）
+     2. console 誘餌 —— DevTools 真的把物件畫出來時才會去讀它的 id
+   開發時要關掉：網址加 ?noegg，或在主控台 localStorage.setItem('noEgg', '1') */
 (function () {
   const url = "https://qwo877.github.io/me/XD";
-  let redirected = false;
-  const state = { open: false, orientation: null };
-  const threshold = 160;
 
-  function isMobile() {
-    return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  function store(fn, fallback) {
+    try { return fn(); } catch (e) { return fallback; }
   }
 
-  const trigger = (s) => {
-    if (s && !redirected && !isMobile()) {
-      redirected = true;
-      window.location.href = url;
-    }
-  };
+  if (/[?&]noegg\b/i.test(location.search)) return;
+  if (store(() => localStorage.getItem('noEgg'), null) === '1') return;
+  // 同一個分頁只玩一次，不然開著 DevTools 就永遠回不來
+  if (store(() => sessionStorage.getItem('eggDone'), null) === '1') return;
 
-  setInterval(() => {
-    const widthOver  = window.outerWidth  - window.innerWidth  > threshold;
-    const heightOver = window.outerHeight - window.innerHeight > threshold;
-    const orientation = widthOver ? 'vertical' : 'horizontal';
+  let fired = false;
 
-    if (
-      !(heightOver && widthOver) &&
-      ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) ||
-        widthOver || heightOver)
-    ) {
-      if (!state.open || state.orientation !== orientation) trigger(true);
-      state.open = true;
-      state.orientation = orientation;
-    } else {
-      state.open = false;
-      state.orientation = null;
-    }
-  }, 500);
+  function fire() {
+    if (fired) return;
+    fired = true;
+    store(() => sessionStorage.setItem('eggDone', '1'));
+    setTimeout(() => { window.location.href = url; }, 0);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const code = e.code;
+    if (code === 'F12') { fire(); return; }
+    const combo = code === 'KeyI' || code === 'KeyJ' || code === 'KeyC';
+    if (!combo) return;
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey) fire();   // Windows / Linux
+    if (e.metaKey && e.altKey) fire();                    // macOS
+  });
+
+  const bait = document.createElement('div');
+  Object.defineProperty(bait, 'id', { get() { fire(); return ''; } });
+
+  let lastDrop = 0;
+  function drop() {
+    if (fired) return;
+    const now = Date.now();
+    if (now - lastDrop < 3000) return;
+    lastDrop = now;
+    console.log(bait);
+  }
+
+  drop();
+  window.addEventListener('focus', drop);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) drop();
+  });
 })();
