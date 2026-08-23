@@ -85,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try { return fn(); } catch (e) { return fallback; }
   }
 
+  // Puppeteer / Playwright / Selenium 都會把這個設成 true，
+  // 讓 AI 爬蟲讀文章頁時不會被彩蛋導頁打斷
+  if (navigator.webdriver) return;
   if (/[?&]noegg\b/i.test(location.search)) return;
   if (store(() => localStorage.getItem('noEgg'), null) === '1') return;
   // 同一個分頁只玩一次，不然開著 DevTools 就永遠回不來

@@ -307,6 +307,29 @@ html, body {
 
 .error-msg { color: #f87171; font-size: var(--text-base); padding: var(--space-lg) 0; }
 
+/* Mermaid 圖表容器 */
+#article-content .mermaid {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  text-align: center;
+  background: rgba(13,45,82,0.4);
+  border: 1px solid rgba(157,255,255,0.15);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+#article-content .mermaid svg { max-width: 100%; height: auto; }
+
+/* KaTeX 數學式 */
+#article-content .katex { color: #e2f4f4; font-size: 1.05em; }
+#article-content .math-block {
+  margin: var(--space-md) 0;
+  padding: 0.3em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+#article-content .katex-display { margin: 0; }
+
 @media (max-width: 600px) {
   .filter-bar {
     flex-direction: column;

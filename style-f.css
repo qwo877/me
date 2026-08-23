@@ -37,7 +37,7 @@ html, body {
     font-family:system-ui, "Noto Sans TC", sans-serif;
     background-image: url('images/awfuopaiw.webp');
     background-size:cover;
-    background-position:center; 
+    background-position:center bottom;
     cursor: url('images/喵.png') 16 16, auto;
 }
 :root {
