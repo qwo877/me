@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: '康康',         url: 'https://www.justaslime.dev/',                img: 'images/dd.webp',            desc: '一隻不會飛的章魚研究生', socials: [{ type: 'web', url: 'https://www.hhk.one/' }] },
     { name: 'Lyscnf23',     url: 'https://yeyue1004.github.io/',               img: 'https://raw.githubusercontent.com/YeYue1004/images/main/avatar.jpg', desc: ' 努力學習中…', socials: [{ type: 'web', url: 'https://yeyue1004.github.io/' }] },
     { name: 'Flashingtw',     url: 'https://flashing.tw/about',img: 'https://flashing.tw/_astro/avatar.W72oLvvK_Z5G83v.avif', desc: '喜歡研究演算法 熱愛程式的普通高中生', socials: [{ type: 'github', url: 'https://github.com/Flashingtw' },{ type: 'ig', url: 'https://www.instagram.com/dacsc_flash.zcx/' }] },
-    { name: 'shrimp2845',   url: '連結',             img: 'https://shrimp2845-tw.github.io/images/avatar2.png', desc: 'ohhi?', socials: [{ type: 'github', url: 'https://github.com/shrimp2845-tw' }] },
+    { name: 'shrimp2845',   url: 'https://shrimp2845-tw.github.io/',             img: 'https://shrimp2845-tw.github.io/images/avatar2.png', desc: 'ohhi?', socials: [{ type: 'github', url: 'https://github.com/shrimp2845-tw' }] },
     { name: '匿名的貓貓',   url: 'https://qwo877.github.io/me/XD',             img: 'images/image14841987481.png', desc: '上面的都是電神 電爆我qwo', socials: [{ type: 'web', url: 'https://qwo877.github.io/me/XD' }] }
   ];
 
