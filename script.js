@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "每次看完這行字 就表示你的人生又被浪費10秒鐘",
     "你知道嗎?.....我不知道",
     "你以為這裡會有什麼有趣的東西嗎?.....沒有",
-    "                                                                                            看阿有人在這盯了五秒鐘"
+    "                                                                                            你在期待什麼"
   ];
 
   const TYPE_SPEED = 80;
@@ -72,12 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* 彩蛋：開了開發者工具就跳去 XD 頁。
-   舊版拿 outerWidth/innerWidth 的差值猜，會被瀏覽器縮放、系統顯示縮放、
-   側邊欄、書籤列、視窗變小全部誤判，所以改用兩個跟視窗尺寸無關的訊號：
-     1. DevTools 的快捷鍵（所有瀏覽器通用）
-     2. console 誘餌 —— DevTools 真的把物件畫出來時才會去讀它的 id
-   開發時要關掉：網址加 ?noegg，或在主控台 localStorage.setItem('noEgg', '1') */
 (function () {
   const url = "https://qwo877.github.io/me/XD";
 
@@ -85,12 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try { return fn(); } catch (e) { return fallback; }
   }
 
-  // Puppeteer / Playwright / Selenium 都會把這個設成 true，
-  // 讓 AI 爬蟲讀文章頁時不會被彩蛋導頁打斷
   if (navigator.webdriver) return;
   if (/[?&]noegg\b/i.test(location.search)) return;
   if (store(() => localStorage.getItem('noEgg'), null) === '1') return;
-  // 同一個分頁只玩一次，不然開著 DevTools 就永遠回不來
   if (store(() => sessionStorage.getItem('eggDone'), null) === '1') return;
 
   let fired = false;
