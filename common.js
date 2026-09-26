@@ -1,6 +1,6 @@
 (function () {
   const PAGES = [
-    { name: '首頁',  href: 'home.html',    path: '~',         match: ['home.html', 'index.html', ''] },
+    { name: '首頁',  href: './',           path: '~',         match: ['home.html', 'index.html', ''] },
     { name: '關於我', href: 'about.html',   path: '~/about',   match: ['about.html'] },
     { name: '技能樹', href: 'Skill.html',   path: '~/skills',  match: ['skill.html'] },
     { name: '經歷',  toast: true,           path: '~/exp',     toastImg: 'images/855301079788027914.png' },
@@ -51,7 +51,7 @@
     mount.outerHTML = `
       <header class="navbar" id="navbar">
         <div class="nav-content">
-          <a class="brand" href="home.html" aria-label="匿名用戶9487 — 回首頁">
+          <a class="brand" href="./" aria-label="匿名用戶9487 — 回首頁">
             <img class="brand-logo" src="${FAVICON_NORMAL}" alt="" width="48" height="48" decoding="async">
             <span class="brand-prompt" aria-hidden="true"><span class="bp-host"><span class="bp-user">qwo877@me</span><span class="bp-sep">:</span></span><span class="bp-path">${escapeHtml(currentPath())}</span><span class="bp-sep bp-dollar">$</span><span class="bp-cmd" id="brand-cmd"></span><span class="bp-caret"></span></span>
           </a>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml — 匿名用戶9487 個人網站
+  提交網址：https://qwo877.github.io/me/sitemap.xml
+
+  sitemap 放在子路徑沒問題（不像 robots.txt 一定要在根目錄），
+  只要裡面的網址都在 /me/ 底下即可，直接丟給 Search Console 就會生效。
+
+  只寫 lastmod：Google 已明講忽略 changefreq 與 priority，
+  填了不會加分，填不準反而是雜訊；lastmod 則會被實際採用。
+  日期取自各頁面實際內容最後異動的時間。
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 首頁（index.html）。
+       注意 home.html 內容與 index.html 完全相同，屬於重複頁面，
+       這裡只收錄目錄網址 /me/ 當作正式版本，故意不列 home.html。 -->
+  <url>
+    <loc>https://qwo877.github.io/me/</loc>
+    <lastmod>2026-09-26T21:36:59+08:00</lastmod>
+  </url>
+
+  <!-- 關於我 -->
+  <url>
+    <loc>https://qwo877.github.io/me/about.html</loc>
+    <lastmod>2026-09-26T21:37:17+08:00</lastmod>
+  </url>
+
+  <!-- 技能樹（注意檔名 S 是大寫，GitHub Pages 區分大小寫） -->
+  <url>
+    <loc>https://qwo877.github.io/me/Skill.html</loc>
+    <lastmod>2026-09-26T21:37:17+08:00</lastmod>
+  </url>
+
+  <!-- 論壇文章列表：內容由 manifest.json 驅動，故取 manifest 的異動時間 -->
+  <url>
+    <loc>https://qwo877.github.io/me/article.html</loc>
+    <lastmod>2026-09-26T21:37:24+08:00</lastmod>
+  </url>
+
+  <!-- 友站 -->
+  <url>
+    <loc>https://qwo877.github.io/me/friend.html</loc>
+    <lastmod>2026-09-26T21:37:17+08:00</lastmod>
+  </url>
+
+  <!-- ── 文章內頁 ────────────────────────────────────
+       只收錄 articles/ 底下真的有 .md 檔的文章。
+       manifest.json 裡的 id=1、id=2 是「廣告位招租」佔位項目，
+       沒有對應檔案、開起來是錯誤頁，因此不列入。 -->
+
+  <url>
+    <loc>https://qwo877.github.io/me/article.html?id=AI0</loc>
+    <lastmod>2026-07-29T22:00:31+08:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://qwo877.github.io/me/article.html?id=wk4vm03</loc>
+    <lastmod>2026-04-15T10:43:06+08:00</lastmod>
+  </url>
+
+  <!-- ── 尚未收錄 ────────────────────────────────────
+       experience.html（經歷）本身是完整可用的頁面，但導覽列刻意不連過去，
+       點「經歷」只會跳出「網頁維護中」的提示，看起來是還沒想公開。
+       要讓它被搜尋引擎收錄的話，把下面這段取消註解即可。
+
+  <url>
+    <loc>https://qwo877.github.io/me/experience.html</loc>
+    <lastmod>2026-07-13T14:31:26+08:00</lastmod>
+  </url>
+  -->
+
+</urlset>

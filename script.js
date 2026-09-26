@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   if (navigator.webdriver) return;
+  if (/bot|crawl|spider|slurp|lighthouse|inspectiontool|headless/i.test(navigator.userAgent)) return;
   if (/[?&]noegg\b/i.test(location.search)) return;
   if (store(() => localStorage.getItem('noEgg'), null) === '1') return;
   if (store(() => sessionStorage.getItem('eggDone'), null) === '1') return;

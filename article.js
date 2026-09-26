@@ -1,5 +1,6 @@
 const MANIFEST_URL = './manifest.json';
 const STICKER = 'images/855301079788027914.png';
+const SITE = 'https://qwo877.github.io/me/';
 
 const ICON_ARROW = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const ICON_CAL   = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>';
@@ -29,11 +30,57 @@ async function loadManifest() {
 
 const byNewest = (a, b) => new Date(b.date) - new Date(a.date);
 
+// 同一個 article.html 靠 ?id= 顯示不同文章，正式網址和分享資訊要在這裡依文章設定
+function headTag(tag, attr, value) {
+  let el = document.head.querySelector(`${tag}[${attr}="${value}"]`);
+  if (!el) {
+    el = document.createElement(tag);
+    el.setAttribute(attr, value);
+    document.head.appendChild(el);
+  }
+  return el;
+}
+
+function setCanonical(url) {
+  headTag('link', 'rel', 'canonical').href = url;
+  headTag('meta', 'property', 'og:url').content = url;
+}
+
+function noindex() {
+  headTag('meta', 'name', 'robots').content = 'noindex';
+}
+
+function setArticleSeo(meta) {
+  const url = `${SITE}article.html?id=${encodeURIComponent(meta.id)}`;
+  setCanonical(url);
+  headTag('meta', 'property', 'og:type').content = 'article';
+  headTag('meta', 'property', 'og:title').content = meta.title;
+  headTag('meta', 'property', 'og:description').content = meta.description;
+
+  const ld = document.createElement('script');
+  ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: meta.title,
+    description: meta.description,
+    datePublished: meta.date,
+    keywords: meta.tags.join(', '),
+    inLanguage: 'zh-Hant',
+    mainEntityOfPage: url,
+    image: `${SITE}images/image14841987481.png`,
+    author: { '@type': 'Person', name: '匿名用戶9487', alternateName: 'qwo877', url: SITE }
+  });
+  document.head.appendChild(ld);
+}
+
 async function renderList() {
   const listEl   = document.getElementById('article-list');
   const searchEl = document.getElementById('search-input');
   const tagEl    = document.getElementById('tag-filter');
   const countEl  = document.getElementById('list-count');
+
+  setCanonical(`${SITE}article.html`);
 
   let articles;
   try {
@@ -403,6 +450,7 @@ async function renderArticle(id) {
 
   const meta = articles.find(a => a.id === id);
   if (!meta) {
+    noindex();
     document.title = '文章不存在 — qwo877';
     titleEl.textContent = '找不到這篇文章';
     contentEl.innerHTML = errorCard('找不到此文章，確認 id 是否正確。');
@@ -411,6 +459,7 @@ async function renderArticle(id) {
 
   document.title = `${meta.title} — qwo877`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+  setArticleSeo(meta);
 
   titleEl.textContent = meta.title;
   metaEl.innerHTML = `
@@ -426,7 +475,11 @@ async function renderArticle(id) {
   let md;
   try {
     const res = await fetch(meta.file);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) {
+      // 只有確定檔案不存在才叫搜尋引擎別收錄，網路一時抓不到不算
+      if (res.status === 404) noindex();
+      throw new Error(`HTTP ${res.status}`);
+    }
     md = await res.text();
   } catch (e) {
     contentEl.innerHTML = errorCard(`文章載入失敗：${e.message}`);
