@@ -15,7 +15,7 @@
   <meta property="og:image" content="images/image14841987481.png" />
 
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="style-article.css" />
   <link rel="preload" as="image" href="images/awfuopaiw.webp" />
 
@@ -23,11 +23,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js" defer></script>
 
-  <!-- KaTeX：數學式 -->
+  <!-- KaTeX -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" defer></script>
 
-  <!-- Mermaid：用文字畫流程圖／時序圖／架構圖 -->
+  <!-- Mermaid-->
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
     mermaid.initialize({
@@ -47,6 +47,7 @@
   </script>
 
   <script src="common.js" defer></script>
+  <script src="fx.js" defer></script>
   <script src="script.js" defer></script>
   <script src="article.js" defer></script>
 </head>
@@ -54,38 +55,53 @@
 
   <div id="navbar-mount"></div>
 
+  <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+
   <div class="container" id="list-view" style="display:none">
     <div class="forum-body">
       <header class="list-header">
+        <p class="list-kicker"><span class="kicker-dot" aria-hidden="true"></span>~/forum</p>
         <h1>論壇</h1>
         <p>技術筆記、文章心得、還有一些奇怪的東西</p>
       </header>
 
       <div class="filter-bar">
-        <input type="search" id="search-input" placeholder="搜尋文章標題或簡介…" autocomplete="off" aria-label="搜尋文章" />
-        <select id="tag-filter" aria-label="文章分類">
-          <option value="">所有分類</option>
-        </select>
+        <label class="search-box">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="search-input" placeholder="搜尋文章標題或簡介…" autocomplete="off" aria-label="搜尋文章" />
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </label>
+        <div class="tag-filter" id="tag-filter" role="group" aria-label="文章分類"></div>
       </div>
 
-      <div id="article-list" role="list" aria-live="polite"></div>
+      <p class="list-count" id="list-count" aria-live="polite"></p>
+      <div id="article-list" role="list"></div>
     </div>
   </div>
 
   <div class="container" id="content-view" style="display:none">
     <div class="forum-body">
-      <button id="back-btn" type="button" aria-label="返回文章列表">← 返回論壇</button>
+      <button id="back-btn" type="button" aria-label="返回文章列表">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        返回論壇
+      </button>
 
-      <div class="article-glass">
-        <header class="article-header">
-          <h1 id="article-title"></h1>
-          <div id="article-meta"></div>
-        </header>
+      <div class="article-shell">
+        <article class="article-glass">
+          <header class="article-header">
+            <h1 id="article-title"></h1>
+            <div id="article-meta"></div>
+          </header>
 
-        <nav id="article-toc" aria-label="文章目錄"></nav>
+          <div id="article-content"></div>
+        </article>
 
-        <main id="article-content"></main>
+        <aside class="toc-wrap">
+          <nav id="article-toc" aria-label="文章目錄"></nav>
+        </aside>
       </div>
+
+      <nav class="post-nav" id="post-nav" aria-label="其他文章"></nav>
     </div>
   </div>
 
@@ -112,6 +128,7 @@
       var id = new URLSearchParams(location.search).get('id');
       document.getElementById('list-view').style.display    = id ? 'none' : '';
       document.getElementById('content-view').style.display = id ? ''     : 'none';
+      document.body.classList.toggle('is-reading', !!id);
     })();
   </script>
 

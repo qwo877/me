@@ -49,42 +49,118 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => { cfg = computeBubbleConfig(); });
 
   const COLORS = ['#48DEDB', '#E3AA47', 'rgba(75, 192, 192, 0.6)'];
-  const ICON_MAP = {
-    ig:     'images/ig.png',
-    git:    'images/git.png',
-    github: 'images/git.png',
-    web:    'images/web.png'
+
+  const ICONS = {
+    github: '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>',
+    git:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="5.5" r="2.2"/><circle cx="6" cy="18.5" r="2.2"/><circle cx="18" cy="8.5" r="2.2"/><path d="M6 7.7v8.6M18 10.7c0 4-6 3.2-11 6"/></svg>',
+    ig:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>',
+    fb:     '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21Z"/></svg>',
+    web:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>'
   };
+  const LABELS = { github: 'GitHub', git: 'Git', ig: 'Instagram', fb: 'Facebook', web: '網站' };
+
+  function iconType(s) {
+    const u = String(s.url).toLowerCase();
+    if (u.includes('github.com')) return 'github';
+    if (u.includes('instagram.com')) return 'ig';
+    if (u.includes('facebook.com')) return 'fb';
+    if (s.type === 'git' || s.type === 'github') return 'git';
+    if (s.type === 'ig') return 'ig';
+    return 'web';
+  }
+
+  const isMe = f => /qwo877\.github\.io/.test(f.url);
+
+  //壞掉預設放貓
+  const FALLBACK_IMG = 'images/1276100847951941776.png';
+  function useFallback(e) {
+    const img = e.target;
+    if (img.tagName !== 'IMG' || img.dataset.fallback) return;
+    img.dataset.fallback = '1';
+    img.src = FALLBACK_IMG;
+  }
+
+  const grid = document.querySelector('.friends-grid');
+  const cards = [];
+  if (grid) grid.addEventListener('error', useFallback, true);
 
   function renderFriendCards() {
-    const grid = document.querySelector('.friends-grid');
     if (!grid) return;
     const frag = document.createDocumentFragment();
 
-    friendSites.forEach(friend => {
-      const card = document.createElement('div');
-      card.className = 'friend-card';
+    friendSites.forEach((friend, i) => {
+      const card = document.createElement('article');
+      card.className = 'friend-card spot reveal';
       card.setAttribute('role', 'listitem');
 
       const socialLinks = friend.socials.map(s => {
-        const icon = ICON_MAP[s.type] || ICON_MAP.web;
-        const alt = s.type === 'ig' ? 'Instagram' : (s.type === 'git' || s.type === 'github') ? 'GitHub' : '網站';
-        return `<a href="${encodeURI(s.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(friend.name)} 的 ${alt}"><img src="${icon}" alt="${alt}" loading="lazy" decoding="async" width="36" height="36"></a>`;
+        const type = iconType(s);
+        return `<a class="${type}" href="${encodeURI(s.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(friend.name)} 的 ${LABELS[type]}" title="${LABELS[type]}">${ICONS[type]}</a>`;
       }).join('');
 
+      const badge = isMe(friend) ? '<span class="me-badge">是我</span>' : '';
+
       card.innerHTML = `
-        <img src="${encodeURI(friend.img)}" alt="${escapeHtml(friend.name)} 的頭像" class="Picture-control" loading="lazy" decoding="async" width="120" height="120">
-        <h1>${escapeHtml(friend.name)}</h1>
-        <p>${escapeHtml(friend.desc)}</p>
+        <a class="friend-main" href="${encodeURI(friend.url)}" target="_blank" rel="noopener noreferrer">
+          <span class="friend-avatar"><img src="${encodeURI(friend.img)}" alt="${escapeHtml(friend.name)} 的頭像" class="Picture-control" loading="lazy" decoding="async" width="100" height="100"></span>
+          <h3 class="friend-name">${escapeHtml(friend.name)}${badge}</h3>
+          <p class="friend-desc">${escapeHtml(friend.desc.trim())}</p>
+        </a>
         <div class="social-links">${socialLinks}</div>
       `;
+      cards[i] = card;
       frag.appendChild(card);
     });
 
     grid.replaceChildren(frag);
+
+    const count = document.getElementById('friend-count');
+    if (count) count.textContent = `共 ${friendSites.length} 位`;
   }
 
   renderFriendCards();
+
+  const randomBtn = document.getElementById('random-friend');
+  if (randomBtn) {
+    const label = randomBtn.querySelector('.random-label');
+    let rolling = false, resetTimer;
+
+    randomBtn.addEventListener('click', () => {
+      if (rolling || !friendSites.length) return;
+      rolling = true;
+      clearTimeout(resetTimer);
+      randomBtn.classList.add('rolling');
+
+      const pickIndex = Math.floor(Math.random() * friendSites.length);
+      const STEPS = 16;
+      let step = 0;
+
+      (function roll() {
+        step++;
+        const i = step < STEPS ? Math.floor(Math.random() * friendSites.length) : pickIndex;
+        label.textContent = friendSites[i].name;
+        if (step < STEPS) {
+          setTimeout(roll, 35 + step * 10);
+          return;
+        }
+        rolling = false;
+        randomBtn.classList.remove('rolling');
+
+        const card = cards[pickIndex];
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.remove('picked');
+          void card.offsetWidth;
+          card.classList.add('picked');
+          card.addEventListener('animationend', () => card.classList.remove('picked'), { once: true });
+        }
+        if (window.showToast) {
+          window.showToast(`抽到了：${friendSites[pickIndex].name}！點卡片去逛逛`, { duration: 3200 });
+        }
+        resetTimer = setTimeout(() => { label.textContent = '抽一位電神'; }, 3200);
+      })();
+    });
+  }
 
   function shuffle(array) {
     const a = array.slice();
@@ -98,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const avatarBtn = document.getElementById('avatarBtn');
   const bubbleLayer = document.getElementById('bubbleLayer');
   if (!avatarBtn || !bubbleLayer) return;
+  bubbleLayer.addEventListener('error', useFallback, true);
 
   function activate() {
     avatarBtn.classList.remove('jump');
@@ -126,12 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getValidScatterX(startX, startY, isBig, existing) {
-    let scatterX, finalX, tries = 0;
+    let scatterX, finalX, tries = 0, overlap;
     do {
       scatterX = (Math.random() - 0.5) * 1200;
       finalX = startX + scatterX;
       tries++;
-      var overlap = existing.some(p => {
+      overlap = existing.some(p => {
         const dx = finalX - p.x;
         const dy = startY - p.y;
         return Math.sqrt(dx * dx + dy * dy) < 100;
@@ -157,9 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
       bubble.style.background = color;
       bubble.style.borderColor = color;
 
+      bubbleLayer.appendChild(bubble);
+      const half = bubble.offsetWidth / 2;
+
       const startX = btnRect.left - layerRect.left + btnRect.width / 2;
-      const startY = btnRect.top - layerRect.top - (isBig ? 55 : -10);
-      bubble.style.left = (startX - (isBig ? 55 : 18)) + 'px';
+      const startY = btnRect.top - layerRect.top - (isBig ? half : -10);
+      bubble.style.left = (startX - half) + 'px';
       bubble.style.top = startY + 'px';
 
       const scatterX = getValidScatterX(startX, startY, isBig, bigPositions);
@@ -171,15 +251,16 @@ document.addEventListener('DOMContentLoaded', () => {
         a.href = site.url.trim();
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
+        a.tabIndex = -1;   
         a.setAttribute('aria-label', '前往 ' + site.name);
-        const imgSrc = site.img && site.img.length > 0 ? site.img : 'images/default.png';
+        const imgSrc = site.img && site.img.length > 0 ? site.img : 'images/1276100847951941776.png';
         a.innerHTML = `
           <img src="${encodeURI(imgSrc)}" alt="${escapeHtml(site.name)} 頭像" loading="lazy" decoding="async" style="width:86%;height:86%;border-radius:50%;object-fit:cover;">
           <div class="name" style="font-size:12px;margin-top:4px">${escapeHtml(site.name)}</div>`;
         bubble.appendChild(a);
 
         bubble.addEventListener('click', (e) => {
-          if (e.target.tagName.toLowerCase() !== 'a') {
+          if (!e.target.closest('a')) {
             window.open(site.url, '_blank', 'noopener,noreferrer');
           }
         });
@@ -187,12 +268,11 @@ document.addEventListener('DOMContentLoaded', () => {
         bigPositions.push({ x: startX + scatterX, y: startY });
       }
 
-      animateUpAndRemoveWithWave(bubble, startX, startY, scatterX, duration);
-      bubbleLayer.appendChild(bubble);
+      animateUpAndRemoveWithWave(bubble, startX, startY, scatterX, duration, half);
     }
   }
 
-  function animateUpAndRemoveWithWave(el, startX, startY, scatterX, duration) {
+  function animateUpAndRemoveWithWave(el, startX, startY, scatterX, duration, half) {
     const startTime = performance.now();
     const amplitude = 12 + Math.random() * 12;
     const frequency = 0.0007 + Math.random() * 0.0007;
@@ -204,10 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = startX + scatterX * progress + Math.sin(elapsed * frequency) * amplitude;
 
       el.style.top = y + 'px';
-      el.style.left = (x - (el.classList.contains('big') ? 55 : 18)) + 'px';
+      el.style.left = (x - half) + 'px';
       el.style.opacity = 1 - progress;
 
-      if (progress < 1) {
+      if (progress < 1 && el.isConnected) {
         requestAnimationFrame(animate);
       } else {
         el.remove();

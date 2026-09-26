@@ -14,46 +14,61 @@
   <meta property="og:image" content="images/image14841987481.png" />
 
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
+  <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style-f.css">
   <link rel="preload" as="image" href="images/awfuopaiw.webp" />
 
   <script src="common.js" defer></script>
+  <script src="fx.js" defer></script>
   <script src="script-f.js" defer></script>
 </head>
 <body>
   <div id="navbar-mount"></div>
 
   <div class="container">
-    <div class="content">
-      <div class="wrap">
-        <div class="card" id="friendCard">
-          <div class="center-area">
-            <div id="avatarBtn" role="button" tabindex="0" style="background-image: url('images/1276100847951941776.png');" aria-label="點擊吹出友站泡泡"></div>
-          </div>
-          <div id="bubbleLayer" aria-hidden="true"></div>
+    <main class="content">
+      <section class="bubble-stage card" id="friendCard">
+        <header class="stage-head">
+          <p class="stage-kicker">~/friends</p>
+          <h1>友站泡泡機</h1>
+        </header>
+
+        <div class="center-area">
+          <span class="avatar-halo" aria-hidden="true"></span>
+          <div id="avatarBtn" role="button" tabindex="0" style="background-image: url('images/1276100847951941776.png');" aria-label="點擊吹出友站泡泡"></div>
         </div>
-      </div>
+
+        <div id="bubbleLayer" aria-hidden="true"></div>
+      </section>
+
       <div class="friends-header">
-        <h1>友站列表</h1>
+        <h2>友站列表 <span class="friend-count" id="friend-count"></span></h2>
+        <button class="random-btn" id="random-friend" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"/></svg>
+          <span class="random-label">抽一位電神</span>
+        </button>
       </div>
+
       <div class="friends-grid" role="list"></div>
-    </div>
-    <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
-    <div class="wave-box" aria-hidden="true">
-      <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg"
-           xmlns:xlink="http://www.w3.org/1999/xlink"
-           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(13,45,82,0.9)" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(75, 192, 192, 0.6)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(227,170,71,0.4)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(157,255,255,1)" />
-        </g>
-      </svg>
-    </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
+
+  <div class="wave-box" aria-hidden="true">
+    <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(13,45,82,0.9)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(75, 192, 192, 0.6)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(227,170,71,0.4)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(157,255,255,1)" />
+      </g>
+    </svg>
   </div>
 </body>
 </html>

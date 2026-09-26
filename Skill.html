@@ -13,20 +13,68 @@
   <meta property="og:description" content="技能樹節點圖：AI、前端、後端、資料結構、演算法等。" />
   <meta property="og:image" content="images/image14841987481.png" />
 
+  <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style-s.css">
   <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
   <link rel="preload" as="image" href="images/awfuopaiw.webp" />
 
-  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js" defer></script>
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js" defer></script>
-  <script src="https://unpkg.com/cytoscape-dagre@2.3.2/cytoscape-dagre.js" defer></script>
   <script src="common.js" defer></script>
+  <script src="fx.js" defer></script>
   <script src="script-s.js" defer></script>
 </head>
 <body>
   <div id="navbar-mount"></div>
-  <div id="cy" role="img" aria-label="技能樹節點圖"></div>
-  <div class="cy-tooltip" id="tooltip" role="tooltip"></div>
+
+  <main class="sk-stage" id="sk-stage">
+    <svg class="sk-svg" id="sk-svg" tabindex="0" role="group" aria-label="拖曳平移、滾輪縮放、可以拖動節點，Tab 鍵逐一查看技能">
+      <defs>
+        <clipPath id="sk-clip"><circle r="34" /></clipPath>
+        <linearGradient id="sk-root-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#9dffff" />
+          <stop offset="55%" stop-color="#48dedb" />
+          <stop offset="100%" stop-color="#f1c27d" />
+        </linearGradient>
+      </defs>
+      <g id="sk-viewport">
+        <g id="sk-edges"></g>
+        <g id="sk-nodes"></g>
+      </g>
+    </svg>
+  </main>
+
+  <!-- 清單模式：手機預設 -->
+  <section class="sk-list" id="sk-list" aria-labelledby="sk-list-title">
+    <header class="sk-list-head">
+      <h2 id="sk-list-title">技能清單</h2>
+    </header>
+    <ul class="sk-tree" id="sk-tree"></ul>
+  </section>
+
+  <!-- 控制面板 -->
+  <aside class="sk-panel glass" aria-label="技能樹控制面板">
+    <h1 class="sk-title">技能樹 <small>~/skills</small></h1>
+    <p class="sk-stats" id="sk-stats"></p>
+    <div class="sk-legend sk-graph-only" aria-hidden="true">
+      <span>摸過</span><span class="sk-legend-bar"></span><span>精通</span>
+    </div>
+    <div class="sk-controls">
+      <button class="sk-btn sk-graph-only" id="sk-zoom-out" type="button" aria-label="縮小">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+      </button>
+      <button class="sk-btn sk-graph-only" id="sk-zoom-in" type="button" aria-label="放大">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button class="sk-btn sk-graph-only" id="sk-reset" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/></svg>
+        重置
+      </button>
+      <button class="sk-btn sk-btn-mode" id="sk-mode" type="button" aria-pressed="false">清單模式</button>
+    </div>
+    <p class="sk-hint sk-graph-only">拖曳空白處平移 · 滾輪縮放 · 節點可以拖</p>
+  </aside>
+
+  <div class="sk-tip" id="sk-tip" aria-hidden="true" hidden></div>
+
   <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
 </body>
 </html>

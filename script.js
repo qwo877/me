@@ -72,6 +72,70 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/* 首頁：依現在時間換問候語、小標圖示和碎念 */
+document.addEventListener('DOMContentLoaded', () => {
+  const greetEl = document.getElementById('greeting');
+  const iconEl  = document.getElementById('eyebrow-icon');
+  const textEl  = document.getElementById('eyebrow-text');
+  if (!greetEl || !iconEl || !textEl) return;
+
+  const ICONS = {
+    sun:  '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
+    cup:  '<path d="M4 8.5h12.5v4.5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M16.5 10h1.3a2.5 2.5 0 0 1 0 5h-1.3M8 2.5v3M12 2.5v3"/>',
+    moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>',
+    star: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9Z"/><path d="M19 16.5v4M17 18.5h4"/>'
+  };
+
+  const SLOTS = [
+    { from: 5,  to: 11, greet: '早安',    icon: 'sun',  note: '根本還沒睡醒' },
+    { from: 11, to: 14, greet: '午安',    icon: 'sun',  note: '午餐吃什麼是世紀難題' },
+    { from: 14, to: 18, greet: '午安',    icon: 'cup',  note: '下午茶時間（但我沒有茶）' },
+    { from: 18, to: 24, greet: '晚安',    icon: 'moon', note: '適合寫 code 的夜晚' },
+    { from: 0,  to: 5,  greet: '還不睡？', icon: 'star', note: '夜貓子專屬時段' }
+  ];
+
+  let lastIcon = '';
+
+  function update() {
+    const now = new Date();
+    const h = now.getHours();
+    const slot = SLOTS.find(s => h >= s.from && h < s.to) || SLOTS[0];
+    greetEl.textContent = slot.greet;
+    if (slot.icon !== lastIcon) {
+      iconEl.innerHTML = `<svg class="icon" viewBox="0 0 24 24">${ICONS[slot.icon]}</svg>`;
+      lastIcon = slot.icon;
+    }
+    const hh = String(h).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    textEl.textContent = `現在 ${hh}:${mm} · ${slot.note}`;
+  }
+
+  update();
+  setInterval(update, 10000);
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const card = document.getElementById('latest-post');
+  if (!card) return;
+  try {
+    const res = await fetch('manifest.json');
+    if (!res.ok) throw new Error(res.status);
+    const { articles } = await res.json();
+    const latest = (articles || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    if (!latest) throw new Error('empty');
+
+    card.href = `article.html?id=${encodeURIComponent(latest.id)}`;
+    card.querySelector('#latest-title').textContent = latest.title;
+    const time = card.querySelector('#latest-date');
+    time.dateTime = latest.date;
+    time.textContent = latest.date.replace(/-/g, '.');
+    card.setAttribute('aria-label', `最新文章：${latest.title}`);
+    card.classList.remove('is-loading');
+  } catch (e) {
+    card.remove();
+  }
+});
+
 (function () {
   const url = "https://qwo877.github.io/me/XD";
 
