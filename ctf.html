@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>?</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0d2d52" />
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="base.css" />
+  <link id="dynamic-favicon" rel="icon" href="images/1276100847951941776.png">
+
+  <script src="common.js" defer></script>
+  <script src="fx.js" defer></script>
+  <script src="ctf-data.js" defer></script>
+
+  <style>
+    /* base.css 的 .container 沒有上邊距（那條在各頁 CSS 裡），本頁只載 base.css，
+       自己補上，否則會被 position:fixed 的導覽列蓋住。 */
+    .container { align-items: flex-start; padding: calc(var(--navbar-h) + var(--sp-md)) var(--sp-sm) var(--sp-lg); }
+    .ctf-main { max-width: 820px; margin-inline: auto; }
+    .ctf-card { padding: clamp(18px, 3vw, 34px); margin-bottom: var(--sp-md); }
+    .ctf-log { font-family: var(--mono); font-size: .95em; line-height: 1.8; color: var(--text-2); }
+    .ctf-log .k { color: var(--accent); }
+    .ctf-log .g { color: var(--gold); }
+    .ctf-riddle { font-size: 1.05em; line-height: 1.9; color: var(--text); }
+    .ctf-hint-img { display:block; width: 128px; height:auto; margin: var(--sp-sm) 0; border-radius: var(--r-sm);
+                    border: 1px solid var(--line); filter: saturate(.9); image-rendering: pixelated; }
+    .stage-badge { display:inline-flex; align-items:center; gap:.5em; font-family: var(--mono);
+                   font-size:.8em; padding:.25em .8em; border-radius: var(--r-pill);
+                   border:1px solid var(--line-2); color: var(--text-3); }
+    .stage-badge.solved { color: var(--lime); border-color: rgba(125,255,176,.5); }
+    .lock { display:flex; gap:.6em; margin-top: var(--sp-sm); flex-wrap:wrap; }
+    .lock input {
+      flex:1 1 240px; min-width:0; font-family: var(--mono); font-size:1em;
+      padding:.7em .9em; color: var(--text); background: var(--glass-2);
+      border:1px solid var(--line); border-radius: var(--r-sm); outline:none;
+      transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+    }
+    .lock input:focus { border-color: var(--line-2); box-shadow: var(--glow); }
+    .lock button {
+      font-family: var(--mono); font-size:.95em; padding:.7em 1.3em; cursor: var(--cursor-hit);
+      color: var(--bg); background: var(--accent); border:none; border-radius: var(--r-sm);
+      font-weight:700; transition: transform .15s var(--spring), filter .2s var(--ease);
+    }
+    .lock button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .lock button:disabled { opacity:.4; cursor:not-allowed; }
+    .ctf-stage.locked .lock { opacity:.45; pointer-events:none; }
+    .msg { font-family: var(--mono); font-size:.9em; margin-top:.6em; min-height:1.2em; }
+    .msg.err { color: var(--rose); }
+    .msg.ok  { color: var(--lime); }
+    .reveal-out {
+      margin-top: var(--sp-sm); padding: var(--sp-sm); border-radius: var(--r-sm);
+      background: var(--glass-2); border:1px solid var(--line);
+      font-family: var(--mono); font-size:.92em; line-height:1.75; color: var(--text);
+      white-space: pre-wrap; word-break: break-word; display:none;
+    }
+    .reveal-out.show { display:block; animation: fadeUp .4s var(--ease); }
+    .flag-final { color: var(--gold); font-size:1.15em; font-weight:700; letter-spacing:.02em; }
+    @keyframes fadeUp { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+    @keyframes shake { 0%,100%{transform:none;} 20%,60%{transform:translateX(-6px);} 40%,80%{transform:translateX(6px);} }
+    .shake { animation: shake .3s; }
+    .locked-note { color: var(--text-3); font-family: var(--mono); font-size:.85em; margin-top:.4em; }
+  </style>
+</head>
+<body>
+  <div id="navbar-mount"></div>
+
+  <div class="container">
+    <main class="content ctf-main">
+
+      <section class="about-card glass reveal ctf-card">
+        <header class="card-head">
+          <h1 class="card-title">?</h1>
+          <code class="card-cmd">$ ./climb</code>
+        </header>
+        <div class="ctf-log">
+          <div><span class="k">[sys]</span> 找到Flag記得來找本喵</div>
+          <div><span class="g">[hint]</span> 觀山易，行山難。</div>
+        </div>
+      </section>
+
+      <section class="about-card glass reveal ctf-card ctf-stage" id="stage1">
+        <header class="card-head">
+          <h2 class="card-title">壹</h2>
+          <span class="stage-badge" id="badge1">stage 1 · 鑰匙</span>
+        </header>
+        <p class="ctf-riddle">
+          %E9%91%B0%E5%8C%99%E5%9C%A8%E6%9F%90%E5%80%8B%E5%9C%96%E7%89%87%E4%B8%AD
+        </p>
+      </section>
+
+      <section class="about-card glass reveal ctf-card ctf-stage locked" id="stage2">
+        <header class="card-head">
+          <h2 class="card-title">貳</h2>
+          <span class="stage-badge" id="badge2">stage 2 · 上鎖</span>
+        </header>
+        <p class="ctf-riddle">你從像素的底層撈起的那串，還穿著<strong>六十四格</strong>的外衣。<br>脫下它，才是敲得開這道門的真言。</p>
+        <div class="lock">
+          <input id="in2" type="text" placeholder="⋯⋯" autocomplete="off" spellcheck="false" aria-label="第二關鑰匙">
+          <button id="btn2" type="button">解鎖</button>
+        </div>
+        <div class="msg" id="msg2" role="status" aria-live="polite"></div>
+        <div class="reveal-out" id="out2"></div>
+      </section>
+
+      <section class="about-card glass reveal ctf-card ctf-stage locked" id="stage3">
+        <header class="card-head">
+          <h2 class="card-title">參</h2>
+          <span class="stage-badge" id="badge3">stage 3 · 上鎖</span>
+        </header>
+        <p class="ctf-riddle">上一關的霧裡留了一串低語 —— <strong>逢十六而滿，兩兩成文</strong>。<br>讀成人話，便是登頂的真言。</p>
+        <div class="lock">
+          <input id="in3" type="text" placeholder="⋯⋯" autocomplete="off" spellcheck="false" aria-label="第三關鑰匙" disabled>
+          <button id="btn3" type="button" disabled>登頂</button>
+        </div>
+        <div class="msg" id="msg3" role="status" aria-live="polite"></div>
+        <div class="reveal-out" id="out3"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">網頁維護中</div>
+
+  <script>
+  (function () {
+    const subtle = crypto.subtle;
+    const encU = (s) => new TextEncoder().encode(s);
+    const b64 = (s) => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+    const concat = (a, b) => { const o = new Uint8Array(a.length + b.length); o.set(a); o.set(b, a.length); return o; };
+    const u32be = (n) => { const b = new Uint8Array(4); new DataView(b.buffer).setUint32(0, n); return b; };
+
+    async function pbkdf2(pass, salt, iters) {
+      const k = await subtle.importKey("raw", encU(pass), "PBKDF2", false, ["deriveBits"]);
+      const bits = await subtle.deriveBits({ name: "PBKDF2", salt, iterations: iters, hash: "SHA-256" }, k, 256);
+      return new Uint8Array(bits);
+    }
+    async function hmac(keyBytes, msgBytes) {
+      const k = await subtle.importKey("raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+      return new Uint8Array(await subtle.sign("HMAC", k, msgBytes));
+    }
+    async function keystream(ek, iv, n) {
+      const out = new Uint8Array(Math.ceil(n / 32) * 32);
+      for (let i = 0; i * 32 < n; i++) out.set(await hmac(ek, concat(iv, u32be(i))), i * 32);
+      return out.subarray(0, n);
+    }
+    const ctEq = (a, b) => { if (a.length !== b.length) return false; let d = 0; for (let i = 0; i < a.length; i++) d |= a[i] ^ b[i]; return d === 0; };
+
+    async function decrypt(pass, blob) {
+      try {
+        const salt = b64(blob.salt), iv = b64(blob.iv), ct = b64(blob.ct), tag = b64(blob.tag);
+        const mk = await pbkdf2(pass, salt, blob.iters);
+        const ek = await hmac(mk, encU("enc")), ak = await hmac(mk, encU("mac"));
+        if (!ctEq(await hmac(ak, concat(iv, ct)), tag)) return null;
+        const ks = await keystream(ek, iv, ct.length);
+        const pt = new Uint8Array(ct.length);
+        for (let i = 0; i < ct.length; i++) pt[i] = ct[i] ^ ks[i];
+        return new TextDecoder().decode(pt);
+      } catch { return null; }
+    }
+
+    function fail(stage) {
+      const el = document.getElementById(stage);
+      el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake");
+    }
+
+    function wire(inId, btnId, msgId, outId, badgeId, blobKey, onSolve) {
+      const input = document.getElementById(inId), btn = document.getElementById(btnId);
+      const msg = document.getElementById(msgId), out = document.getElementById(outId), badge = document.getElementById(badgeId);
+      async function attempt() {
+        if (btn.disabled || input.disabled) return;
+        const key = input.value.trim();
+        if (!key) return;
+        btn.disabled = true; msg.className = "msg"; msg.textContent = "驗證中…";
+        const data = (window.CTF_DATA || {})[blobKey];
+        if (!subtle || !data) {
+          msg.className = "msg err";
+          msg.textContent = !subtle ? "請使用 HTTPS 或 localhost 開啟關卡。" : "關卡資料載入失敗，請重新整理頁面。";
+          btn.disabled = false; return;
+        }
+        const pt = await decrypt(key, data);
+        if (pt == null) {
+          msg.className = "msg err"; msg.textContent = "驗證失敗。";
+          fail(input.closest(".ctf-stage").id); btn.disabled = false; return;
+        }
+        msg.className = "msg ok"; msg.textContent = "// 通過";
+        badge.textContent = badge.textContent.replace(/上鎖|可解|找出鑰匙/, "已解"); badge.classList.add("solved");
+        out.textContent = pt; out.classList.add("show");
+        input.disabled = true; btn.disabled = true;
+        if (onSolve) onSolve(pt);
+      }
+      btn.addEventListener("click", attempt);
+      input.addEventListener("keydown", (e) => { if (e.key === "Enter") attempt(); });
+    }
+
+    function unlock(stageId) {
+      const el = document.getElementById(stageId);
+      el.classList.remove("locked");
+      el.querySelectorAll("input, button").forEach(control => { control.disabled = false; });
+      const b = el.querySelector(".stage-badge");
+      if (b) b.textContent = b.textContent.replace("上鎖", "可解");
+    }
+
+    wire("in2", "btn2", "msg2", "out2", "badge2", "stage2", () => {
+      const badge = document.getElementById("badge1");
+      badge.textContent = "stage 1 · 已解";
+      badge.classList.add("solved");
+      unlock("stage3");
+    });
+    wire("in3", "btn3", "msg3", "out3", "badge3", "stage3", null);
+    unlock("stage2");
+  })();
+  </script>
+</body>
+</html>
