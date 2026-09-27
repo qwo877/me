@@ -13,8 +13,16 @@
       "title": "115特殊選才心得",
       "description": "115特選小丑的特選歷程心得",
       "date": "2026-04-10",
-      "tags": ["特選", "嗚嗚嗚我破防了"],
+      "tags": ["特選", "嗚嗚嗚我破防了","心得"],
       "file": "articles/wk4vm03.md"
+    },
+    {
+      "id": "XJP4",
+      "title": "TAAI 2026 高中生組論文心得",
+      "description": "論文，好耶:D",
+      "date": "2026-04-10",
+      "tags": ["AI", "心得"],
+      "file": "articles/XJP4.md"
     },
     {
       "id": "1",
