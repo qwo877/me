@@ -20,7 +20,7 @@ SE 叫注意力，CBAM 叫注意力，Transformer 裡面那個也叫注意力。
 
 - **CNN**：conv、channel、feature map、pooling、ResNet 的殘差，你都看過，大概知道在幹嘛
 - **PyTorch**：至少自己訓練過一個影像分類器
-- **一點數學**：線性代數、矩陣乘法、內積，還有 softmax  <sub>或是報幹多的數學</sub>
+- **一點數學**：線性代數、矩陣乘法、內積，還有 softmax  <sub>或是爆幹多的數學</sub>
 - **環境**：裝好 NumPy、PyTorch 和 torchvision
 
 不需要會任何一個注意力模組。~~因為這裡就是在教這個的~~。
