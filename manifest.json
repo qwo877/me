@@ -1,6 +1,22 @@
 {
   "articles": [
     {
+      "id": "AM1",
+      "title": "注意力機制教學（1）：從 SE 到 Non-local",
+      "description": "從卷積的權重出發，一路到 SE、CBAM、Non-local",
+      "date": "2026-10-25",
+      "tags": ["AI", "教學", "注意力機制模組"],
+      "file": "articles/AM1.md"
+    },
+    {
+      "id": "XJP4",
+      "title": "TAAI 2026 高中生組論文心得",
+      "description": "論文，好耶:D",
+      "date": "2026-09-27",
+      "tags": ["AI", "心得"],
+      "file": "articles/XJP4.md"
+    },
+    {
       "id": "AI0",
       "title": "AI 教學 #0：從 if/else 到多層感知機",
       "description": "一步步從最原始的AI學到MLP：感知器、擬合、多分類、激活函數，含 numpy 手刻與 PyTorch 對照",
@@ -15,14 +31,6 @@
       "date": "2026-04-10",
       "tags": ["特選", "嗚嗚嗚我破防了","心得"],
       "file": "articles/wk4vm03.md"
-    },
-    {
-      "id": "XJP4",
-      "title": "TAAI 2026 高中生組論文心得",
-      "description": "論文，好耶:D",
-      "date": "2026-09-27",
-      "tags": ["AI", "心得"],
-      "file": "articles/XJP4.md"
     },
     {
       "id": "1",
