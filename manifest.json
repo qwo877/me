@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "id": "PW",
+      "title": "個人網站開發心得",
+      "description": "從練習的網頁出發，這個網站是如何走到現在的?",
+      "date": "2026-11-26",
+      "tags": ["心得", "前端"],
+      "file": "articles/PW.md"
+    },
+    {
       "id": "AM1",
       "title": "注意力機制教學（1）：從 SE 到 Non-local",
       "description": "從卷積的權重出發，一路到 SE、CBAM、Non-local",
@@ -46,7 +54,7 @@
       "description": "沒有這篇文章 純佔位",
       "date": "2026-04-10",
       "tags": ["阿巴阿巴", "笑死"],
-      "file": "articles/02.md"
+      "file": "articles/2.md"
     }
     
   ]
